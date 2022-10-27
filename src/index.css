@@ -9,6 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 code {
@@ -18,4 +19,12 @@ code {
 
 .header .active {
   border-bottom: 1px solid white;
+}
+.container{
+  width: 90%;
+  margin:auto
+}
+
+.editCaroudel{
+  overflow: hidden;
 }
