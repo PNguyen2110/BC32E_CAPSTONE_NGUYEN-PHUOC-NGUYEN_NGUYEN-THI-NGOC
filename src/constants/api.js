@@ -5,7 +5,6 @@ const TokenCybersoft =
 
 const baseURL = `https://movienew.cybersoft.edu.vn/api/`;
 export const api = axios.create();
-console.log(api.interceptors);
 api.interceptors.request.use((config) => {
   config = {
     ...config,

@@ -1,38 +1,40 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Carousel } from 'antd';
+import { useDispatch } from 'react-redux';
+import { useQuanLiPhim } from '../../storeToolKit/quanLiPhim/quanLiPhimSelector';
+import { getMovieBannerList } from '../../storeToolKit/quanLiPhim/quanLiPhimReducer';
 
 const contentStyle = {
-    height: '400px',
-    color: '#fff',
-    lineHeight: '160px',
-    textAlign: 'center',
-    background: '#364d79',
-  };
+  height: '69 0px',
+  color: '#fff',
+  lineHeight: '160px',
+  textAlign: 'center',
+  backgroundPosition:'center',
+  backgroundSize:'cover',
+};
 
 const HomeCarousel = () => {
+
+  const dispatch = useDispatch()
+  const { bannerList } = useQuanLiPhim()
+  console.log("bannerList: ", bannerList);
+
+
+  useEffect(() => {
+
+    dispatch(getMovieBannerList())
+  }, [])
+
   return (
     <Carousel effect="fade">
-    <div>
-      <div style={contentStyle}>
-        <img className='w-full' src="https://2.bp.blogspot.com/-I9Op5Q13w6Q/XFRpf1ge9nI/AAAAAAAABuw/j5IsTHRZw2cW2_iKG2-XFWKWwpZBMQcuQCLcBGAs/s1600/IMG_1831%2BKopie.jpg" alt="123" />
-      </div>
-    </div>
-    <div>
-      <div style={contentStyle}>
-      <img className='w-full' src="https://2.bp.blogspot.com/-I9Op5Q13w6Q/XFRpf1ge9nI/AAAAAAAABuw/j5IsTHRZw2cW2_iKG2-XFWKWwpZBMQcuQCLcBGAs/s1600/IMG_1831%2BKopie.jpg" alt="123" />
-      </div>
-    </div>
-    <div>
-      <div style={contentStyle}>
-      <img className='w-full' src="https://2.bp.blogspot.com/-I9Op5Q13w6Q/XFRpf1ge9nI/AAAAAAAABuw/j5IsTHRZw2cW2_iKG2-XFWKWwpZBMQcuQCLcBGAs/s1600/IMG_1831%2BKopie.jpg" alt="123" />
-      </div>
-    </div>
-    <div>
-      <div style={contentStyle}>
-      <img className='w-full' src="https://2.bp.blogspot.com/-I9Op5Q13w6Q/XFRpf1ge9nI/AAAAAAAABuw/j5IsTHRZw2cW2_iKG2-XFWKWwpZBMQcuQCLcBGAs/s1600/IMG_1831%2BKopie.jpg" alt="123" />
-      </div>
-    </div>
-  </Carousel>
+      {bannerList.map((item) => {
+        return <div key={item.maBanner}>
+          <div style={{...contentStyle, backgroundImage:`url(${item.hinhAnh})`}} >
+            <img className='w-full opacity-0' src={item.hinhAnh} alt={item.maPhim} />
+          </div>
+        </div>
+      })}
+    </Carousel>
   )
 }
 

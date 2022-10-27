@@ -8,7 +8,7 @@ const HomeMenu = () => {
  
   return (
     <>
-      
+    
       <Tabs
         tabPosition={tabPosition}
         items={new Array(5).fill(null).map((_, i) => {
