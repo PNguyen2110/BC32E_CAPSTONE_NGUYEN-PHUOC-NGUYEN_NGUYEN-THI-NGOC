@@ -94,12 +94,3 @@ export const Footer = () => {
 
 export default Footer
 
-// const Container = styled.footer`
-// &.Footer{
-//     padding: 30px;
-//     background: green;
-//     color: white;
-//     text-align: center;
-//     font-size: 28px;
-// }
-// `
