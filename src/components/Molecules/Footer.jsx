@@ -91,8 +91,7 @@ export const Footer = () => {
     </footer>
 
 
-)
-}
+)}
 
 
 
