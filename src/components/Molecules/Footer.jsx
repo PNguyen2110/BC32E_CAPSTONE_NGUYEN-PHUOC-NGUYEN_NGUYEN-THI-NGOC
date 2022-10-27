@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+
 export const Footer = () => {
   return (
     <footer className="py-6 dark:text-black mt-6" style={{backgroundColor:'#f3e5f5'}}>
@@ -89,8 +90,9 @@ export const Footer = () => {
       </div>
     </footer>
 
-  )
+)
 }
+
 
 export default Footer
 

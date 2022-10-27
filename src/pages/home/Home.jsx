@@ -10,6 +10,7 @@ const Home = () => {
 
       <HomeCard />
       <HomeMenu />
+
     </div>
   )
 }
