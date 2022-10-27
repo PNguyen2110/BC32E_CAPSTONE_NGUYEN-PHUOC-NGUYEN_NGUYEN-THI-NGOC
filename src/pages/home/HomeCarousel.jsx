@@ -17,24 +17,27 @@ const HomeCarousel = () => {
 
   const dispatch = useDispatch()
   const { bannerList } = useQuanLiPhim()
-  console.log("bannerList: ", bannerList);
-
-
+ 
   useEffect(() => {
 
     dispatch(getMovieBannerList())
   }, [])
 
   return (
-    <Carousel effect="fade">
+    
+          <div className='w-full editCaroudel'>
+            <Carousel effect="fade">
       {bannerList.map((item) => {
         return <div key={item.maBanner}>
           <div style={{...contentStyle, backgroundImage:`url(${item.hinhAnh})`}} >
-            <img className='w-full opacity-0' src={item.hinhAnh} alt={item.maPhim} />
+            {/* <img className='w-full opacity-0' src={item.hinhAnh} alt={item.maPhim} /> */}
           </div>
         </div>
       })}
     </Carousel>
+          </div>
+    
+
   )
 }
 
