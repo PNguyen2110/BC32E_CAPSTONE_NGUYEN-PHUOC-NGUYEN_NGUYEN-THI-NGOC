@@ -1,12 +1,16 @@
 import React from 'react'
+import HomeCard from './HomeCard'
 import HomeCarousel from './HomeCarousel'
 import HomeMenu from './HomeMenu'
 
 const Home = () => {
   return (
     <div>
-      <HomeCarousel/>
-      <HomeMenu/>
+      <HomeCarousel />
+
+      <HomeCard />
+      <HomeMenu />
+
     </div>
   )
 }
