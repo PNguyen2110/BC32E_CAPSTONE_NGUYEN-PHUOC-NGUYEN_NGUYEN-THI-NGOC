@@ -5,7 +5,7 @@ import { useQuanLiPhim } from '../../storeToolKit/quanLiPhim/quanLiPhimSelector'
 import { getMovieBannerList } from '../../storeToolKit/quanLiPhim/quanLiPhimReducer';
 
 const contentStyle = {
-  height: '69 0px',
+  height: '690px',
   color: '#fff',
   lineHeight: '160px',
   textAlign: 'center',
