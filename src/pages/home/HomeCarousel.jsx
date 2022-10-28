@@ -25,12 +25,12 @@ const HomeCarousel = () => {
 
   return (
     
-          <div className='w-full editCaroudel'>
+          <div className='w-full'>
             <Carousel effect="fade">
       {bannerList.map((item) => {
         return <div key={item.maBanner}>
           <div style={{...contentStyle, backgroundImage:`url(${item.hinhAnh})`}} >
-            {/* <img className='w-full opacity-0' src={item.hinhAnh} alt={item.maPhim} /> */}
+            <img className='w-full opacity-0' src={item.hinhAnh} alt={item.maPhim} />
           </div>
         </div>
       })}

@@ -13,10 +13,7 @@ export const useQueryUrl = (queryDefault = {}) => {
   if (value) {
     query = JSON.parse(
       '{"' + value.replace(/=/g, '":"').replace(/&/g, '","') + '"}'
-
-      // '{" ' + value.replace("=", ":").replace("&", ",") + ' "}'
     );
   }
-  // console.log(query);
   return [query, setQueryUrl];
 };

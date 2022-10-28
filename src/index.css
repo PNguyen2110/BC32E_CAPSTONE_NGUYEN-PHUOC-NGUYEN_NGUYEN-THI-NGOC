@@ -18,13 +18,18 @@ code {
 }
 
 .header .active {
-  border-bottom: 1px solid white;
+  border-bottom: 1.5px solid #f06292;
+  color: #f06292;
+}
+.header a:hover {
+    color: #f06292;
 }
 .container{
   width: 90%;
   margin:auto
 }
 
-.editCaroudel{
-  overflow: hidden;
+.slick-dots-bottom{
+  margin: 0 !important;
+  padding: 0 !important;
 }
