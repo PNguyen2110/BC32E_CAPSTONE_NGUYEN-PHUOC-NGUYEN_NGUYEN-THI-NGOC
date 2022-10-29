@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import styled from 'styled-components'
+import cn from 'classnames'
 import { useQueryUrl } from '../../Hooks/useQueryUrl'
 import { getMovieList } from '../../storeToolKit/quanLiPhim/quanLiPhimReducer'
 import { useQuanLiPhim } from '../../storeToolKit/quanLiPhim/quanLiPhimSelector'
@@ -24,16 +26,16 @@ const HomeCard = () => {
   return (
     <div className='container'>
       <div className='mt-10 mb-5 text-white ml-24'>
-      <button type="button" class="px-8 py-3 font-semibold border rounded dark:border-pink-300 dark:text-red-500" onClick={()=>{
+      <Button type="button" className={cn({ active: query.isShowing === 'true' })} onClick={()=>{
           setQueryUrl({
             isShowing: true,
           })
-        }}>Available </button>
-      <button type="button" class="ml-4 px-8 py-3 font-semibold border rounded dark:border-pink-300 dark:text-red-500" onClick={()=>{
+        }}>Available </Button>
+      <Button type="button" className={cn('ml-4', { active: query.isShowing === 'false' })} onClick={()=>{
           setQueryUrl({
             isShowing: false,
           })
-        }}>Is coming</button>
+        }}>Coming soon</Button>
       </div>
           
       <MultipleRowSlick movieList={movieList} query={query.isShowing}/>
@@ -43,3 +45,22 @@ const HomeCard = () => {
 }
 
 export default HomeCard
+
+const Button = styled.button`
+  padding: 12px 30px;
+  border: 2px solid #bf5f82;
+  background-color: transparent;
+  border-radius: 6px;
+  color: black;
+  transition: all 0.3s;
+  font-weight: 500;
+  &:hover{
+    box-shadow: 4px 4px rgba(0,0,0,0.2);
+  }
+ 
+  &.active{
+    background-color:#ffc1e3;
+   color: black;
+  }
+
+`
