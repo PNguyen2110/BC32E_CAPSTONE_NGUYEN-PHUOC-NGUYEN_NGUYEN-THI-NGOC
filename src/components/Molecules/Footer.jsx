@@ -1,60 +1,51 @@
-import React from 'react'
-import styled from 'styled-components'
-
+import React,{useEffect} from 'react'
+import _ from 'lodash'
+import { useDispatch } from 'react-redux';
+import { getRapMovieList, useQuanLyRap } from '../../storeToolKit/quanLyRap';
 
 export const Footer = () => {
+  const dispatch = useDispatch()
+  const { rapList } = useQuanLyRap()
+
+  const arrHeThongRap = _.map(rapList,(heThongRap)=>_.pick(heThongRap,['maHeThongRap','tenHeThongRap','logo']))
+  useEffect(() => {
+    dispatch(getRapMovieList())
+  }, [])
   return (
     <footer className="py-6 dark:text-black mt-6" style={{backgroundColor:'#f3e5f5'}}>
       <div className="container px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
         <div className="grid grid-cols-12">
-          <div className="pb-6 col-span-full md:pb-0 md:col-span-6">
+          <div className="pb-6 col-span-full md:pb-0 md:col-span-4">
             <a rel="noopener noreferrer" href="#" className="flex justify-center space-x-3 md:justify-start">
-              <div className="flex items-center justify-center w-12 h-12 rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" className="flex-shrink-0 w-5 h-5 rounded-full dark:text-gray-900">
-                  <path d="M18.266 26.068l7.839-7.854 4.469 4.479c1.859 1.859 1.859 4.875 0 6.734l-1.104 1.104c-1.859 1.865-4.875 1.865-6.734 0zM30.563 2.531l-1.109-1.104c-1.859-1.859-4.875-1.859-6.734 0l-6.719 6.734-6.734-6.734c-1.859-1.859-4.875-1.859-6.734 0l-1.104 1.104c-1.859 1.859-1.859 4.875 0 6.734l6.734 6.734-6.734 6.734c-1.859 1.859-1.859 4.875 0 6.734l1.104 1.104c1.859 1.859 4.875 1.859 6.734 0l21.307-21.307c1.859-1.859 1.859-4.875 0-6.734z" />
-                </svg>
-              </div>
-              <span className="self-center text-3xl  text-black">Cybersoft</span>
+            <img src="	https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png" alt="cyberlearn.vn" />
             </a>
           </div>
-          <div className="col-span-6 text-center md:text-left md:col-span-3">
-            <p className="pb-1 text-lg font-medium">Category</p>
-            <ul>
-              <li>
-                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500 text-black">Link</a>
-              </li>
-              <li>
-                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black">Link</a>
-              </li>
-              <li>
-                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black">Link</a>
-              </li>
-              <li>
-                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black">Link</a>
-              </li>
-              <li>
-                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black">Link</a>
-              </li>
-            </ul>
+          <div className="col-span-6 text-center md:text-left md:col-span-4">
+            <p className="pb-1 text-lg font-medium text-center pr-16">PARTNER</p>
+            <div className='grid grid-cols-3'>
+             {arrHeThongRap.map((item,index)=>{
+              return <div key={index} className="mb-2">
+                <img src={item.logo} className="rounded-full w-10 h-10" alt="" />
+              </div>
+             })}
+            </div>
           </div>
-          <div className="col-span-6 text-center md:text-left md:col-span-3 ">
-            <p className="pb-1 text-lg font-medium">Category</p>
+          <div className="col-span-6 text-center md:text-left md:col-span-4 ">
+            <p className="pb-1 text-lg font-medium">ABOUT</p>
             <ul>
               <li>
-                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black">Link</a>
+                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black ">About Us</a>
               </li>
               <li>
-                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black">Link</a>
+                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black ">Events</a>
               </li>
               <li>
-                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black">Link</a>
+                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black ">Get Quote</a>
               </li>
               <li>
-                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black">Link</a>
+                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black ">Contact</a>
               </li>
-              <li>
-                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black">Link</a>
-              </li>
+             
             </ul>
           </div>
         </div>

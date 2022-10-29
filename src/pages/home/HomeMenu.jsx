@@ -60,7 +60,7 @@ const HomeMenu = () => {
                                 }} />
                                 <div className='ml-2'>
                                   <h1 className=' text-2xl text-red-500 text-left'>{film.tenPhim}</h1>
-                                  <p className='text-left' > <span className='text-blue-700'>Address</span>: {cumrap.diaChi}</p>
+                                  <p className='text-left' > <span className='text-blue-700'>Xuat Chieu:</span></p>
 
                                   <div className='grid grid-cols-6 gap-6'>
                                     {film.lstLichChieuTheoPhim?.slice(0, 12).map((lichChieu, index) => {
