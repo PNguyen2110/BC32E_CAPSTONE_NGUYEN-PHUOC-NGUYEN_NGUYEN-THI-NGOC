@@ -35,7 +35,6 @@ code {
 .detailMovie {
   font-family: sans-serif;
   text-align: center;
-  height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -56,4 +55,9 @@ code {
 .detailMovie .box1 p{
 
   padding: 5px 10px;
+}
+.detailMovie .box2{
+  background: rgba(16,18,27,0.4);
+  border: 2px solid #e91e63;
+  border-radius: 10px;
 }

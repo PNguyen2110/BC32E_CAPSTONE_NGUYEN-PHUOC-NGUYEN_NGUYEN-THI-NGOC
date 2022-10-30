@@ -3,7 +3,9 @@ import { quanLyRapService } from "../../services/quanLyRapService";
 
 const initialState = {
  rapList:[],
+ lichChieuMovieDetail:[],
  isFetchingCumRap: false,
+ isFetchingCumRapMovieDetail: false,
 };
 
 export const { reducer: quanLyRapReducer, actions: quanLyRapActions } =
@@ -30,6 +32,18 @@ export const { reducer: quanLyRapReducer, actions: quanLyRapActions } =
             state.isFetchingCumRap = false;
             state.rapList = action.payload;
           })
+          //get rap chieu detail
+          .addCase(getLichChieuMovieDetail.pending, (state, action) => {
+            state.isFetchingCumRapMovieDetail = true;
+          })
+          .addCase(getLichChieuMovieDetail.fulfilled, (state, action) => {
+            state.isFetchingCumRapMovieDetail = false;
+            state.lichChieuMovieDetail = action.payload;
+          })
+          .addCase(getLichChieuMovieDetail.rejected, (state, action) => {
+            state.isFetchingCumRapMovieDetail = false;
+            state.lichChieuMovieDetail = action.payload;
+          })
     },
   });
 
@@ -40,6 +54,18 @@ export const { reducer: quanLyRapReducer, actions: quanLyRapActions } =
         const value = getState();
         console.log(value);
         const result = await quanLyRapService.getRapMovieList();
+  
+        return result.data.content;
+      } catch (error) {
+        return rejectWithValue(error.response.data);
+      }
+    }
+  );
+  export const getLichChieuMovieDetail = createAsyncThunk(
+    "quanLyRap/getLichChieuMovieDetail",
+    async (idFilm, { dispatch, getState, rejectWithValue }) => {
+      try {
+        const result = await quanLyRapService.getLichChieuMovieDetail(idFilm);
   
         return result.data.content;
       } catch (error) {
