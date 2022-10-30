@@ -6,7 +6,7 @@ import Home from '../pages/home/Home'
 import News from '../pages/news/News'
 import Login from '../pages/login/Login'
 import Register from '../pages/register/Register'
-// import MovieDetail from '../pages/movieDetail/MovieDetail'
+import MovieDetail from '../pages/movieDetail/MovieDetail'
 
 const Router = () => {
   const routing = useRoutes([
@@ -38,6 +38,10 @@ const Router = () => {
         {
           path: 'register',
           element: <Register />
+        },
+        {
+          path:'detail/:movieIds',
+          element: <MovieDetail/>
         }
       ]
     }
