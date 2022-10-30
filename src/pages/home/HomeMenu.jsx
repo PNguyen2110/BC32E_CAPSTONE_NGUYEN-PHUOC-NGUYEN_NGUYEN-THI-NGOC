@@ -23,7 +23,7 @@ const HomeMenu = () => {
       <div className='container pt-16'>
         <Tabs
           tabPosition={tabPosition}
-          items={rapList.map((item, index) => {
+          items={rapList.map((item) => {
 
             return {
               label: <img className='rounded-full w-14 h-14' src={item.logo} onError={(e) => {
