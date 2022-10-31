@@ -7,6 +7,7 @@ import News from '../pages/news/News'
 import Login from '../pages/login/Login'
 import Register from '../pages/register/Register'
 import MovieDetail from '../pages/movieDetail/MovieDetail'
+import BookTicket from '../pages/bookTicket/BookTicket'
 
 const Router = () => {
   const routing = useRoutes([
@@ -42,6 +43,10 @@ const Router = () => {
         {
           path:'detail/:movieIds',
           element: <MovieDetail/>
+        },
+        {
+          path: 'ticketroom/:id',
+          element: <BookTicket />
         }
       ]
     }

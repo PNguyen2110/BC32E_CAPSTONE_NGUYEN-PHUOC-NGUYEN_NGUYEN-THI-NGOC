@@ -2,7 +2,7 @@ import React from 'react'
 import './movieDetail.module.css'
 import { Tabs } from 'antd';
 import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getMovieDetail, useQuanLiPhim } from '../../storeToolKit/quanLiPhim';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -14,7 +14,7 @@ const MovieDetail = () => {
   const [tabPosition, setTabPosition] = useState('left');
 
   const params = useParams()
-
+  const navigate = useNavigate()
   const { movieDetail } = useQuanLiPhim()
   const { lichChieuMovieDetail } = useQuanLyRap()
 
@@ -86,7 +86,9 @@ const MovieDetail = () => {
                     <a href={movieDetail.trailer} className="text-black hover:text-black">Trailer</a>
                   </button>
 
-                  <button type="button" className="px-10 py-2 font-semibold rounded-full dark:bg-pink-400 dark:text-black transition  hover:bg-white">Buy ticket</button>
+                  <button type="button" className="px-10 py-2 font-semibold rounded-full dark:bg-pink-400 dark:text-black transition  hover:bg-white"  onClick={() => navigate(`/ticketroom/${movieDetail.maPhim}`)}>
+                    Buy Ticket
+                  </button>
 
                 </div>
               </div>
