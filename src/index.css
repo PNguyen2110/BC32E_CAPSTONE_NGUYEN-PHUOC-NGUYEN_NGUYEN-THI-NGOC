@@ -40,9 +40,6 @@ code {
   background-size: cover;
  
 }
-
-
-
 .detailMovie .box1 {
   margin: 120px auto 0 auto;
   height: 28rem;
@@ -53,22 +50,10 @@ code {
   color: aliceblue;
 }
 .detailMovie .box1 p{
-
   padding: 5px 10px;
 }
 .detailMovie .box2{
   background: rgba(16,18,27,0.4);
   border: 2px solid #e91e63;
   border-radius: 10px;
-}
-.bookTicket-screen{
-  border-bottom: 50px solid #f48fb1;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  height: 100;
-  width:80%;
-  filter: drop-shadow(4px 30px 20px rgba(255, 255, 255, 0.5));
-  font-size: 25px;
-  color: #fff;
-  
 }
