@@ -2,7 +2,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { quanLyDatVeService } from "../../services/quanLyDatVeService";
 
 const initialState = {
-detailTicketRoom:{},
+detailTicketRoom:{
+  // thongTinPhim:{},
+  // danhSachGhe:[ ]
+},
 isFetchingTicket:false
 };
 
