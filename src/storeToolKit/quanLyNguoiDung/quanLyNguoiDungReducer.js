@@ -1,9 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { quanLyNguoiDungService } from "../../services/quanLyNguoiDungService";
 
+let user={};
+if(localStorage.getItem('USER_LOGIN')){
+  user = JSON.parse(localStorage.getItem('USER_LOGIN'))
+}
 const initialState = {
-  userLogin: {},
-  isFetchingLogin: false
+  userLogin: user,
+  isFetchingLogin: false,
+  error: undefined,
 };
 
 export const { reducer: quanLyNguoiDungReducer, actions: quanLyNguoiDungActions } =
@@ -39,6 +44,8 @@ export const postUser = createAsyncThunk(
   async (data, { dispatch, getState, rejectWithValue }) => {
     try {
       const result = await quanLyNguoiDungService.postUser(data);
+      localStorage.setItem('USER_LOGIN',JSON.stringify(result.data.content))
+      localStorage.setItem('TOKEN',result.data.content.accessToken)
       return result.data.content;
     } catch (error) {
       return rejectWithValue(error.response.data);

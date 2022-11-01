@@ -1,9 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import {postUser, useQuanLyNguoiDung} from '../../storeToolKit/quanLyNguoiDung'
 const Login = () => {
+  
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const {userLogin} = useQuanLyNguoiDung()
+  
+  console.log("userLogin: ", userLogin);
   const {
     register,
     handleSubmit,
@@ -23,18 +30,18 @@ const Login = () => {
           <p className="text-sm dark:text-gray-400">Sign in to access your account</p>
         </div>
         <form noValidate action className="space-y-12 ng-untouched ng-pristine ng-valid " onSubmit={handleSubmit((data) => {
-          console.log("data: ", data);
+          dispatch(postUser(data))
 
         })}>
           <div className="space-y-4">
             <div>
               <label htmlFor="email" className="block mb-2 text-sm">Email address</label>
-              <input type="email" name="email" id="email" placeholder="email" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" {...register('email', {
+              <input type="email" name="email" id="email" placeholder="email" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" {...register('taiKhoan', {
                 required: 'khong dc bo trong',
 
               })} />
               {
-                errors?.email?.type === 'required' && (
+                errors?.taiKhoan?.type === 'required' && (
                   <p className='text-danger  text-red-600'>
                     Không được bỏ trống
                   </p>
@@ -46,11 +53,11 @@ const Login = () => {
                 <label htmlFor="password" className="text-sm">Password</label>
                 <a rel="noopener noreferrer" href="#" className="text-xs hover:underline dark:text-gray-400">Forgot password?</a>
               </div>
-              <input type="password" name="password" id="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" {...register('password', {
+              <input type="password" name="password" id="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100" {...register('matKhau', {
                 required: 'khong dc bo trong',
               })} />
               {
-                errors?.password?.type === 'required' && (
+                errors?.matKhau?.type === 'required' && (
                   <p className='text-danger  text-red-600'>
                     Không được bỏ trống
                   </p>
@@ -60,7 +67,7 @@ const Login = () => {
           </div>
           <div className="space-y-2">
             <div>
-              <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900 transition hover:bg-pink-500 hover:text-black">Sign in</button>
+              <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900 transition hover:bg-pink-500 hover:text-black" >Sign in</button>
             </div>
             <p className="px-6 text-sm text-center dark:text-gray-400">Don't have an account yet?
               <a rel="noopener noreferrer" href="#" className="hover:underline dark:text-violet-400 pl-2" onClick={() => navigate(`/register`)}>Sign up</a>.
