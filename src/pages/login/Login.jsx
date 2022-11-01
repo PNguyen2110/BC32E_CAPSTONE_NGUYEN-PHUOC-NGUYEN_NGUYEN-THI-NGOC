@@ -1,11 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import {postUser, useQuanLyNguoiDung} from '../../storeToolKit/quanLyNguoiDung'
+import { useEffect } from 'react';
 const Login = () => {
-  
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const {userLogin} = useQuanLyNguoiDung()
@@ -22,6 +21,11 @@ const Login = () => {
     defaultValues: {}
   })
 
+  useEffect(()=>{
+    if(localStorage.getItem('USER_LOGIN')){
+      return  navigate(-1);
+  }
+  },[userLogin])
   return (
     <div className=' pt-32 pb-12 bg-pink-200 bg-opacity-60' >
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 dark:bg-gray-900 dark:text-gray-100 container">

@@ -4,15 +4,14 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useQuanLyRap } from '../../storeToolKit/quanLyRap';
 import { getRapMovieList } from '../../storeToolKit/quanLyRap';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 
 const HomeMenu = () => {
   const [tabPosition, setTabPosition] = useState('left');
-
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const { rapList } = useQuanLyRap()
-  console.log("rapList: ", rapList);
 
   useEffect(() => {
     dispatch(getRapMovieList())
@@ -64,9 +63,9 @@ const HomeMenu = () => {
 
                                   <div className='grid grid-cols-6 gap-6'>
                                     {film.lstLichChieuTheoPhim?.slice(0, 12).map((lichChieu, index) => {
-                                      return <Link to='/' key={index} className="text-1xl text-pink-500">
+                                      return <button onClick={() => navigate(`/ticketroom/${lichChieu.maLichChieu}`)} key={index} className="text-1xl text-pink-500">
                                         {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
-                                      </Link>
+                                      </button>
 
                                     })}
                                   </div>
@@ -76,18 +75,13 @@ const HomeMenu = () => {
                             </div>
                             <hr style={{ width: '800px' }} />
                           </Fragment>,
-
                           key: film.maPhim  ,
-
-
                         };
                       })}
                     />,
-
                   };
                 })}
               />,
-
             };
           })}
         />
