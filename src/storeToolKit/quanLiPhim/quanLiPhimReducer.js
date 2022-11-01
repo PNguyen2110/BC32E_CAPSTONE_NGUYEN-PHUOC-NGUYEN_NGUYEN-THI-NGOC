@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import { quanLiPhimService } from "../../services/quanLiPhimService";
 
 const initialState = {
@@ -8,7 +7,7 @@ const initialState = {
   isFetching: false,
   isFetchingDetail: false,
   error: undefined,
-  number: 1,
+  infoMovie: {},
 };
 
 export const { reducer: quanLiPhimReducer, actions: quanLiPhimActions } =
@@ -24,9 +23,6 @@ export const { reducer: quanLiPhimReducer, actions: quanLiPhimActions } =
       //   getMovieDetail: (state, action) => {
       //     state.movieDetail = action.payload;
       //   },
-      increase: (state, action) => {
-        state.number = state.number += action.payload;
-      },
     },
     // xu li bat dong bo (call Api)
     extraReducers: (builder) => {
@@ -55,27 +51,30 @@ export const { reducer: quanLiPhimReducer, actions: quanLiPhimActions } =
         .addCase(getMovieDetail.rejected, (state, action) => {
           state.isFetchingDetail = false;
           state.movieDetail = action.payload;
+        })
+
+        // lấy thong tin phim về trang edit
+        .addCase(getInfoMovies.pending, (state, action) => {
+          state.isFetchingDetail = true;
+        })
+        .addCase(getInfoMovies.fulfilled, (state, action) => {
+          state.isFetchingDetail = false;
+          state.infoMovie = action.payload;
+        })
+        .addCase(getInfoMovies.rejected, (state, action) => {
+          state.isFetchingDetail = false;
+          state.infoMovie = action.payload;
         });
     },
   });
 
 export const getMovieList = createAsyncThunk(
   "quanLiPhim/getMovieList", // action type
-  async (data, { dispatch, getState, rejectWithValue }) => {
+  async (tenPhim = "", { dispatch, getState, rejectWithValue }) => {
     try {
-      const value = getState();
-      console.log(value);
-      const result = await quanLiPhimService.getMovieList();
-      // await axios({
-      //   url: `https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP13`,
-      //   method: "GET",
-      //   headers: {
-      //     TokenCybersoft:
-      //       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCAzMkUiLCJIZXRIYW5TdHJpbmciOiIxMS8wMy8yMDIzIiwiSGV0SGFuVGltZSI6IjE2Nzg0OTI4MDAwMDAiLCJuYmYiOjE2NTA0NzQwMDAsImV4cCI6MTY3ODY0MDQwMH0.nNcGn0C4SvUfrKPkxYBi5rhhLNuGbmfuND5eXehhzPQ",
-      //   },
-      // });
+      // const value = getState().quanLiPhimReducer;
+      const result = await quanLiPhimService.getMovieList(tenPhim);
 
-      //   dispatch(quanLiPhimActions.getMovieList(result.data.content));
       return result.data.content;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -88,18 +87,66 @@ export const getMovieDetail = createAsyncThunk(
   async (idFilm, { dispatch, getState, rejectWithValue }) => {
     try {
       const result = await quanLiPhimService.getMovieDetail(idFilm);
-      // await axios({
-      //   method: "GET",
-      //   url: `https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${idFilm}`,
-      //   headers: {
-      //     TokenCybersoft:
-      //       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCAzMkUiLCJIZXRIYW5TdHJpbmciOiIxMS8wMy8yMDIzIiwiSGV0SGFuVGltZSI6IjE2Nzg0OTI4MDAwMDAiLCJuYmYiOjE2NTA0NzQwMDAsImV4cCI6MTY3ODY0MDQwMH0.nNcGn0C4SvUfrKPkxYBi5rhhLNuGbmfuND5eXehhzPQ",
-      //   },
-      // });
-      // dispatch(quanLiPhimActions.getMovieDetail(result.data.content));
+
       return result.data.content;
     } catch (error) {
       return rejectWithValue(error.response.data);
+    }
+  }
+);
+// post films trang admin
+export const postFilm = createAsyncThunk(
+  "quanLiPhim/postFilm",
+  async (film, { dispatch }) => {
+    try {
+      await quanLiPhimService.postFilm(film);
+      alert("thêm phim thành công");
+    } catch (error) {
+      alert(error.response.data.message);
+    }
+  }
+);
+
+// lấy thông tin phim về trang edit
+
+export const getInfoMovies = createAsyncThunk(
+  "quanLiPhim",
+  async (idFilm, { rejectWithValue }) => {
+    try {
+      const result = await quanLiPhimService.getInfoMovies(idFilm);
+      return result.data.content;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const postFilmUpdate = createAsyncThunk(
+  "quanLiPhim/postFilmUpdate",
+  async (formData, { dispatch, rejectWithValue }) => {
+    console.log(rejectWithValue);
+    try {
+      await quanLiPhimService.postFilmUpdate(formData);
+
+      alert("cập nhật thành công");
+      dispatch(getMovieList());
+    } catch (err) {
+      console.log(err.response.data);
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const deleteFilm = createAsyncThunk(
+  "quanLiPhim/deleteFilm",
+  async (idFilm, { dispatch, rejectWithValue }) => {
+    try {
+      await quanLiPhimService.deleteFilm(idFilm);
+      alert("xoá phim thành công");
+      dispatch(getMovieList());
+    } catch (err) {
+      console.log(err.response.data);
+      return rejectWithValue(err.response.data);
     }
   }
 );

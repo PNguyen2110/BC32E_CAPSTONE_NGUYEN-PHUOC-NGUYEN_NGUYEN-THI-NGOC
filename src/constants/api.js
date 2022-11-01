@@ -5,12 +5,13 @@ const TokenCybersoft =
 
 const baseURL = `https://movienew.cybersoft.edu.vn/api/`;
 export const api = axios.create();
-console.log(api.interceptors);
+
 api.interceptors.request.use((config) => {
   config = {
     ...config,
     headers: {
       TokenCybersoft,
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3RyaW5nIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoic3RyaW5nQGdtYWlsLmNvbW1tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbIlF1YW5UcmkiLCJzdHJpbmdAZ21haWwuY29tbW0iLCJncDAxIl0sIm5iZiI6MTY2Njk0NzI3MiwiZXhwIjoxNjY2OTUwODcyfQ.5tuCu9SaFSKb3Lz9AtgmO9FDBbVmLeyNnxPYv0s98pY`,
     },
     baseURL,
   };
