@@ -8,15 +8,12 @@ if(localStorage.getItem('USER_LOGIN')){
 const initialState = {
   userLogin: user,
   isFetchingLogin: false,
-  error: undefined,
 };
 
 export const { reducer: quanLyNguoiDungReducer, actions: quanLyNguoiDungActions } =
   createSlice({
     name: "quanLyNguoiDung",
     initialState,
-
-
     reducers: {
 
     },
@@ -35,13 +32,12 @@ export const { reducer: quanLyNguoiDungReducer, actions: quanLyNguoiDungActions 
           state.isFetchingLogin = false;
           state.userLogin = action.payload;
         })
-
     },
   });
 
 export const postUser = createAsyncThunk(
   "quanLyNguoiDung/postUser",
-  async (data, { dispatch, getState, rejectWithValue }) => {
+  async (data, { rejectWithValue }) => {
     try {
       const result = await quanLyNguoiDungService.postUser(data);
       localStorage.setItem('USER_LOGIN',JSON.stringify(result.data.content))

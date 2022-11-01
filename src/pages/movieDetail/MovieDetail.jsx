@@ -2,7 +2,7 @@ import React from 'react'
 import './movieDetail.module.css'
 import { Tabs } from 'antd';
 import { useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getMovieDetail, useQuanLiPhim } from '../../storeToolKit/quanLiPhim';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -86,9 +86,6 @@ const MovieDetail = () => {
                     <a href={movieDetail.trailer} className="text-black hover:text-black">Trailer</a>
                   </button>
 
-                  <button type="button" className="px-10 py-2 font-semibold rounded-full dark:bg-pink-400 dark:text-black transition  hover:bg-white"  onClick={() => navigate(`/ticketroom/${movieDetail.maPhim}`)}>
-                    Buy Ticket
-                  </button>
 
                 </div>
               </div>
@@ -121,8 +118,8 @@ const MovieDetail = () => {
                           <div className='thong-tin-lich-chieu grid grid-cols-4  gap-5'>
                             {cumRap.lichChieuPhim?.slice(0, 12).map((lichChieu, index) => {
                               return <div key={index} className="cols-span-1">
-                                <Link to="/" className='text-red-600' style={{ fontWeight: 'bold', fontSize: '16px' }}>
-                                  {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}</Link>
+                                <button onClick={() => navigate(`/ticketroom/${lichChieu.maLichChieu}`)}className='text-red-600' style={{ fontWeight: 'bold', fontSize: '16px' }}>
+                                  {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}</button>
                               </div>
                             })}
                           </div>

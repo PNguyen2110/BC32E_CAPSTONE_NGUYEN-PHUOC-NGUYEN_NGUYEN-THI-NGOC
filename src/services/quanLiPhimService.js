@@ -9,9 +9,6 @@ export const quanLiPhimService = {
   },
   getMovieDetail: (idFilm) => {
     return api.get(`QuanLyPhim/LayThongTinPhim?MaPhim=${idFilm}`);
-  },
-  demoPost: (data) => {
-    return api.post("url", data);
-  },
+  }
 };
 

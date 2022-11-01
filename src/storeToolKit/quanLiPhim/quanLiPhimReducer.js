@@ -8,18 +8,13 @@ const initialState = {
   isFetching: false,
   isFetchingDetail: false,
   isFetchingBanner: false,
-  error: undefined,
-
 };
 
 export const { reducer: quanLiPhimReducer, actions: quanLiPhimActions } =
   createSlice({
     name: "quanLiPhim",
     initialState,
-
-
     reducers: {
-
     },
 
     extraReducers: (builder) => {
@@ -61,16 +56,13 @@ export const { reducer: quanLiPhimReducer, actions: quanLiPhimActions } =
           state.isFetchingDetail = false;
           state.movieDetail = action.payload;
         })
-
     },
   });
 
 export const getMovieList = createAsyncThunk(
   "quanLiPhim/getMovieList",
-  async (data, { dispatch, getState, rejectWithValue }) => {
+  async (rejectWithValue ) => {
     try {
-      const value = getState();
-      console.log(value);
       const result = await quanLiPhimService.getMovieList();
 
       return result.data.content;
@@ -82,7 +74,7 @@ export const getMovieList = createAsyncThunk(
 
 export const getMovieDetail = createAsyncThunk(
   "quanLiPhim/getMovieDetail",
-  async (idFilm, { dispatch, getState, rejectWithValue }) => {
+  async (idFilm, { rejectWithValue }) => {
     try {
       const result = await quanLiPhimService.getMovieDetail(idFilm);
 
@@ -94,7 +86,7 @@ export const getMovieDetail = createAsyncThunk(
 );
 export const getMovieBannerList = createAsyncThunk(
   "quanLiPhim/getMovieBannerList",
-  async (data, { dispatch, getState, rejectWithValue }) => {
+  async (rejectWithValue) => {
     try {
       const result = await quanLiPhimService.getMovieBannerList();
 
