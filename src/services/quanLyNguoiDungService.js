@@ -1,10 +1,30 @@
 import { api } from "../constants/api";
 
 export const quanLyNguoiDungService = {
-    postUser: (data) => {
-      return api.post("QuanLyNguoiDung/DangNhap", data);
-    },
-    getMovieDetail: (idFilm) => {
-      return api.get(`QuanLyPhim/LayThongTinPhim?MaPhim=${idFilm}`);
-    },
+  postUser: (data) => {
+    return api.post("QuanLyNguoiDung/DangNhap", data);
+  },
+  getMovieDetail: (idFilm) => {
+    return api.get(`QuanLyPhim/LayThongTinPhim?MaPhim=${idFilm}`);
+  },
+  layDanhSachNguoiDung: (value) => {
+    if (!value.trim()) {
+      return api.get(`QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01`);
+    }
+    return api.get(
+      `QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01&tuKhoa=${value}`
+    );
+  },
+  xoaNguoiDung: (taiKhoan) => {
+    return api.delete(`QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`);
+  },
+  themNguoiDung: (data) => {
+    return api.post(`QuanLyNguoiDung/ThemNguoiDung`, data);
+  },
+  capNhatThongTinNguoiDung: (data) => {
+    return api.post(`QuanLyNguoiDung/CapNhatThongTinNguoiDung`, data);
+  },
+  layDanhSachLoaiNguoiDung: () => {
+    return api.get(`QuanLyNguoiDung/LayDanhSachLoaiNguoiDung`);
+  },
 };

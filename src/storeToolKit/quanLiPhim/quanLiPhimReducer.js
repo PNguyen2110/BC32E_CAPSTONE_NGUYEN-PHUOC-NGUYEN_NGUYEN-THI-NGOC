@@ -3,13 +3,14 @@ import { quanLiPhimService } from "../../services/quanLiPhimService";
 
 const initialState = {
   bannerList: [],
-  movieList: [],
+
   movieDetail: {},
   isFetching: false,
   isFetchingDetail: false,
   isFetchingBanner: false,
   error: undefined,
-
+  infoMovie: {},
+  movieList: [],
 };
 
 export const { reducer: quanLiPhimReducer, actions: quanLiPhimActions } =
@@ -17,10 +18,7 @@ export const { reducer: quanLiPhimReducer, actions: quanLiPhimActions } =
     name: "quanLiPhim",
     initialState,
 
-
-    reducers: {
-
-    },
+    reducers: {},
 
     extraReducers: (builder) => {
       builder
@@ -62,17 +60,27 @@ export const { reducer: quanLiPhimReducer, actions: quanLiPhimActions } =
           state.movieDetail = action.payload;
         })
 
+        // lấy thong tin phim về trang edit
+        .addCase(getInfoMovies.pending, (state, action) => {
+          state.isFetchingDetail = true;
+        })
+        .addCase(getInfoMovies.fulfilled, (state, action) => {
+          state.isFetchingDetail = false;
+          state.infoMovie = action.payload;
+        })
+        .addCase(getInfoMovies.rejected, (state, action) => {
+          state.isFetchingDetail = false;
+          state.infoMovie = action.payload;
+        });
     },
   });
 
 export const getMovieList = createAsyncThunk(
   "quanLiPhim/getMovieList",
-  async (data, { dispatch, getState, rejectWithValue }) => {
+  async (value = "", { rejectWithValue }) => {
     try {
-      const value = getState();
-      console.log(value);
-      const result = await quanLiPhimService.getMovieList();
-
+      const result = await quanLiPhimService.getMovieList(value);
+      console.log(result.data.content);
       return result.data.content;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -101,6 +109,62 @@ export const getMovieBannerList = createAsyncThunk(
       return result.data.content;
     } catch (error) {
       return rejectWithValue(error.response.data);
+    }
+  }
+);
+// post films trang admin
+export const postFilm = createAsyncThunk(
+  "quanLiPhim/postFilm",
+  async (film, { dispatch }) => {
+    try {
+      await quanLiPhimService.postFilm(film);
+      alert("thêm phim thành công");
+    } catch (error) {
+      alert(error.response.data.message);
+    }
+  }
+);
+
+// lấy thông tin phim về trang edit
+
+export const getInfoMovies = createAsyncThunk(
+  "quanLiPhim/getInfoMovies",
+  async (idFilm, { rejectWithValue }) => {
+    try {
+      const result = await quanLiPhimService.getInfoMovies(idFilm);
+      return result.data.content;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const postFilmUpdate = createAsyncThunk(
+  "quanLiPhim/postFilmUpdate",
+  async (formData, { dispatch, rejectWithValue }) => {
+    console.log(rejectWithValue);
+    try {
+      await quanLiPhimService.postFilmUpdate(formData);
+
+      alert("cập nhật thành công");
+      dispatch(getMovieList());
+    } catch (err) {
+      console.log(err.response.data);
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const deleteFilm = createAsyncThunk(
+  "quanLiPhim/deleteFilm",
+  async (idFilm, { dispatch, rejectWithValue }) => {
+    try {
+      await quanLiPhimService.deleteFilm(idFilm);
+      alert("xoá phim thành công");
+      dispatch(getMovieList());
+    } catch (err) {
+      console.log(err.response.data);
+      return rejectWithValue(err.response.data);
     }
   }
 );
