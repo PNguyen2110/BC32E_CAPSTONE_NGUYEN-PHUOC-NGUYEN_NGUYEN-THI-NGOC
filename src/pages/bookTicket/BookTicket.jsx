@@ -19,8 +19,7 @@ class ThongTinDatVe {
 const BookTicket = () => {
 
   const { userLogin } = useQuanLyNguoiDung()
-  const { detailTicketRoom, danhSachGheDangDat,isFetchingBookingTicket,} = useQuanLyDatVe()
- 
+  const { detailTicketRoom, danhSachGheDangDat,isFetchingBookingTicket} = useQuanLyDatVe()
   const params = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -157,10 +156,11 @@ const BookTicket = () => {
               Buy Ticket
             </button>
             <div className='text-red-600 hover:text-yellow-400'> <HistoryOutlined className='text-xl'/><a href="" onClick={() => {  navigate(`/bookResult`)} }  className="cursor-pointer text-red-600 hover:text-yellow-400" style={{fontSize:'18px',paddingTop:'20px'}} >Booking history</a></div>
-            
+           
           </div>
         </div>
       </div>
+    
     </div >
   )
 }
