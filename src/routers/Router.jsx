@@ -8,6 +8,7 @@ import Login from '../pages/login/Login'
 import Register from '../pages/register/Register'
 import MovieDetail from '../pages/movieDetail/MovieDetail'
 import BookTicket from '../pages/bookTicket/BookTicket'
+import BookResult from '../pages/bookTicket/BookResult'
 
 const Router = () => {
   const routing = useRoutes([
@@ -47,7 +48,13 @@ const Router = () => {
         {
           path: 'ticketroom/:id',
           element: <BookTicket />
+        },
+        {
+          path: 'bookResult',
+          element: <BookResult />
         }
+        
+
       ]
     }
   ])

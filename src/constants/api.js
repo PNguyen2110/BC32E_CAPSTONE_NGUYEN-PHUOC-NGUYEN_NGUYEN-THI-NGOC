@@ -9,6 +9,7 @@ api.interceptors.request.use((config) => {
   config = {
     ...config,
     headers: {
+      'Authorization' :'Bearer ' + localStorage.getItem('TOKEN'),
       TokenCybersoft,
     },
     baseURL,

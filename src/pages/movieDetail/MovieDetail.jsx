@@ -78,14 +78,11 @@ const MovieDetail = () => {
                       </td>
                     </tr>
                   </tbody>
-
                 </table>
                 <div className='flex mt-4'>
                   <button type="button" className="px-10 py-2 font-semibold rounded-full dark:bg-pink-400 dark:text-gray-800 mr-2 transition hover:bg-white ">
                     <a href={movieDetail.trailer} className="text-black hover:text-black">Trailer</a>
                   </button>
-
-
                 </div>
               </div>
             </div>
@@ -93,11 +90,9 @@ const MovieDetail = () => {
         </div>
         <br />
         <div className='p-2 container  box2'>
-
           <Tabs
             tabPosition={tabPosition}
             items={lichChieuMovieDetail.heThongRapChieu?.map((item, index) => {
-
               return {
                 label: <div>
                   <img src={item.logo} alt={item.logo} className="rounded-full w-14 h-14" />
