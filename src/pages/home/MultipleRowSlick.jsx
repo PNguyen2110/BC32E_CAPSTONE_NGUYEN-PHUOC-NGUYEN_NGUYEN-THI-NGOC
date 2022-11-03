@@ -49,11 +49,14 @@ const renderFilm =()=>{
     infinite: true,
     centerPadding: "10px",
     slidesToShow: 2,
-    speed: 500,
+    speed: 700,
     rows: 2,
     slidesPerRow: 2,
     nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
+    prevArrow: <SamplePrevArrow />,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    pauseOnHover: true
 
   };
   return (
