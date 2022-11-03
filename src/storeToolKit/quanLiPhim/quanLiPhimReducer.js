@@ -118,6 +118,7 @@ export const postFilm = createAsyncThunk(
       await quanLiPhimService.postFilm(film);
       alert("thêm phim thành công");
     } catch (error) {
+      console.log(error.response.data);
       alert(error.response.data.message);
     }
   }

@@ -16,10 +16,12 @@ const initialState = {
   danhSachNguoiDung: [],
   danhSachLoaiNguoiDung: [],
   isFetchingLoaiNguoiDung: false,
-
 };
 
-export const { reducer: quanLyNguoiDungReducer, actions: quanLyNguoiDungActions,} = createSlice({
+export const {
+  reducer: quanLyNguoiDungReducer,
+  actions: quanLyNguoiDungActions,
+} = createSlice({
   name: "quanLyNguoiDung",
   initialState,
   reducers: {},
@@ -27,28 +29,28 @@ export const { reducer: quanLyNguoiDungReducer, actions: quanLyNguoiDungActions,
   extraReducers: (builder) => {
     builder
 
-    .addCase(postUser.pending, (state, action) => {
-      state.isFetchingLogin = true;
-    })
-    .addCase(postUser.fulfilled, (state, action) => {
-      state.isFetchingLogin = false;
-      state.userLogin = action.payload;
-    })
-    .addCase(postUser.rejected, (state, action) => {
-      state.isFetchingLogin = false;
-      state.userLogin = action.payload;
-    })
-    .addCase(getBookResult.pending, (state, action) => {
-      state.isFetchinginFoUser = true;
-    })
-    .addCase(getBookResult.fulfilled, (state, action) => {
-      state.isFetchinginFoUser = false;
-      state.inFoUser = action.payload;
-    })
-    .addCase(getBookResult.rejected, (state, action) => {
-      state.isFetchinginFoUser = false;
-      state.inFoUser = action.payload;
-    })
+      .addCase(postUser.pending, (state, action) => {
+        state.isFetchingLogin = true;
+      })
+      .addCase(postUser.fulfilled, (state, action) => {
+        state.isFetchingLogin = false;
+        state.userLogin = action.payload;
+      })
+      .addCase(postUser.rejected, (state, action) => {
+        state.isFetchingLogin = false;
+        state.userLogin = action.payload;
+      })
+      .addCase(getBookResult.pending, (state, action) => {
+        state.isFetchinginFoUser = true;
+      })
+      .addCase(getBookResult.fulfilled, (state, action) => {
+        state.isFetchinginFoUser = false;
+        state.inFoUser = action.payload;
+      })
+      .addCase(getBookResult.rejected, (state, action) => {
+        state.isFetchinginFoUser = false;
+        state.inFoUser = action.payload;
+      })
       // lấy danh sách người dùng
       .addCase(layDanhSachNguoiDung.pending, (state, action) => {
         state.isFetchingDanhSachNguoiDung = true;
@@ -75,7 +77,6 @@ export const { reducer: quanLyNguoiDungReducer, actions: quanLyNguoiDungActions,
       });
   },
 });
-
 
 export const postUser = createAsyncThunk(
   "quanLyNguoiDung/postUser",
@@ -106,10 +107,10 @@ export const getBookResult = createAsyncThunk(
 
 export const layDanhSachNguoiDung = createAsyncThunk(
   "quanLyNguoiDung/layDanhSachNguoiDung",
-  async (data = "", { }) => {
+  async (data = "", {}) => {
     try {
       const result = await quanLyNguoiDungService.layDanhSachNguoiDung(data);
-      console.log(result.data.content);
+      console.log("layDanhSachNguoiDung", result.data.content);
       return result.data.content;
     } catch (err) {
       alert(err.response.data.message);
@@ -132,19 +133,22 @@ export const xoaNguoiDung = createAsyncThunk(
 
 export const themNguoiDung = createAsyncThunk(
   "quanLyNguoiDung/themNguoiDung",
-  async (data, { }) => {
+  async (data, { dispatch }) => {
     try {
+      // console.log(data.taiKhoan);
       await quanLyNguoiDungService.themNguoiDung(data);
-      alert("thêm thànhcông");
+      // localStorage.setItem("addUser", JSON.stringify(data));
+      await alert("thêm thànhcông");
     } catch (err) {
-      alert(err.response.data.message);
+      // alert(err.response.data.content);
+      console.log(err.response.data);
     }
   }
 );
 
 export const capNhatThongTinNguoiDung = createAsyncThunk(
   "quanLyNguoiDung/capNhatThongTinNguoiDung",
-  async (data, { }) => {
+  async (data, {}) => {
     try {
       await quanLyNguoiDungService.capNhatThongTinNguoiDung(data);
       alert("cập nhật người dùng thành công");
@@ -157,7 +161,7 @@ export const capNhatThongTinNguoiDung = createAsyncThunk(
 
 export const layDanhSachLoaiNguoiDung = createAsyncThunk(
   "quanLyNguoiDung/layDanhSachLoaiNguoiDung",
-  async (data, { }) => {
+  async (data, {}) => {
     try {
       const result = await quanLyNguoiDungService.layDanhSachLoaiNguoiDung();
 

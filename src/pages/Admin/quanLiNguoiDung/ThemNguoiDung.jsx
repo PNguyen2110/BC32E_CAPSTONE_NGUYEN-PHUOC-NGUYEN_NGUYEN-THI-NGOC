@@ -50,13 +50,15 @@ export const ThemNguoiDung = () => {
     onSubmit: (values) => {
       // console.log(values);
       dispatch(themNguoiDung(values));
-      navigate("/admin/quanLiNguoiDung");
+
+      // navigate("/admin/quanLiNguoiDung");
     },
   });
   useEffect(() => {
     dispatch(layDanhSachLoaiNguoiDung());
   }, []);
-  const { danhSachLoaiNguoiDung } = useSelector(
+
+  const { danhSachLoaiNguoiDung, danhSachNguoiDung } = useSelector(
     (state) => state.quanLyNguoiDungReducer
   );
 

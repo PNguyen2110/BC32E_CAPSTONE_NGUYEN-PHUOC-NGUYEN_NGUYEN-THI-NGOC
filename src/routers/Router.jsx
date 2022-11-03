@@ -1,14 +1,14 @@
-import React from 'react'
-import { Navigate, useRoutes } from 'react-router-dom'
-import MainLayout from '../components/layouts/MainLayout'
-import Contact from '../pages/contact/Contact'
-import Home from '../pages/home/Home'
-import News from '../pages/news/News'
-import Login from '../pages/login/Login'
-import Register from '../pages/register/Register'
-import MovieDetail from '../pages/movieDetail/MovieDetail'
-import BookTicket from '../pages/bookTicket/BookTicket'
-import BookResult from '../pages/bookTicket/BookResult'
+import React from "react";
+import { Navigate, useRoutes } from "react-router-dom";
+import MainLayout from "../components/Layouts/MainLayout";
+import Contact from "../pages/contact/Contact";
+import Home from "../pages/home/Home";
+import News from "../pages/news/News";
+import Login from "../pages/login/Login";
+import Register from "../pages/register/Register";
+import MovieDetail from "../pages/movieDetail/MovieDetail";
+import BookTicket from "../pages/bookTicket/BookTicket";
+import BookResult from "../pages/bookTicket/BookResult";
 import AdminTemplate from "../components/template/AdminTemplate/AdminTemplate";
 import { Films } from "../pages/Admin/Films/Films";
 import AddFilms from "../pages/Admin/Films/AddFilms";
@@ -54,17 +54,14 @@ const Router = () => {
           element: <MovieDetail />,
         },
         {
-
-          path: 'ticketroom/:id',
-          element: <BookTicket />
+          path: "ticketroom/:id",
+          element: <BookTicket />,
         },
         {
-          path: 'bookResult',
-          element: <BookResult />
-        }
-        
-
-      ]
+          path: "bookResult",
+          element: <BookResult />,
+        },
+      ],
     },
     {
       path: "/admin/",
@@ -103,11 +100,10 @@ const Router = () => {
           element: <ChinhSuaNguoiDung />,
         },
       ],
-    }
+    },
+  ]);
 
-  ])
-
-  return routing  
-}
+  return routing;
+};
 
 export default Router;

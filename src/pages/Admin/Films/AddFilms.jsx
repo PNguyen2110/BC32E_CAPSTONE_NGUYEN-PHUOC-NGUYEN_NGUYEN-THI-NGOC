@@ -115,9 +115,11 @@ const AddFilms = () => {
         }
       }
 
-      console.log(values.tenPhim);
       dispatch(postFilm(formData));
-      navigate("/admin");
+      // const parseFilms = JSON.parse(localStorage.getItem("addFilm"));
+      // if (localStorage.getItem("addFilm")) {
+      //   navigate("/admin");
+      // }
     },
   });
   const handleChangeDatePicker = (value) => {
