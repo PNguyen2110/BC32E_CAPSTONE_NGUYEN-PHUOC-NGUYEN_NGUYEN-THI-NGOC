@@ -20,7 +20,7 @@ const HomeMenu = () => {
 
   return (
     <>
-      <Component className="container pt-16">
+      <Component className="container pt-16 pl-20">
         <Tabs
           // className="scrollRapChieu"
           tabPosition={tabPosition}
@@ -47,12 +47,13 @@ const HomeMenu = () => {
                         <div
                           className="scrollRapChieu"
                           style={{
-                            width: "300px",
+                            width: "450px",
                             display: "flex",
                             alignItems: "center",
                           }}
                         >
                           <img
+                          className="rounded-md"
                             src={cumrap.hinhAnh}
                             style={{ height: "80px", width: "60px" }}
                             alt=""
@@ -77,7 +78,7 @@ const HomeMenu = () => {
                             return {
                               label: (
                                 <Fragment>
-                                  <div className="my-5 width-[500px]">
+                                  <div className=" width-[500px] pb-2">
                                     <div style={{ display: "flex" }}>
                                       <img
                                         src={film.hinhAnh}
@@ -86,7 +87,7 @@ const HomeMenu = () => {
                                           height: "110px",
                                         }}
                                         alt={film.tenPhim}
-                                        className="rounded-sm"
+                                        className="rounded-md"
                                         onError={(e) => {
                                           e.target.onerror = null;
                                           e.target.src =
@@ -128,7 +129,7 @@ const HomeMenu = () => {
                                       </div>
                                     </div>
                                   </div>
-                                  <hr style={{ width: "800px" }} />
+                                  <hr style={{ width: "660px" }} />
                                 </Fragment>
                               ),
                               key: film.maPhim,

@@ -17,9 +17,6 @@ const MovieDetail = () => {
   const { movieDetail } = useQuanLiPhim()
   const { lichChieuMovieDetail } = useQuanLyRap()
 
-  console.log("movieDetail: ", movieDetail);
-  console.log("lichChieuMovieDetail: ", lichChieuMovieDetail);
-
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -79,7 +76,7 @@ const MovieDetail = () => {
                     </tr>
                   </tbody>
                 </table>
-                <div className='pb-4'>
+                <div className='pb-4 pt-2'>
                   <button type="button" className="px-10 py-2 font-semibold rounded-full dark:bg-pink-400 dark:text-gray-800 mr-2 transition hover:bg-white ">
                     <a href={movieDetail.trailer} className="text-black hover:text-black">Trailer</a>
                   </button>
