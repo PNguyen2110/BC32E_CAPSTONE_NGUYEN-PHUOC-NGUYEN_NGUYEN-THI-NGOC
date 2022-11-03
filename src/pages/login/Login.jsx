@@ -9,11 +9,10 @@ const Login = () => {
   const dispatch = useDispatch()
   const {userLogin} = useQuanLyNguoiDung()
   
-  console.log("userLogin: ", userLogin);
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty, dirtyFields },
+    formState: { errors },
     setValue,
     reset
   } = useForm({

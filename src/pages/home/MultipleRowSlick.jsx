@@ -20,7 +20,6 @@ function SamplePrevArrow(props) {
 }
 
 
-
 export default function MultipleRowSlick(props) {
   const navigate = useNavigate()
   

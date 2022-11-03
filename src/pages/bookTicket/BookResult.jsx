@@ -12,7 +12,6 @@ const BookResult = () => {
   console.log("inFoUser: ", inFoUser);
   const dispatch = useDispatch()
   
-
   useEffect(()=>{
     dispatch(postBookResult()) 
   },[])
@@ -28,10 +27,7 @@ const BookResult = () => {
          })
       }
       </div>
-      
     </div>
-    
-  
   }
   return (
     <div>
@@ -57,19 +53,16 @@ const BookResult = () => {
                        <span key={index}>{ghe.tenGhe} , </span>
                        {(index + 1) % 20 === 0 ? <br /> : ''}
                      </Fragment>
-                  
                      })}</p>
                   <p></p>
                 </div>
               </div>
             </div>
-           
             })}
           
           </div>
         </div>
       </section>
-
     </div>
   )
 }

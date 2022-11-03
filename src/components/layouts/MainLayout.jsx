@@ -9,7 +9,6 @@ const MainLayout = () => {
 
       <Header />
       <main className='main-content'> <Outlet /> </main>
-
       <Footer />
 
     </Container >
@@ -25,13 +24,11 @@ const Container = styled.div`
   justify-content: space-between;
   flex-direction: column;
   .Header{
-
   }
   .main-content{
     flex: 1;
   }
   .Footer{
-
   }
  }
 `

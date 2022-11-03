@@ -17,7 +17,6 @@ const HomeCard = () => {
   })
 
   const { movieList } = useQuanLiPhim()
-  console.log("movieList: ", movieList);
  
   useEffect(() => {
 

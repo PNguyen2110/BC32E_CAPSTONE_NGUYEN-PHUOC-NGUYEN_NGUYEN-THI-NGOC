@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-
 export const Header = () => {
     return (
             <header className="p-4 bg-black bg-opacity-40  text-white fixed w-full z-10 header">
