@@ -73,6 +73,7 @@ export const postUser = createAsyncThunk(
       const result = await quanLyNguoiDungService.postUser(data);
       localStorage.setItem("USER_LOGIN", JSON.stringify(result.data.content));
       localStorage.setItem("TOKEN", result.data.content.accessToken);
+      console.log(result.data.content);
       return result.data.content;
     } catch (error) {
       return rejectWithValue(error.response.data);
