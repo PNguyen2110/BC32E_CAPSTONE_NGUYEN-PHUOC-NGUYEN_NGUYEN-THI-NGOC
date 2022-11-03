@@ -2,7 +2,7 @@ import React from 'react'
 import { Fragment } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getMovieTicket, postTicket, quanLyDatVeActions, useQuanLyDatVe } from '../../storeToolKit/quanLyDatVe';
 import { useQuanLyNguoiDung } from '../../storeToolKit/quanLyNguoiDung';
 import style from './BookTicket.module.css';
@@ -19,21 +19,19 @@ class ThongTinDatVe {
 const BookTicket = () => {
 
   const { userLogin } = useQuanLyNguoiDung()
-  const { detailTicketRoom, danhSachGheDangDat, datVe,isFetchingBookingTicket,} = useQuanLyDatVe()
-  console.log("datVe: ", datVe);
-  console.log("danhSachGheDangDat: ", danhSachGheDangDat);
+  const { detailTicketRoom, danhSachGheDangDat,isFetchingBookingTicket,} = useQuanLyDatVe()
   console.log("detailTicketRoom: ", detailTicketRoom);
+ 
   const params = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const location = useLocation()
 
   useEffect(() => {
     if (!localStorage.getItem('USER_LOGIN')) {
       return navigate("/login")
     }
     dispatch(getMovieTicket(params.id))
-  }, [params.id])
+  }, [])
 
   const renderSeats = () => {
     return detailTicketRoom.danhSachGhe?.map((ghe, index) => {

@@ -2,7 +2,7 @@ import moment from 'moment';
 import React from 'react'
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { postBookResult, useQuanLyNguoiDung } from '../../storeToolKit/quanLyNguoiDung';
+import { getBookResult, postBookResult, useQuanLyNguoiDung } from '../../storeToolKit/quanLyNguoiDung';
 import _ from 'lodash'
 import { Fragment } from 'react';
 import { Skeleton } from 'antd';
@@ -13,7 +13,7 @@ const BookResult = () => {
   const dispatch = useDispatch()
   
   useEffect(()=>{
-    dispatch(postBookResult()) 
+    dispatch(getBookResult()) 
   },[])
 
   if(isFetchinginFoUser){
@@ -21,7 +21,7 @@ const BookResult = () => {
       <div className='grid grid-cols-3 gap-9 container'>
       {
          [...Array(10)].map(e=>{
-          return <div className='col-span-1 mt-4'>
+          return <div className='col-span-1 mt-4' >
             <Skeleton.Button active block style={{height:'350px'}}/>
           </div>
          })
@@ -29,8 +29,9 @@ const BookResult = () => {
       </div>
     </div>
   }
+  
   return (
-    <div>
+    <div >
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-32 mx-auto">
           <div className="flex flex-col text-center w-full mb-12">
