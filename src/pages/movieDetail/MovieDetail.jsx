@@ -79,7 +79,7 @@ const MovieDetail = () => {
                     </tr>
                   </tbody>
                 </table>
-                <div className='flex mt-4'>
+                <div className='pb-4'>
                   <button type="button" className="px-10 py-2 font-semibold rounded-full dark:bg-pink-400 dark:text-gray-800 mr-2 transition hover:bg-white ">
                     <a href={movieDetail.trailer} className="text-black hover:text-black">Trailer</a>
                   </button>
@@ -90,7 +90,7 @@ const MovieDetail = () => {
         </div>
         <br />
         <div className='p-2 container  box2'>
-          <Tabs
+        {lichChieuMovieDetail.heThongRapChieu?.length !==0 ?    <Tabs
             tabPosition={tabPosition}
             items={lichChieuMovieDetail.heThongRapChieu?.map((item, index) => {
               return {
@@ -125,7 +125,7 @@ const MovieDetail = () => {
                 </div>,
               };
             })}
-          />
+          /> : <p className='text-white text-3xl p-20'>Unavailable</p> }
         </div>
 
         <br />
