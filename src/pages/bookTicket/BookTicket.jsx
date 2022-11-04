@@ -111,7 +111,7 @@ const BookTicket = () => {
             <div className={`${style["bookTicket-screen"]}`}></div>
           </div>
           <div>{renderSeats()}</div>
-          <div className=" pl-10  container">
+          <div className=" pl-32  container">
             <div className="pt-2 text-left font-semibold">
               <i style={{ fontSize: "16px" }}>Ticket status</i> :
             </div>
@@ -235,20 +235,7 @@ const BookTicket = () => {
             >
               Buy Ticket
             </button>
-            <div className="text-red-600 hover:text-yellow-400">
-              {" "}
-              <HistoryOutlined className="text-xl" />
-              <a
-                href=""
-                onClick={() => {
-                  navigate(`/bookResult`);
-                }}
-                className="cursor-pointer text-red-600 hover:text-yellow-400"
-                style={{ fontSize: "18px", paddingTop: "20px" }}
-              >
-                Booking history
-              </a>
-            </div>
+            
             <div className="text-red-600 hover:text-yellow-400">
               {" "}
               <HistoryOutlined className="text-xl" />
