@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 import styleSlick from "./css/MultipleRowSlick.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -37,18 +37,12 @@ export default function MultipleRowSlick(props) {
               className=" bg-gray-200 bg-opacity-90 px-6 pt-6 pb-14 rounded-lg overflow-hidden text-center relative"
               style={{ height: "500px" }}
             >
-              <div
-                style={{
-                  backgroundImage: `url(${item.hinhAnh})`,
-                  backgroundPosition: "center",
-                  backgroundSize: "100%,100%",
-                }}
-              >
+              <div>
                 <img
                   src={item.hinhAnh}
                   alt={item.tenPhim}
-                  style={{ height: "300px" }}
-                  className="rounded mb-1 opacity-0 w-full"
+                  style={{ height: "300px", display: "block" }}
+                  className="rounded mb-1  w-full"
                 />
               </div>
               <h1 className="title-font sm:text-1xl text-xl font-medium text-gray-900 h-16 pt-2 ">
@@ -59,11 +53,11 @@ export default function MultipleRowSlick(props) {
                   ? item.moTa.substr(0, 50) + "..."
                   : item.moTa}
               </p>
-              <a
-                className="text-pink-500 inline-flex items-center pt-2 hover:text-violet-500"
+              <Link
+                className="text-pink-500 inline-flex items-center  hover:text-violet-500"
                 onClick={() => navigate(`/detail/${item.maPhim}`)}
               >
-                Book Ticket
+                Detail
                 <svg
                   className="w-4 h-4 ml-2"
                   viewBox="0 0 24 24"
@@ -76,7 +70,7 @@ export default function MultipleRowSlick(props) {
                   <path d="M5 12h14" />
                   <path d="M12 5l7 7-7 7" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         );
@@ -88,11 +82,14 @@ export default function MultipleRowSlick(props) {
     infinite: true,
     centerPadding: "10px",
     slidesToShow: 2,
-    speed: 500,
+    speed: 700,
     rows: 2,
     slidesPerRow: 2,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    pauseOnHover: true,
   };
   return (
     <div className="container ">

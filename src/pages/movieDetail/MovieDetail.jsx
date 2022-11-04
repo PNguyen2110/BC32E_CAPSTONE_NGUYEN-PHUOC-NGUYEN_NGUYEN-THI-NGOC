@@ -19,9 +19,6 @@ const MovieDetail = () => {
   const { movieDetail } = useQuanLiPhim();
   const { lichChieuMovieDetail } = useQuanLyRap();
 
-  console.log("movieDetail: ", movieDetail);
-  console.log("lichChieuMovieDetail: ", lichChieuMovieDetail);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -99,7 +96,7 @@ const MovieDetail = () => {
                     </tr>
                   </tbody>
                 </table>
-                <div className="flex mt-4">
+                <div className="pb-4 pt-2">
                   <button
                     type="button"
                     className="px-10 py-2 font-semibold rounded-full dark:bg-pink-400 dark:text-gray-800 mr-2 transition hover:bg-white "
@@ -118,87 +115,93 @@ const MovieDetail = () => {
         </div>
         <br />
         <div className="p-2 container  box2">
-          <Tabs
-            tabPosition={tabPosition}
-            items={lichChieuMovieDetail.heThongRapChieu?.map((item, index) => {
-              return {
-                label: (
-                  <div className={index}>
-                    <img
-                      src={item.logo}
-                      alt={item.logo}
-                      className="rounded-full w-14 h-14"
-                    />
-                    <div>
-                      <p className="text-center text-white mt-2 text-xl">
-                        {item.tenHeThongRap}
-                      </p>
-                    </div>
-                  </div>
-                ),
-                key: index,
-                children: (
-                  <div className={Date.now()}>
-                    {item.cumRapChieu?.map((cumRap, index) => {
-                      return (
-                        <div className="mb-4" key={index}>
-                          <div className="flex flex-row text-left">
-                            <img
-                              src={cumRap.hinhAnh}
-                              alt=""
-                              style={{ width: "100px", height: "100px" }}
-                              className="rounded-md"
-                            />
-                            <div className="ml-2">
-                              <p
-                                style={{
-                                  fontSize: "20px",
-                                  fontWeight: "bold",
-                                  lineHeight: 1,
-                                  color: "white",
-                                }}
-                              >
-                                {cumRap.tenCumRap}
-                              </p>
-                              <p className="text-white text-xs">
-                                {cumRap.diaChi}
-                              </p>
-                              <div className="thong-tin-lich-chieu grid grid-cols-4  gap-5">
-                                {cumRap.lichChieuPhim
-                                  ?.slice(0, 12)
-                                  .map((lichChieu, index) => {
-                                    return (
-                                      <div className="cols-span-1">
-                                        <button
-                                          onClick={() =>
-                                            navigate(
-                                              `/ticketroom/${lichChieu.maLichChieu}`
-                                            )
-                                          }
-                                          className="text-red-600"
-                                          style={{
-                                            fontWeight: "bold",
-                                            fontSize: "16px",
-                                          }}
-                                        >
-                                          {moment(
-                                            lichChieu.ngayChieuGioChieu
-                                          ).format("hh:mm A")}
-                                        </button>
-                                      </div>
-                                    );
-                                  })}
+          {lichChieuMovieDetail.heThongRapChieu?.length !== 0 ? (
+            <Tabs
+              tabPosition={tabPosition}
+              items={lichChieuMovieDetail.heThongRapChieu?.map(
+                (item, index) => {
+                  return {
+                    label: (
+                      <div className={index}>
+                        <img
+                          src={item.logo}
+                          alt={item.logo}
+                          className="rounded-full w-14 h-14"
+                        />
+                        <div>
+                          <p className="text-center text-white mt-2 text-xl">
+                            {item.tenHeThongRap}
+                          </p>
+                        </div>
+                      </div>
+                    ),
+                    key: index,
+                    children: (
+                      <div className={Date.now()}>
+                        {item.cumRapChieu?.map((cumRap, index) => {
+                          return (
+                            <div className="mb-4" key={index}>
+                              <div className="flex flex-row text-left">
+                                <img
+                                  src={cumRap.hinhAnh}
+                                  alt=""
+                                  style={{ width: "100px", height: "100px" }}
+                                  className="rounded-md"
+                                />
+                                <div className="ml-2">
+                                  <p
+                                    style={{
+                                      fontSize: "20px",
+                                      fontWeight: "bold",
+                                      lineHeight: 1,
+                                      color: "white",
+                                    }}
+                                  >
+                                    {cumRap.tenCumRap}
+                                  </p>
+                                  <p className="text-white text-xs">
+                                    {cumRap.diaChi}
+                                  </p>
+                                  <div className="thong-tin-lich-chieu grid grid-cols-4  gap-5">
+                                    {cumRap.lichChieuPhim
+                                      ?.slice(0, 12)
+                                      .map((lichChieu, index) => {
+                                        return (
+                                          <div className="cols-span-1">
+                                            <button
+                                              onClick={() =>
+                                                navigate(
+                                                  `/ticketroom/${lichChieu.maLichChieu}`
+                                                )
+                                              }
+                                              className="text-red-600"
+                                              style={{
+                                                fontWeight: "bold",
+                                                fontSize: "16px",
+                                              }}
+                                            >
+                                              {moment(
+                                                lichChieu.ngayChieuGioChieu
+                                              ).format("hh:mm A")}
+                                            </button>
+                                          </div>
+                                        );
+                                      })}
+                                  </div>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                ),
-              };
-            })}
-          />
+                          );
+                        })}
+                      </div>
+                    ),
+                  };
+                }
+              )}
+            />
+          ) : (
+            <p className="text-white text-3xl p-20">Unavailable</p>
+          )}
         </div>
 
         <br />

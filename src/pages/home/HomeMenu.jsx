@@ -20,7 +20,7 @@ const HomeMenu = () => {
 
   return (
     <>
-      <Component className="container pt-16">
+      <Component className="container pt-16 ">
         <Tabs
           // className="scrollRapChieu"
           tabPosition={tabPosition}
@@ -47,12 +47,13 @@ const HomeMenu = () => {
                         <div
                           className="scrollRapChieu"
                           style={{
-                            width: "300px",
+                            width: "450px",
                             display: "flex",
                             alignItems: "center",
                           }}
                         >
                           <img
+                            className="rounded-md"
                             src={cumrap.hinhAnh}
                             style={{ height: "80px", width: "60px" }}
                             alt=""
@@ -61,9 +62,11 @@ const HomeMenu = () => {
                               e.target.src = "https:picsum.photos/75/75";
                             }}
                           />
-                          <div className="text-left ml-2 ">
+                          <div className="text-left  ">
                             <h2>{cumrap.tenCumRap}</h2>
-                            <p className="text-black-500 ">({cumrap.diaChi})</p>
+                            <p className="text-black-500 diaChiCumRap">
+                              ({cumrap.diaChi})
+                            </p>
                             <p className="text-red-400">Detail</p>
                           </div>
                         </div>
@@ -77,7 +80,7 @@ const HomeMenu = () => {
                             return {
                               label: (
                                 <Fragment>
-                                  <div className="my-5 width-[500px]">
+                                  <div className=" width-[500px] pb-2">
                                     <div style={{ display: "flex" }}>
                                       <img
                                         src={film.hinhAnh}
@@ -86,7 +89,7 @@ const HomeMenu = () => {
                                           height: "110px",
                                         }}
                                         alt={film.tenPhim}
-                                        className="rounded-sm"
+                                        className="rounded-md"
                                         onError={(e) => {
                                           e.target.onerror = null;
                                           e.target.src =
@@ -128,7 +131,7 @@ const HomeMenu = () => {
                                       </div>
                                     </div>
                                   </div>
-                                  <hr style={{ width: "800px" }} />
+                                  <hr style={{ width: "660px" }} />
                                 </Fragment>
                               ),
                               key: film.maPhim,
@@ -149,8 +152,15 @@ const HomeMenu = () => {
 };
 
 const Component = styled.div`
+  .diaChiCumRap {
+    white-space: normal;
+    word-break: break-word;
+    -webkit-line-clamp: 2;
+    height: 45px;
+    margin-bottom: 0;
+  }
   .scroll .ant-tabs-nav {
-    width: 700px;
+    width: 600px;
   }
   .ant-tabs-nav-list {
     height: 800px;

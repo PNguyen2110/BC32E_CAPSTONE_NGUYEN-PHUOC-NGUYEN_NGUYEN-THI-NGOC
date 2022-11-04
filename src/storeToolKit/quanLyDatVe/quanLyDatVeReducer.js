@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { Alert } from "antd";
 import { quanLyDatVeService } from "../../services/quanLyDatVeService";
 
 
@@ -9,7 +10,7 @@ const initialState = {
   },
   isFetchingTicket: false,
   danhSachGheDangDat: [],
-  datVe:{  
+  datVe: {
   },
   isFetchingBookingTicket: false,
 };
@@ -38,10 +39,10 @@ export const { reducer: quanLyDatVeReducer, actions: quanLyDatVeActions } =
     },
 
     extraReducers: (builder) => {
-    
+
       builder
-         //get info rap
-         .addCase(getMovieTicket.pending, (state, action) => {
+        //get info rap
+        .addCase(getMovieTicket.pending, (state, action) => {
           state.isFetchingTicket = true;
         })
         .addCase(getMovieTicket.fulfilled, (state, action) => {
@@ -85,12 +86,13 @@ export const getMovieTicket = createAsyncThunk(
 export const postTicket = createAsyncThunk(
   "quanLyDatVe/postTicket",
 
-  async (data,{ dispatch, rejectWithValue }) => {
+  async (data, { dispatch, rejectWithValue }) => {
     try {
 
       const result = await quanLyDatVeService.postTicket(data);
-      await dispatch(getMovieTicket(data.maLichChieu))
 
+      // alert(result.data.content)
+      await dispatch(getMovieTicket(data.maLichChieu))
       return result.data.content;
 
     } catch (error) {
@@ -101,7 +103,7 @@ export const postTicket = createAsyncThunk(
 
 export const taoLichChieu = createAsyncThunk(
   "quanLiDatVe/taoLichChieu",
-  async (data, {}) => {
+  async (data, { }) => {
     try {
       const result = await quanLyDatVeService.taoLichChieu(data);
       alert(result.data.content);

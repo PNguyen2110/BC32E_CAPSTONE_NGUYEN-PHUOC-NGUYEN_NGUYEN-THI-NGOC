@@ -1,7 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+import { useQuanLyNguoiDung } from "../../storeToolKit/quanLyNguoiDung";
+import { HeartOutlined } from "@ant-design/icons";
 export const Header = () => {
+  const { userLogin } = useQuanLyNguoiDung();
+
   return (
     <header className="p-4 bg-black bg-opacity-40  text-white fixed w-full z-10 header">
       <div className="container flex justify-between h-16 mx-auto">
@@ -44,9 +47,21 @@ export const Header = () => {
         </ul>
         <div className="items-center flex-shrink-0 hidden lg:flex">
           <button className="self-center px-8 py-3 ">
-            <NavLink to="login" className="text-white">
-              Sign in
-            </NavLink>
+            {localStorage.getItem("USER_LOGIN") ? (
+              <span>
+                <span className="text-red-600 ">
+                  <HeartOutlined style={{ top: "-28px" }} />
+                </span>{" "}
+                Hi {userLogin.hoTen}{" "}
+                <span className="text-red-600 ">
+                  <HeartOutlined style={{ top: "-28px" }} />
+                </span>{" "}
+              </span>
+            ) : (
+              <NavLink to="login" className="text-white">
+                Sign in
+              </NavLink>
+            )}
           </button>
           <button className="self-center px-8 py-3  ">
             <NavLink to="register" className="text-white">

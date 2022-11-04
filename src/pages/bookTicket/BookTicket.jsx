@@ -23,8 +23,6 @@ const BookTicket = () => {
   const { userLogin } = useQuanLyNguoiDung();
   const { detailTicketRoom, danhSachGheDangDat, isFetchingBookingTicket } =
     useQuanLyDatVe();
-  console.log("detailTicketRoom: ", detailTicketRoom);
-
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -93,7 +91,7 @@ const BookTicket = () => {
     );
   }
   return (
-    <div className="bg-green-100 bg-opacity-50" key={Date.now()}>
+    <div className="bg-green-100 bg-opacity-50">
       <div className="container grid grid-cols-12 pt-24 pb-12">
         <div className="col-span-8 text-center">
           <div className="text-2xl display-4 font-bold">
@@ -126,7 +124,7 @@ const BookTicket = () => {
               <span className="pr-4">: Ghế thường</span>
               <button className="gheVip mr-2"> </button>
               <span className="pr-4">: Ghế VIP</span>
-              <button className="gheDaDuocDat  mr-2">
+              <button className="gheDaDuocDat  mr-2 pb-4">
                 {" "}
                 <UserOutlined />
               </button>
@@ -138,18 +136,18 @@ const BookTicket = () => {
           className="col-span-4 pt-16 totalTicket"
           style={{ fontSize: "16px" }}
         >
-          <h3 className="text-black text-center text-2xl pb-6">
-            Total :
-            <span className="text-warning">
+          <h3 className="text-center pb-6">
+            <span className="text-red-300  text-2xl  font-bold">Total : </span>
+            <span className="text-warning text-pink-200 text-xl underline underline-offset-4">
               {" "}
               {danhSachGheDangDat
                 .reduce((sum, seats) => {
                   return (sum += seats.giaVe);
                 }, 0)
-                .toLocaleString() + " vnd"}
+                .toLocaleString()}{" "}
             </span>
+            <span className="text-pink-200 text-sm"> (vnd)</span>
           </h3>
-          <hr />
           <h3 className="text-xl">{detailTicketRoom.thongTinPhim?.tenPhim}</h3>
           <p>
             Address: {detailTicketRoom.thongTinPhim?.tenCumRap} -{" "}
@@ -237,6 +235,20 @@ const BookTicket = () => {
             >
               Buy Ticket
             </button>
+            <div className="text-red-600 hover:text-yellow-400">
+              {" "}
+              <HistoryOutlined className="text-xl" />
+              <a
+                href=""
+                onClick={() => {
+                  navigate(`/bookResult`);
+                }}
+                className="cursor-pointer text-red-600 hover:text-yellow-400"
+                style={{ fontSize: "18px", paddingTop: "20px" }}
+              >
+                Booking history
+              </a>
+            </div>
             <div className="text-red-600 hover:text-yellow-400">
               {" "}
               <HistoryOutlined className="text-xl" />
