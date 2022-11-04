@@ -20,9 +20,8 @@ const HomeMenu = () => {
 
   return (
     <>
-      <Component className="container pt-16 ">
+      <Component className="container pt-16 pl-16 ">
         <Tabs
-          // className="scrollRapChieu"
           tabPosition={tabPosition}
           items={rapList.map((item) => {
             return {
@@ -47,7 +46,7 @@ const HomeMenu = () => {
                         <div
                           className="scrollRapChieu"
                           style={{
-                            width: "450px",
+                            width: "370px",
                             display: "flex",
                             alignItems: "center",
                           }}
@@ -80,7 +79,7 @@ const HomeMenu = () => {
                             return {
                               label: (
                                 <Fragment>
-                                  <div className=" width-[500px] pb-2">
+                                  <div className=" pb-2" style={{width:'500px'}}>
                                     <div style={{ display: "flex" }}>
                                       <img
                                         src={film.hinhAnh}
@@ -168,13 +167,6 @@ const Component = styled.div`
     overflow-x: hidden;
     display: inline-block;
   }
-
-  /* .ant-tabs-nav-list .scroll {
-    height: 800px;
-    padding-left: 80px;
-    display: inline-block;
-    overflow: auto;
-  } */
 
   .ant-tabs-nav-list::-webkit-scrollbar {
     width: 8px;

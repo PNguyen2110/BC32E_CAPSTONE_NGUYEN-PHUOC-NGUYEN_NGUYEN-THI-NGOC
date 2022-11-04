@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, useRoutes } from "react-router-dom";
-import MainLayout from "../components/Layouts/MainLayout";
+import MainLayout from "../components/layouts/MainLayout";
 import Contact from "../pages/contact/Contact";
 import Home from "../pages/home/Home";
 import News from "../pages/news/News";

@@ -53,7 +53,7 @@ export default function MultipleRowSlick(props) {
                   ? item.moTa.substr(0, 50) + "..."
                   : item.moTa}
               </p>
-              <Link
+              <a
                 className="text-pink-500 inline-flex items-center  hover:text-violet-500"
                 onClick={() => navigate(`/detail/${item.maPhim}`)}
               >
@@ -70,7 +70,7 @@ export default function MultipleRowSlick(props) {
                   <path d="M5 12h14" />
                   <path d="M12 5l7 7-7 7" />
                 </svg>
-              </Link>
+              </a>
             </div>
           </div>
         );
