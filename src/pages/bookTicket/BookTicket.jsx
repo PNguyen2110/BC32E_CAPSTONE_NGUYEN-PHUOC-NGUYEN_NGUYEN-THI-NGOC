@@ -13,7 +13,7 @@ import { useQuanLyNguoiDung } from "../../storeToolKit/quanLyNguoiDung";
 import style from "./BookTicket.module.css";
 import "./BookTicket.css";
 import _ from "lodash";
-import { UserOutlined, HistoryOutlined } from "@ant-design/icons";
+import { UserOutlined, HistoryOutlined ,MehOutlined,CloseOutlined} from "@ant-design/icons";
 import { Skeleton } from "antd";
 class ThongTinDatVe {
   maLichChieu = 0;
@@ -21,8 +21,11 @@ class ThongTinDatVe {
 }
 const BookTicket = () => {
   const { userLogin } = useQuanLyNguoiDung();
-  const { detailTicketRoom, danhSachGheDangDat, isFetchingBookingTicket } =
+  const { detailTicketRoom, danhSachGheDangDat, isFetchingBookingTicket, danhSachGheKhachDangDat } =
+
+  
     useQuanLyDatVe();
+    console.log("detailTicketRoom: ", detailTicketRoom);
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,6 +35,7 @@ const BookTicket = () => {
       return navigate("/login");
     }
     dispatch(getMovieTicket(params.id));
+   
   }, []);
 
   const renderSeats = () => {
@@ -39,9 +43,15 @@ const BookTicket = () => {
       let classGheVip = ghe.loaiGhe === "Vip" ? "gheVip" : "";
       let gheDaDat = ghe.daDat === true ? "gheDaDat" : "";
       let classGheDangDat = "";
+      // let classGheKhachDangDat = '';
+      // let indexGheKhachDangDat = danhSachGheKhachDangDat.findIndex(gheKD => gheKD.maGhe === ghe.maGhe)
+      // if (indexGheKhachDangDat !== -1) {
+      //   classGheKhachDangDat = 'gheKhachDangDat'
+      // }
       let indexGheDD = danhSachGheDangDat.findIndex(
         (gheDD) => gheDD.maGhe === ghe.maGhe
       );
+
       let classGheDaDuocDat = "";
       if (userLogin.taiKhoan === ghe.taiKhoanNguoiDat) {
         classGheDaDuocDat = "gheDaDuocDat";
@@ -57,18 +67,10 @@ const BookTicket = () => {
             onClick={() => {
               dispatch(quanLyDatVeActions.bookSeats(ghe));
             }}
-            disabled={ghe.daDat}
-            className={`ghe ${classGheVip} ${gheDaDat} ${classGheDangDat} ${classGheDaDuocDat} `}
+            disabled={ghe.daDat }
+            className={`ghe ${classGheVip} ${gheDaDat} ${classGheDangDat} ${classGheDaDuocDat}  `}
           >
-            {ghe.daDat ? (
-              classGheDaDuocDat !== "" ? (
-                <UserOutlined />
-              ) : (
-                <span>x</span>
-              )
-            ) : (
-              ghe.stt
-            )}
+            {ghe.daDat ?  classGheDaDuocDat !==''? <span className="flex justify-center"> <UserOutlined /></span> :  <span className="flex justify-center text-black" style={{fontSize:'13px'}}><CloseOutlined /></span> :  ghe.stt }
           </button>
           {(index + 1) % 16 === 0 ? <br /> : ""}
         </Fragment>
@@ -81,7 +83,7 @@ const BookTicket = () => {
         <div className="grid grid-cols-12 pt-24 container">
           {[...Array(100)].map((e) => {
             return (
-              <div className="col-span-1 mt-4">
+              <div className="col-span-1 mt-4" key={Math.floor(Math.random() * 10000000) + 1000001}>
                 <Skeleton.Button active />
               </div>
             );
@@ -111,24 +113,24 @@ const BookTicket = () => {
             <div className={`${style["bookTicket-screen"]}`}></div>
           </div>
           <div>{renderSeats()}</div>
-          <div className=" pl-32  container">
+          <div className=" pl-16  container">
             <div className="pt-2 text-left font-semibold">
               <i style={{ fontSize: "16px" }}>Ticket status</i> :
             </div>
-            <div className=" flex pt-4">
-              <button className="gheDaDat mr-2"> </button>
-              <span className="pr-4"> : Ghế đã đặt</span>
-              <button className="gheDangDat  mr-2"> </button>
-              <span className="pr-4">: Ghế đang đặt</span>
-              <button className="gheButton mr-2"> </button>
-              <span className="pr-4">: Ghế thường</span>
-              <button className="gheVip mr-2"> </button>
-              <span className="pr-4">: Ghế VIP</span>
-              <button className="gheDaDuocDat  mr-2 pb-4">
-                {" "}
-                <UserOutlined />
+            <div className=" flex pt-4 pl-20">
+              <button className="gheDaDat "> <span className="flex justify-center text-black" style={{fontSize:'12px'}}><CloseOutlined /></span></button>
+              <span className="pr-4 pl-1">: Ghế đã đặt</span>
+              <button className="gheDangDat  "> </button>
+              <span className="pr-4 pl-1">: Ghế đang đặt</span>
+              <button className="gheButton "> </button>
+              <span className="pr-4 pl-1">: Ghế thường</span>
+              <button className="gheVip "> </button>
+              <span className="pr-4 pl-1">: Ghế VIP</span>
+              <button className="gheDaDuocDat  ">
+              <span className="flex justify-center"> <UserOutlined /></span> 
               </button>
-              <span className="pr-4">: Ghế bạn đã mua</span>
+              <span className="pr-4 pl-1">: Ghế bạn đã mua</span>
+             
             </div>
           </div>
         </div>
@@ -139,7 +141,7 @@ const BookTicket = () => {
           <h3 className="text-center pb-6">
             <span className="text-red-300  text-2xl  font-bold">Total : </span>
             <span className="text-warning text-pink-200 text-xl underline underline-offset-4">
-              {" "}
+              
               {danhSachGheDangDat
                 .reduce((sum, seats) => {
                   return (sum += seats.giaVe);
@@ -235,7 +237,7 @@ const BookTicket = () => {
             >
               Buy Ticket
             </button>
-            
+
             <div className="text-red-600 hover:text-yellow-400">
               {" "}
               <HistoryOutlined className="text-xl" />

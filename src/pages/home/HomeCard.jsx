@@ -6,10 +6,11 @@ import { useQueryUrl } from '../../Hooks/useQueryUrl'
 import { getMovieList } from '../../storeToolKit/quanLiPhim/quanLiPhimReducer'
 import { useQuanLiPhim } from '../../storeToolKit/quanLiPhim/quanLiPhimSelector'
 import MultipleRowSlick from './MultipleRowSlick'
-
+import { useTranslation } from 'react-i18next';
 
 const HomeCard = () => {
-
+  
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch()
   
   const [query,setQueryUrl] = useQueryUrl({
@@ -29,12 +30,12 @@ const HomeCard = () => {
           setQueryUrl({
             isShowing: true,
           })
-        }}>Available </Button>
+        }}> {t('available')} </Button>
       <Button type="button" className={cn('ml-4', { active: query.isShowing === 'false' })} onClick={()=>{
           setQueryUrl({
             isShowing: false,
           })
-        }}>Coming soon</Button>
+        }}> {t('comingsoon')}</Button>
       </div>
           
       <MultipleRowSlick movieList={movieList} query={query.isShowing}/>

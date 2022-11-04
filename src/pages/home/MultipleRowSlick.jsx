@@ -1,8 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import Slider from "react-slick";
 import styleSlick from "./css/MultipleRowSlick.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+
 function SampleNextArrow(props) {
+ 
   const { className, style, onClick } = props;
   return (
     <div
@@ -25,7 +28,7 @@ function SamplePrevArrow(props) {
 
 export default function MultipleRowSlick(props) {
   const navigate = useNavigate();
-
+  const { t, i18n } = useTranslation();
   const { movieList, query } = props;
   const renderFilm = () => {
     return movieList
@@ -57,7 +60,7 @@ export default function MultipleRowSlick(props) {
                 className="text-pink-500 inline-flex items-center  hover:text-violet-500"
                 onClick={() => navigate(`/detail/${item.maPhim}`)}
               >
-                Detail
+                {t('detail')}
                 <svg
                   className="w-4 h-4 ml-2"
                   viewBox="0 0 24 24"

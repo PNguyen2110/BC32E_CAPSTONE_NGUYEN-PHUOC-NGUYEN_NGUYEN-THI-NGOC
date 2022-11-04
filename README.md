@@ -68,3 +68,82 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+<!-- ### realtime
+B1: Cài đặt signalR ( index js) npm i @aspnet/signalr
+ import * as signalR from '@aspnet/signalr';
+
+ export const connection = new signalR.HubConnectionBuilder().withUrl('https://movienew.cybersoft.edu.vn/DatVeHub').configureLogging(signalR.LogLevel.Information).build()
+
+connection.start().then(function () {
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+   root.render(
+      <React.StrictMode>
+     <Provider store={store}>
+       <App />
+     </Provider>
+      </React.StrictMode>
+   );
+
+   reportWebVitals();
+ }).catch(error=>{
+   console.log("error: ", error);
+
+ })
+
+
+ B2: Cài đặt hàm lắng nghe sự kiện nơi cần
+ import { connection } from "../..";
+   
+useEffect(()=>{
+    -vừa vào trang load lên luôn ghê ng khác đang đặt
+    connection.invoke('loadDanhSachGhe',maLichChieu)
+ 
+   connection.on('load',(dsGheKhachDat)=>{
+           console.log("dsGheKhachDat: ", dsGheKhachDat);
+ 
+             dsGheKhachDat: laf mảng be trả về mảng khách đang đặt
+
+       - loại mình ra khỏi danh sách
+               dsGheKhachDat = dsGheKhachDat.filter(item=>item.taiKhoan !==userLogin.taiKhoan)
+
+        - gộp danh sách ghế khách đặt  ở tất cả user thành 1 mảng chung
+           let arrGheKhachDat = dsGheKhachDat.reduce((result,item,index)=>{
+            let arGhe = JSON.parse(item.danhSachGhe)
+                return [...result,...arrGhe]
+
+                    },[])
+            arGhe = _.unigBy(arrGheKhachDat,'maGhe) - lọc k trùng nhau
+        
+        - dispatch(checkGhe(arrGheKhachDat)) => hành động trong effect gửi dispatch lên store => store thay đổi(datVeReducer) danhSachGheDangDat = arrGheKhachDat ( là action.payload)
+                    })
+      
+}
+
+ -cai dặt sự kiện reload trang ( trong useEffect)
+            window.addEventListener('bẻoeunload",)
+
+      return ()=>{
+      clearGhe();
+      window.removeEventListener('bẻoeunload',clearGhe)
+
+ },[])useEffect
+
+  ngoài useEfect :
+    const clearGhe = function(even){
+       connection.invoke('huyDat',userLogin.taiKhoan.maLichChieu)
+}
+
+
+
+ B3: cài đặt nút đặt ghế=> gửi tín hiệu đến server=> server phát tín hiệu về cho tất cả client( ở bước 2)
+
+ - action: async (dispatch,getState)=>{
+    await dispatch datGhe len reducer  
+  call api về BE (QuanLyDatVeReducer.js file ) -lấy đủ data Be yêu cầu => dựa vào getState
+ + let dsGheDangDat = getState().QuanLyDatVeReducer.danhSachGheDangDat   //lay tu kho tong ve dua vao getState()
+ + let taiKhoan = getState().QuanLyNguoiDungReducer.userLogin.taiKhoan   //lay tu kho tong ve dua vao getState()
+ -call api signalr
+ + connection.invok('datGhe',taiKhoan,danhSachGhe,maLichChieu)
+ } 
+ -->
