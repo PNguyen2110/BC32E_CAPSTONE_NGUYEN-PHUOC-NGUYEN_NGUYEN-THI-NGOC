@@ -20,9 +20,6 @@
 .gheDaDat {
   background-color: rgb(209, 232, 76);
   cursor: no-drop;
-  font-weight: 700;
-  font-size: 17px;
-  line-height: 20px;
   width: 30px;
   height: 30px;
   border-radius: 5px;
@@ -43,7 +40,15 @@
   background-color: rgb(123, 122, 122);
   color: #fff;
 }
-
+.gheKhachDangDat{
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgba(178, 90, 171, 0.963) !important;
+  color: #fff;
+  cursor: no-drop;
+}
 #table-wrapper {
   position: relative;
 }

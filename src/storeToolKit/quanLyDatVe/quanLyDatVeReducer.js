@@ -13,6 +13,8 @@ const initialState = {
   datVe: {
   },
   isFetchingBookingTicket: false,
+  // danhSachGheKhachDangDat:[{maGhe:51881},{maGhe:51882}],
+  // isFetchingDanhSachGheKhachDangDat:false
 };
 
 export const { reducer: quanLyDatVeReducer, actions: quanLyDatVeActions } =
