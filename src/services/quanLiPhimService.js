@@ -5,7 +5,7 @@ export const quanLiPhimService = {
     if (!value.trim()) {
       return api.get(`QuanLyPhim/LayDanhSachPhim?maNhom=GP13`);
     } else {
-      return api.get(`QuanLyPhim/LayDanhSachPhim?maNhom=GP01&tenPhim=${value}`);
+      return api.get(`QuanLyPhim/LayDanhSachPhim?maNhom=GP13&tenPhim=${value}`);
     }
   },
   getMovieDetail: (idFilm) => {

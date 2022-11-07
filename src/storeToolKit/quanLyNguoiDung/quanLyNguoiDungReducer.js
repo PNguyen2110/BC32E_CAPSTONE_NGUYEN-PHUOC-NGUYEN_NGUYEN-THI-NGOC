@@ -83,6 +83,7 @@ export const postUser = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const result = await quanLyNguoiDungService.postUser(data);
+      console.log(result.data.content);
       localStorage.setItem("USER_LOGIN", JSON.stringify(result.data.content));
       localStorage.setItem("TOKEN", result.data.content.accessToken);
       console.log(result.data.content);
@@ -97,7 +98,7 @@ export const getBookResult = createAsyncThunk(
   async (rejectWithValue) => {
     try {
       const result = await quanLyNguoiDungService.getBookResult();
-
+      localStorage.setItem("infoUser", JSON.stringify(result.data.content));
       return result.data.content;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -158,6 +159,18 @@ export const capNhatThongTinNguoiDung = createAsyncThunk(
     }
   }
 );
+export const capNhatThongTinNguoiDungPut = createAsyncThunk(
+  "quanLyNguoiDung/capNhatThongTinNguoiDungPut",
+  async (data, {}) => {
+    try {
+      await quanLyNguoiDungService.capNhatThongTinNguoiDungPut(data);
+      alert("cập nhật người dùng thành công");
+    } catch (err) {
+      console.log(err.response.data);
+      // alert(err.response.data.message);
+    }
+  }
+);
 
 export const layDanhSachLoaiNguoiDung = createAsyncThunk(
   "quanLyNguoiDung/layDanhSachLoaiNguoiDung",
@@ -168,6 +181,21 @@ export const layDanhSachLoaiNguoiDung = createAsyncThunk(
       return result.data.content;
     } catch (err) {
       alert(err.response.data.message);
+    }
+  }
+);
+
+export const dangKy = createAsyncThunk(
+  "quanLyNguoiDung/dangKy",
+  async (data) => {
+    try {
+      const result = await quanLyNguoiDungService.dangKy(data);
+
+      localStorage.setItem("userSignUp", JSON.stringify(result.data.content));
+      alert("Đăng kí thành công");
+    } catch (err) {
+      alert(err.response.data.content);
+      console.log(err.response.data.message);
     }
   }
 );

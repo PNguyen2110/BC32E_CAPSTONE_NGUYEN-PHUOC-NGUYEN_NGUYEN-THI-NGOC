@@ -15,16 +15,22 @@ import {
   getInfoMovies,
   postFilmUpdate,
 } from "../../../storeToolKit/quanLiPhim";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 const EditFilms = () => {
   const [componentSize, setComponentSize] = useState("default");
   const { maPhim } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [state, setState] = useState(false);
   useEffect(() => {
-    dispatch(getInfoMovies(maPhim));
-  }, []);
+    if (localStorage.getItem("filmUpdate")) {
+      localStorage.removeItem("filmUpdate");
+      navigate("/admin");
+      setState(!state);
+    }
+  }, [state]);
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
@@ -48,12 +54,12 @@ const EditFilms = () => {
   };
 
   const { infoMovie } = useSelector((state) => state.quanLiPhimReducer);
-
+  console.log("infoMovie", infoMovie);
   // submit form bằng formik
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      maNhom: "GP01",
+      maNhom: "GP13",
       tenPhim: infoMovie.tenPhim,
       trailer: infoMovie.trailer,
       moTa: infoMovie.moTa,
@@ -75,7 +81,7 @@ const EditFilms = () => {
         .min(1, `điểm đánh phải lớn hơn 1`)
         .max(10, `điểm đánh phải nhỏ hơn hoặc bằng 10`),
 
-      ngayKhoiChieu: yup.string().required("* vui lòng chọn ngày"),
+      ngayKhoiChieu: yup.string().required("* vui lòng chọn ngày chiếu"),
     }),
     onSubmit: (values) => {
       let formData = new FormData();

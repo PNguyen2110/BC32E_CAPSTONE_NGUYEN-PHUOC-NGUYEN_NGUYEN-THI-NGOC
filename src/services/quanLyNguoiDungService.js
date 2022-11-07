@@ -12,7 +12,7 @@ export const quanLyNguoiDungService = {
   },
   layDanhSachNguoiDung: (value) => {
     if (!value.trim()) {
-      return api.get(`QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01`);
+      return api.get(`QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP13`);
     }
     return api.get(
       `QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP13&tuKhoa=${value}`
@@ -27,7 +27,13 @@ export const quanLyNguoiDungService = {
   capNhatThongTinNguoiDung: (data) => {
     return api.post(`QuanLyNguoiDung/CapNhatThongTinNguoiDung`, data);
   },
+  capNhatThongTinNguoiDungPut: (data) => {
+    return api.put(`QuanLyNguoiDung/CapNhatThongTinNguoiDung`, data);
+  },
   layDanhSachLoaiNguoiDung: () => {
     return api.get(`QuanLyNguoiDung/LayDanhSachLoaiNguoiDung`);
+  },
+  dangKy: (data) => {
+    return api.post(`/QuanLyNguoiDung/DangKy`, data);
   },
 };

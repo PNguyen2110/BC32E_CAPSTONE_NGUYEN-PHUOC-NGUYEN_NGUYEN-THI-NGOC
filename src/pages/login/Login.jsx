@@ -2,14 +2,17 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { postUser, useQuanLyNguoiDung,} from "../../storeToolKit/quanLyNguoiDung";
-import { useEffect } from "react";
+import {
+  postUser,
+  useQuanLyNguoiDung,
+} from "../../storeToolKit/quanLyNguoiDung";
+import { useEffect, useState } from "react";
 
 const Login = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const {userLogin} = useQuanLyNguoiDung()
-  
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { userLogin } = useQuanLyNguoiDung();
+
   const {
     register,
     handleSubmit,
@@ -20,14 +23,19 @@ const Login = () => {
     mode: "onBlur",
     defaultValues: {},
   });
-
+  // const [userLogi, setUserLogin] = useState(userLogin)
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("USER_LOGIN"));
     if (
       localStorage.getItem("USER_LOGIN") &&
       user.maLoaiNguoiDung === "KhachHang"
     ) {
-      navigate(-1);
+      if (localStorage.getItem("userSignUp")) {
+        navigate("/home");
+        localStorage.removeItem("userSignUp");
+      } else {
+        navigate(-1);
+      }
     } else if (
       localStorage.getItem("USER_LOGIN") &&
       user.maLoaiNguoiDung === "QuanTri"
@@ -46,7 +54,6 @@ const Login = () => {
         </div>
         <form
           noValidate
-          action
           className="space-y-12 ng-untouched ng-pristine ng-valid "
           onSubmit={handleSubmit((data) => {
             dispatch(postUser(data));

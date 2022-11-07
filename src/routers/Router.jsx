@@ -17,9 +17,30 @@ import { ShowTime } from "../pages/Admin/showTime/ShowTime";
 import QuanLiNguoiDung from "../pages/Admin/quanLiNguoiDung/QuanLiNguoiDung";
 import { ChinhSuaNguoiDung } from "../pages/Admin/quanLiNguoiDung/ChinhSuaNguoiDung";
 import { ThemNguoiDung } from "../pages/Admin/quanLiNguoiDung/ThemNguoiDung";
+import { ThongTinNguoiDung } from "../pages/User/ThongTinNguoiDung";
+import UserTemplate from "../components/template/UserTemaplate/UserTeamplate";
+import { LichSuDatVe } from "../pages/User/LichSuDatVe";
 
 const Router = () => {
   const routing = useRoutes([
+    {
+      path: "/user/",
+      element: <UserTemplate />,
+      children: [
+        {
+          path: "/user/",
+          element: <Navigate to="thongTinCaNhan" />,
+        },
+        {
+          path: "thongTinCaNhan",
+          element: <ThongTinNguoiDung />,
+        },
+        {
+          path: "lichSuDatVe",
+          element: <LichSuDatVe />,
+        },
+      ],
+    },
     {
       path: "/",
       element: <MainLayout />,

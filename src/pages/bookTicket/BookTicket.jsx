@@ -31,9 +31,9 @@ const BookTicket = () => {
     if (!localStorage.getItem("USER_LOGIN")) {
       return navigate("/login");
     }
-    dispatch(getMovieTicket(params.id));
-  }, []);
 
+    dispatch(getMovieTicket(params.id));
+  }, [userLogin]);
   const renderSeats = () => {
     return detailTicketRoom.danhSachGhe?.map((ghe, index) => {
       let classGheVip = ghe.loaiGhe === "Vip" ? "gheVip" : "";
@@ -235,20 +235,6 @@ const BookTicket = () => {
             >
               Buy Ticket
             </button>
-            <div className="text-red-600 hover:text-yellow-400">
-              {" "}
-              <HistoryOutlined className="text-xl" />
-              <a
-                href=""
-                onClick={() => {
-                  navigate(`/bookResult`);
-                }}
-                className="cursor-pointer text-red-600 hover:text-yellow-400"
-                style={{ fontSize: "18px", paddingTop: "20px" }}
-              >
-                Booking history
-              </a>
-            </div>
             <div className="text-red-600 hover:text-yellow-400">
               {" "}
               <HistoryOutlined className="text-xl" />

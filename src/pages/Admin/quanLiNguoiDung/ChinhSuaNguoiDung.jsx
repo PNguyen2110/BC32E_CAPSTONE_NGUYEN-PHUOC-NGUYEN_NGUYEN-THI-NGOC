@@ -51,7 +51,6 @@ export const ChinhSuaNguoiDung = () => {
       maLoaiNguoiDung: yup.string().required("* vui lòng chọn loại người dùng"),
     }),
     onSubmit: (values) => {
-      // console.log(values);
       dispatch(capNhatThongTinNguoiDung(values));
       navigate("/admin/quanLiNguoiDung");
     },

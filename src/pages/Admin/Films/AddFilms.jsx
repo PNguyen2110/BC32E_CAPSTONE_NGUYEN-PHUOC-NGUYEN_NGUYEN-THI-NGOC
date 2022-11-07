@@ -22,10 +22,26 @@ const AddFilms = () => {
     setComponentSize(size);
   };
   const { movieList } = useSelector((state) => state.quanLiPhimReducer);
+  const [film, setFilm] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // xử lý load ảnh khi chọn file
   const [img, setImg] = useState();
+  console.log("film", film);
+  useEffect(() => {
+    console.log("run");
+    console.log("film", JSON.parse(localStorage.getItem("addFilm")));
+    setFilm(false);
+    if (!localStorage.getItem("addFilm")) {
+      console.log("run2");
+      navigate("/admin");
+    }
+    // else {
+    //   localStorage.removeItem("addFilm");
+    //   setFilm(!film);
+    // }
+  }, [film]);
+  console.log("film222", JSON.parse(localStorage.getItem("addFilm")));
   const handleImg = (e) => {
     const file = e.target.files[0];
 
@@ -42,25 +58,11 @@ const AddFilms = () => {
       console.log("file", file);
     }
     formik.setFieldValue("hinhAnh", file);
-
-    // file.urlImg = URL.createObjectURL(file);
-    // setImg(file);
-    // formik.setFieldValue("hinhAnh", file);
-    // e.target.value = null;
   };
-  // x xoá ảnh khi chọn ảnh khác
-  // useEffect(() => {
-  //   return () => {
-  //     img && URL.revokeObjectURL(img.urlImg);
-  //   };
-  // }, [img]);
-  // submit form bằng formik
-  // useEffect(() => {
-  //   dispatch(getMovieList());
-  // }, []);
+
   const formik = useFormik({
     initialValues: {
-      maNhom: "GP01",
+      maNhom: "GP13",
       tenPhim: "",
       trailer: "",
       moTa: "",
@@ -116,12 +118,10 @@ const AddFilms = () => {
       }
 
       dispatch(postFilm(formData));
-      // const parseFilms = JSON.parse(localStorage.getItem("addFilm"));
-      // if (localStorage.getItem("addFilm")) {
-      //   navigate("/admin");
-      // }
+      setFilm(true);
     },
   });
+
   const handleChangeDatePicker = (value) => {
     let date = moment(value).format("DD-MM-YYYY");
     formik.setFieldValue("ngayKhoiChieu", date);
@@ -185,7 +185,7 @@ const AddFilms = () => {
           <p className="text-red-400">{formik.errors.moTa}</p>
         )}
       </Form.Item>
-      <Form.Item label="Ngày khổi chiếu">
+      <Form.Item label="Ngày khởi chiếu">
         <DatePicker
           name="ngayKhoiChieu"
           format="DD-MM-YYYY"

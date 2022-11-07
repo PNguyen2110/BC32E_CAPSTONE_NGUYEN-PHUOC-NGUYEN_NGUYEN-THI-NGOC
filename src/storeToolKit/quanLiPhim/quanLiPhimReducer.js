@@ -115,11 +115,12 @@ export const postFilm = createAsyncThunk(
   "quanLiPhim/postFilm",
   async (film, { dispatch }) => {
     try {
-      await quanLiPhimService.postFilm(film);
+      const result = await quanLiPhimService.postFilm(film);
+      localStorage.setItem("addFilm", JSON.stringify(result.data.content));
+
       alert("thêm phim thành công");
     } catch (error) {
-      console.log(error.response.data);
-      alert(error.response.data.message);
+      alert(error.response.data.content);
     }
   }
 );
@@ -140,16 +141,14 @@ export const getInfoMovies = createAsyncThunk(
 
 export const postFilmUpdate = createAsyncThunk(
   "quanLiPhim/postFilmUpdate",
-  async (formData, { dispatch, rejectWithValue }) => {
-    console.log(rejectWithValue);
+  async (formData) => {
     try {
-      await quanLiPhimService.postFilmUpdate(formData);
-
-      alert("cập nhật thành công");
-      dispatch(getMovieList());
+      const result = await quanLiPhimService.postFilmUpdate(formData);
+      localStorage.setItem("filmUpdate", JSON.stringify(result.data.content));
+      console.log("filmUpdate", JSON.stringify(result.data.content));
+      alert("Cập nhật phim thành công");
     } catch (err) {
-      console.log(err.response.data);
-      return rejectWithValue(err.response.data);
+      alert(err.response.data.content);
     }
   }
 );
