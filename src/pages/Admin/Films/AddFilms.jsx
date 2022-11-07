@@ -7,23 +7,22 @@ import {
   Radio,
   Switch,
 } from "antd";
-
+import { useTranslation } from 'react-i18next';
 import moment from "moment";
 import React, { useState } from "react";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import { getMovieList, postFilm } from "../../../storeToolKit/quanLiPhim";
+import {  postFilm } from "../../../storeToolKit/quanLiPhim";
 import { useFormik } from "formik";
 const AddFilms = () => {
+  const { t } = useTranslation();
   const [componentSize, setComponentSize] = useState("default");
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
   const { movieList } = useSelector((state) => state.quanLiPhimReducer);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+ 
   // xử lý load ảnh khi chọn file
   const [img, setImg] = useState();
   const handleImg = (e) => {
@@ -243,7 +242,7 @@ const AddFilms = () => {
           type="primary"
           className="bg-blue-400 text-white px-4 py-2 ml-[28%] rounded-md"
         >
-          Thêm phim
+          {t('addmovie')}
         </Button>
       </Form.Item>
     </Form>

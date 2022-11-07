@@ -45,5 +45,18 @@
     "time":"时间",
     "Theater Name":"剧院名称",
     "Chair":"椅子",
-    "Back to booking page":"返回预订页面"
+    "Back to booking page":"返回预订页面",
+    "addmovie":"添加电影",
+    "small":"小的",
+    "default":"默认",
+    "large":"大的",
+    "update":"更新",
+    "moviemanager":"电影经理",
+    "adduser": "添加用户",
+    "account": "帐户",
+    "password": "密码",
+    "fullname": "全名",
+    "save": "节省",
+    "pleaseselectusertype":"请选择用户类型",
+    "createshowtimes":"创建放映时间"
 }
