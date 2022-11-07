@@ -7,20 +7,21 @@ import { getRapMovieList } from "../../storeToolKit/quanLyRap";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import styled from "styled-components";
+import { useTranslation } from 'react-i18next';
 
 const HomeMenu = () => {
   const [tabPosition, setTabPosition] = useState("left");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { rapList } = useQuanLyRap();
-
+  const { t } = useTranslation();
   useEffect(() => {
     dispatch(getRapMovieList());
   }, []);
 
   return (
     <>
-      <Component className="container pt-16 pl-16 ">
+      <Component className="container pt-16 px-12">
         <Tabs
           tabPosition={tabPosition}
           items={rapList.map((item) => {
@@ -46,7 +47,7 @@ const HomeMenu = () => {
                         <div
                           className="scrollRapChieu"
                           style={{
-                            width: "370px",
+                            width: "400px",
                             display: "flex",
                             alignItems: "center",
                           }}
@@ -54,19 +55,19 @@ const HomeMenu = () => {
                           <img
                             className="rounded-md"
                             src={cumrap.hinhAnh}
-                            style={{ height: "80px", width: "60px" }}
+                            style={{ height: "85px", width: "65px" }}
                             alt=""
                             onError={(e) => {
                               e.target.onerror = null;
                               e.target.src = "https:picsum.photos/75/75";
                             }}
                           />
-                          <div className="text-left  ">
+                          <div className="text-left  pl-2">
                             <h2>{cumrap.tenCumRap}</h2>
                             <p className="text-black-500 diaChiCumRap">
                               ({cumrap.diaChi})
                             </p>
-                            <p className="text-red-400">Detail</p>
+                            <p className="text-red-400">{t('detail')}</p>
                           </div>
                         </div>
                       ),
@@ -79,13 +80,13 @@ const HomeMenu = () => {
                             return {
                               label: (
                                 <Fragment>
-                                  <div className=" pb-2" style={{width:'500px'}}>
+                                  <div className=" pb-2 pr-2" style={{width:'500px'}}>
                                     <div style={{ display: "flex" }}>
                                       <img
                                         src={film.hinhAnh}
                                         style={{
-                                          width: "95px",
-                                          height: "110px",
+                                          width: "120px",
+                                          height: "130px",
                                         }}
                                         alt={film.tenPhim}
                                         className="rounded-md"
@@ -102,7 +103,7 @@ const HomeMenu = () => {
                                         <p className="text-left">
                                           {" "}
                                           <span className="text-blue-700">
-                                            Xuat Chieu:
+                                          {t('showtime')}:
                                           </span>
                                         </p>
 
@@ -159,7 +160,7 @@ const Component = styled.div`
     margin-bottom: 0;
   }
   .scroll .ant-tabs-nav {
-    width: 600px;
+    width: 700px;
   }
   .ant-tabs-nav-list {
     height: 800px;

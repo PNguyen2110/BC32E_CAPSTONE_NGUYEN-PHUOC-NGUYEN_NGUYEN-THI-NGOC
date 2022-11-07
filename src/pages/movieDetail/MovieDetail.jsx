@@ -10,10 +10,11 @@ import {
   useQuanLyRap,
 } from "../../storeToolKit/quanLyRap";
 import moment from "moment";
+import { useTranslation } from 'react-i18next';
 
 const MovieDetail = () => {
   const [tabPosition, setTabPosition] = useState("left");
-
+  const { t } = useTranslation();
   const params = useParams();
   const navigate = useNavigate();
   const { movieDetail } = useQuanLiPhim();
@@ -35,40 +36,40 @@ const MovieDetail = () => {
           flexDirection: "column",
         }}
       >
-        <div className="box1 grid grid-cols-3 container  ">
+        <div className="box1 grid grid-cols-4 container  ">
           <div className="col-span-1">
             <img
               src={movieDetail.hinhAnh}
               alt="123"
               style={{
-                width: "80%",
-                height: "380px",
-                padding: "20px 0px 10px 30px",
+                width: "100%",
+                height: "400px",
+                padding: "45px 0px 10px 30px",
               }}
             />
           </div>
-          <div className="col-span-2 ">
+          <div className="col-span-3 ">
             <div className="container p-2 mx-auto sm:p-4 dark:text-gray-100">
-              <h2 className="mb-4 text-3xl font-semibold leading-tight text-white">
-                Movie Detail
+              <h2 className="mb-2 text-3xl font-semibold leading-tight text-white">
+              {t('moviedetail')}
               </h2>
               <div className="overflow-x-auto">
                 <table className="min-w-full  text-left">
                   <thead className="dark:bg-gray-700"></thead>
                   <tbody>
                     <tr className="border-b border-opacity-20 dark:border-gray-700">
-                      <td style={{ fontSize: "14px" }}>
-                        <p>Movie name :</p>
+                      <td style={{ fontSize: "12px" }}>
+                        <p>{t('moviename')} :</p>
                       </td>
                       <td>
-                        <p style={{ fontSize: "18px", color: "#83c641" }}>
+                        <p style={{ fontSize: "17px", color: "#83c641" }}>
                           {movieDetail.tenPhim}
                         </p>
                       </td>
                     </tr>
                     <tr className="border-b border-opacity-20 dark:border-gray-700">
                       <td>
-                        <p style={{ fontSize: "14px" }}>Describe :</p>
+                        <p style={{ fontSize: "12px" }}>{t('describe')} :</p>
                       </td>
                       <td>
                         <p>{movieDetail.moTa}</p>
@@ -76,7 +77,7 @@ const MovieDetail = () => {
                     </tr>
                     <tr className="border-b border-opacity-20 dark:border-gray-700">
                       <td>
-                        <p style={{ fontSize: "14px" }}>Premiere date :</p>
+                        <p style={{ fontSize: "12px" }}>{t('premieredate')} :</p>
                       </td>
                       <td>
                         <p>
@@ -88,7 +89,7 @@ const MovieDetail = () => {
                     </tr>
                     <tr className="border-b border-opacity-20 dark:border-gray-700">
                       <td>
-                        <p style={{ fontSize: "14px" }}>Rate :</p>
+                        <p style={{ fontSize: "12px" }}>{t('rate')} :</p>
                       </td>
                       <td>
                         <p>{movieDetail.danhGia} / 10</p>
@@ -200,7 +201,7 @@ const MovieDetail = () => {
               )}
             />
           ) : (
-            <p className="text-white text-3xl p-20">Unavailable</p>
+            <p className="text-white text-3xl p-20">{t('unavailable')}</p>
           )}
         </div>
 

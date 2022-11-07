@@ -57,7 +57,7 @@ export default function MultipleRowSlick(props) {
                   : item.moTa}
               </p>
               <a
-                className="text-pink-500 inline-flex items-center  hover:text-violet-500"
+                className="text-pink-500 inline-flex items-center  hover:text-violet-500 "
                 onClick={() => navigate(`/detail/${item.maPhim}`)}
               >
                 {t('detail')}

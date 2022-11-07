@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 
 const HomeCard = () => {
   
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch()
   
   const [query,setQueryUrl] = useQueryUrl({

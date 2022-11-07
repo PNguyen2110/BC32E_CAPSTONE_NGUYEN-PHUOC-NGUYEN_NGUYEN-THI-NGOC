@@ -15,6 +15,8 @@ import "./BookTicket.css";
 import _ from "lodash";
 import { UserOutlined, HistoryOutlined ,MehOutlined,CloseOutlined} from "@ant-design/icons";
 import { Skeleton } from "antd";
+import { useTranslation } from 'react-i18next';
+
 class ThongTinDatVe {
   maLichChieu = 0;
   danhSachVe = [];
@@ -29,6 +31,7 @@ const BookTicket = () => {
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!localStorage.getItem("USER_LOGIN")) {
@@ -97,10 +100,10 @@ const BookTicket = () => {
       <div className="container grid grid-cols-12 pt-24 pb-12">
         <div className="col-span-8 text-center">
           <div className="text-2xl display-4 font-bold">
-            BOOKING MOVIE TICKET
+           {t('BOOKINGMOVIETICKET')}
           </div>
           <div style={{ fontSize: "20px " }} className="mt-3 font-medium">
-            <i>Screen</i>
+            <i> {t('screen')}</i>
           </div>
           <div
             className="mt-1"
@@ -113,23 +116,23 @@ const BookTicket = () => {
             <div className={`${style["bookTicket-screen"]}`}></div>
           </div>
           <div>{renderSeats()}</div>
-          <div className=" pl-16  container">
+          <div className=" pl-10  container">
             <div className="pt-2 text-left font-semibold">
-              <i style={{ fontSize: "16px" }}>Ticket status</i> :
+              <i style={{ fontSize: "16px" }}> {t('ticketstatus')}</i> :
             </div>
-            <div className=" flex pt-4 pl-20">
+            <div className=" flex pt-4">
               <button className="gheDaDat "> <span className="flex justify-center text-black" style={{fontSize:'12px'}}><CloseOutlined /></span></button>
-              <span className="pr-4 pl-1">: Ghế đã đặt</span>
+              <span className="pr-4 pl-1 text-left">: {t('seatsbooked')}</span>
               <button className="gheDangDat  "> </button>
-              <span className="pr-4 pl-1">: Ghế đang đặt</span>
+              <span className="pr-4 pl-1 text-left">: {t('seatsarebooked')}</span>
               <button className="gheButton "> </button>
-              <span className="pr-4 pl-1">: Ghế thường</span>
+              <span className="pr-4 pl-1 text-left">: {t('regularchair')}</span>
               <button className="gheVip "> </button>
-              <span className="pr-4 pl-1">: Ghế VIP</span>
+              <span className="pr-4 pl-1 text-left">: {t('vipchair')}</span>
               <button className="gheDaDuocDat  ">
               <span className="flex justify-center"> <UserOutlined /></span> 
               </button>
-              <span className="pr-4 pl-1">: Ghế bạn đã mua</span>
+              <span className="pr-4 pl-1 text-left">: {t('thechairyoubought')}</span>
              
             </div>
           </div>
@@ -139,7 +142,7 @@ const BookTicket = () => {
           style={{ fontSize: "16px" }}
         >
           <h3 className="text-center pb-6">
-            <span className="text-red-300  text-2xl  font-bold">Total : </span>
+            <span className="text-red-300  text-2xl  font-bold">{t('total')} : </span>
             <span className="text-warning text-pink-200 text-xl underline underline-offset-4">
               
               {danhSachGheDangDat
@@ -152,22 +155,22 @@ const BookTicket = () => {
           </h3>
           <h3 className="text-xl">{detailTicketRoom.thongTinPhim?.tenPhim}</h3>
           <p>
-            Address: {detailTicketRoom.thongTinPhim?.tenCumRap} -{" "}
+          {t('address')}: {detailTicketRoom.thongTinPhim?.tenCumRap} -{" "}
             {detailTicketRoom.thongTinPhim?.tenRap}
           </p>
           <p>
-            Date : {detailTicketRoom.thongTinPhim?.ngayChieu} -{" "}
+          {t('date')} : {detailTicketRoom.thongTinPhim?.ngayChieu} -{" "}
             {detailTicketRoom.thongTinPhim?.gioChieu}
           </p>
           <hr />
           <div className="my-2">
-            <i>Email</i>
+            <i>{t('email')}</i>
             <br />
             {userLogin.email}
           </div>
           <hr />
           <div className="my-2 ">
-            <i>Phone</i>
+            <i>{t('phone')}</i>
             <br />
             {userLogin.soDT}
           </div>
@@ -181,13 +184,13 @@ const BookTicket = () => {
                       className="textfix text-rose-600 "
                       style={{ left: "-25px" }}
                     >
-                      Seats
+                      {t('seats')}
                     </th>
                     <th
                       className="textfix  text-rose-600 "
                       style={{ left: "130px" }}
                     >
-                      Giá (vnd)
+                       {t('price')} (vnd)
                     </th>
                     <th></th>
                   </tr>
@@ -210,7 +213,7 @@ const BookTicket = () => {
                                 dispatch(quanLyDatVeActions.deleteSeats(gheDD));
                               }}
                             >
-                              Hủy
+                              {t('cancel')}
                             </button>
                           </td>
                         </tr>
@@ -235,7 +238,7 @@ const BookTicket = () => {
                 dispatch(postTicket(thongTinDatVe));
               }}
             >
-              Buy Ticket
+              {t('buyticket')}
             </button>
 
             <div className="text-red-600 hover:text-yellow-400">
@@ -249,7 +252,7 @@ const BookTicket = () => {
                 className="cursor-pointer text-red-600 hover:text-yellow-400"
                 style={{ fontSize: "18px", paddingTop: "20px" }}
               >
-                Booking history
+              {t('bookinghistory')}
               </a>
             </div>
           </div>
