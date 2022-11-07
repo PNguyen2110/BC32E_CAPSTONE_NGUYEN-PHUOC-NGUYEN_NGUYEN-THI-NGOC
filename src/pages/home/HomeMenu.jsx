@@ -47,7 +47,7 @@ const HomeMenu = () => {
                         <div
                           className="scrollRapChieu"
                           style={{
-                            width: "400px",
+                            width: "350px",
                             display: "flex",
                             alignItems: "center",
                           }}
@@ -160,10 +160,10 @@ const Component = styled.div`
     margin-bottom: 0;
   }
   .scroll .ant-tabs-nav {
-    width: 700px;
+    width: 500px;
   }
   .ant-tabs-nav-list {
-    height: 800px;
+    height: 600px;
     overflow-y: auto;
     overflow-x: hidden;
     display: inline-block;
