@@ -6,6 +6,7 @@ import {
   SearchOutlined,
   CalendarOutlined,
 } from "@ant-design/icons";
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from "react-redux";
 import { deleteFilm, getMovieList } from "../../../storeToolKit/quanLiPhim";
 import { useQuanLiPhim } from "../../../storeToolKit/quanLiPhim";
@@ -13,6 +14,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Input } from "antd";
 
 export const Films = () => {
+  const { t } = useTranslation();
   const { Search } = Input;
   const { movieList } = useQuanLiPhim();
   console.log(movieList);
@@ -119,9 +121,9 @@ export const Films = () => {
 
   return (
     <div>
-      <h3 className="text-3xl">Quản lí phim</h3>
+      <h3 className="text-3xl">{t('moviemanager')}</h3>
       <Button onClick={() => navigate("/admin/addFilms")} className="mb-5">
-        Thêm phim
+      {t('addmovie')}
       </Button>
       <Search
         placeholder="input search text"

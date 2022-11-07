@@ -45,5 +45,18 @@
     "time": "Thời gian",
     "Theater Name": "Tên Rạp",
     "Chair": "Ghế",
-    "Back to booking page": "Quay lại trang đặt vé"
+    "Back to booking page": "Quay lại trang đặt vé",
+    "addmovie":"Thêm phim",
+    "small":"Nhỏ",
+    "default":"Mặc định",
+    "large":"Lớn",
+    "update":"Cật nhật",
+    "moviemanager":"Quản lý phim",
+    "adduser": "Thêm người dùng",
+    "account": "Tài khoản",
+    "password": "Mật khẩu",
+    "fullname": "Họ tên",
+    "save": "Lưu",
+    "pleaseselectusertype":"Vui lòng chọn loại người dùng",
+    "createshowtimes":"Tạo lịch chiếu"
 }

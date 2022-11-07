@@ -1,5 +1,6 @@
 import { Input, Table } from "antd";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from 'react-i18next';
 import {
   SearchOutlined,
   EditOutlined,
@@ -15,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 // const data = danhSachNguoiDung;
 const { Search } = Input;
 const QuanLiNguoiDung = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -96,7 +98,7 @@ const QuanLiNguoiDung = () => {
         onClick={() => navigate("/admin/themNguoiDung")}
         className="text-1xl mb-5 bg-blue-400 text-white p-3 rounded-md"
       >
-        Thêm người dùng
+          {t('adduser')}
       </button>
       <br />
       <Search

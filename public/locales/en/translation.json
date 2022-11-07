@@ -45,5 +45,18 @@
     "time": "Time",
     "Theater Name": "Theater Name",
     "Chair": "Chair",
-    "Back to booking page": " Back to booking page"
+    "Back to booking page": " Back to booking page",
+    "addmovie": "Add movie",
+    "small": "Small",
+    "default": "Default",
+    "large": "Large",
+    "update": "Update",
+    "moviemanager": "Movie manager",
+    "adduser": "Add user",
+    "account": "Account",
+    "password": "Password",
+    "fullname": "Full name",
+    "save": "Save",
+    "pleaseselectusertype":"Please select user type",
+    "createshowtimes":"Create showtimes"
 }

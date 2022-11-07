@@ -8,7 +8,7 @@ import {
   Switch,
 } from "antd";
 import React, { useEffect, useState } from "react";
-
+import { useTranslation } from 'react-i18next';
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -19,6 +19,7 @@ import { useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 const EditFilms = () => {
+  const { t } = useTranslation();
   const [componentSize, setComponentSize] = useState("default");
   const { maPhim } = useParams();
   const dispatch = useDispatch();
@@ -118,9 +119,9 @@ const EditFilms = () => {
     >
       <Form.Item label="Form Size" name="size">
         <Radio.Group>
-          <Radio.Button value="small">Small</Radio.Button>
-          <Radio.Button value="default">Default</Radio.Button>
-          <Radio.Button value="large">Large</Radio.Button>
+          <Radio.Button value="small">{t('small')}</Radio.Button>
+          <Radio.Button value="default">{t('default')}</Radio.Button>
+          <Radio.Button value="large">{t('large')}</Radio.Button>
         </Radio.Group>
       </Form.Item>
       <Form.Item label="Tên phim">
@@ -223,7 +224,7 @@ const EditFilms = () => {
           // type="primary"
           className="bg-blue-400 text-white px-4 py-2 ml-[28%] rounded-md"
         >
-          Cập nhật
+         {t('update')}
         </Button>
       </Form.Item>
     </Form>
