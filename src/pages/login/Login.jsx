@@ -6,7 +6,7 @@ import {
   postUser,
   useQuanLyNguoiDung,
 } from "../../storeToolKit/quanLyNguoiDung";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -31,8 +31,8 @@ const Login = () => {
       user.maLoaiNguoiDung === "KhachHang"
     ) {
       if (localStorage.getItem("userSignUp")) {
-        navigate("/home");
         localStorage.removeItem("userSignUp");
+        navigate("/home");
       } else {
         navigate(-1);
       }

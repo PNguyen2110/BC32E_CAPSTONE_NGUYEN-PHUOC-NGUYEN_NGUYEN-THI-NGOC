@@ -1,8 +1,8 @@
 import { Button, Form, Select } from "antd";
 import { ErrorMessage, useFormik } from "formik";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {
   capNhatThongTinNguoiDung,
@@ -10,14 +10,25 @@ import {
   layDanhSachNguoiDung,
 } from "../../../storeToolKit/quanLyNguoiDung";
 import * as yup from "yup";
+import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 export const ChinhSuaNguoiDung = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [state, setState] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem("userUpdate")) {
+      localStorage.removeItem("userUpdate");
+      navigate("/admin/quanLiNguoiDung");
+    }
+  }, [state]);
   useEffect(() => {
     // dispatch(layDanhSachNguoiDung());
     dispatch(layDanhSachLoaiNguoiDung());
   }, []);
+
   const { danhSachNguoiDung, danhSachLoaiNguoiDung } = useSelector(
     (state) => state.quanLyNguoiDungReducer
   );
@@ -31,7 +42,7 @@ export const ChinhSuaNguoiDung = () => {
       matKhau: user?.matKhau,
       email: user?.email,
       soDT: user?.soDT,
-      maNhom: "GP01",
+      maNhom: "GP13",
       maLoaiNguoiDung: user?.maLoaiNguoiDung,
       hoTen: user?.hoTen,
     },
@@ -50,20 +61,22 @@ export const ChinhSuaNguoiDung = () => {
       hoTen: yup.string().required("* vui lòng nhập thông tin"),
       maLoaiNguoiDung: yup.string().required("* vui lòng chọn loại người dùng"),
     }),
-    onSubmit: (values) => {
-      dispatch(capNhatThongTinNguoiDung(values));
-      navigate("/admin/quanLiNguoiDung");
+    onSubmit: async (values) => {
+      await dispatch(capNhatThongTinNguoiDung(values));
+
+      await setState(true);
     },
   });
 
   return (
     <div className="lg:container">
-      <h3 className="text-2xl mb-10">Thêm người dùng</h3>
+      <h3 className="text-2xl mb-10">{t("updateuser")}</h3>
       <form onSubmitCapture={formik.handleSubmit} className="container">
         <div className="grid grid-cols-2 gap-14">
           <div>
             <Component className="form-control mb-14">
               <input
+                disabled
                 name="taiKhoan"
                 onChange={formik.handleChange}
                 value={formik.values?.taiKhoan}
@@ -72,7 +85,7 @@ export const ChinhSuaNguoiDung = () => {
                 type="text"
               />
               <label className="pb-4" htmlFor="">
-                Tài Khoản
+                {t("account")}
               </label>
               {<ErrorMessage name="taiKhoan" /> && (
                 <p className="text-red-400 mt-0">{formik.errors.taiKhoan}</p>
@@ -89,7 +102,7 @@ export const ChinhSuaNguoiDung = () => {
                 type="text"
               />
               <label className="pb-4" htmlFor="">
-                Mật khẩu
+                {t("password")}
               </label>
               {<ErrorMessage name="matKhau" /> && (
                 <p className="text-red-400 mt-0">{formik.errors.matKhau}</p>
@@ -106,7 +119,7 @@ export const ChinhSuaNguoiDung = () => {
                 type="text"
               />
               <label className="pb-4" htmlFor="">
-                Họ tên
+                {t("fullname")}
               </label>
               {<ErrorMessage name="hoTen" /> && (
                 <p className="text-red-400 mt-0">{formik.errors.hoTen}</p>
@@ -124,7 +137,7 @@ export const ChinhSuaNguoiDung = () => {
                 type="text"
               />
               <label className="pb-4" htmlFor="">
-                Email
+                {t("email")}
               </label>
               {<ErrorMessage name="email" /> && (
                 <p className="text-red-400 mt-0">{formik.errors.email}</p>
@@ -141,7 +154,7 @@ export const ChinhSuaNguoiDung = () => {
                 type="number"
               />
               <label className="pb-4" htmlFor="">
-                Số điện thoại
+                {t("phone")}
               </label>
               {<ErrorMessage name="soDT" /> && (
                 <p className="text-red-400 mt-0">{formik.errors.soDT}</p>
@@ -173,7 +186,7 @@ export const ChinhSuaNguoiDung = () => {
             type="submit"
             className="block ml-auto bg-blue-400 text-white px-5 py-3"
           >
-            Lưu
+            {t("save")}
           </button>
         </div>
       </form>
@@ -190,9 +203,11 @@ const Component = styled.div`
     font-size: 15px;
     height: 30px;
     padding: 0 20px;
+    border-radius: 15px;
+    transition: all 0.3s;
 
     &:focus {
-      border-bottom: 1px solid #60a5fa;
+      border-bottom: 3px solid #60a5fa;
       box-shadow: none;
       outline: none;
     }

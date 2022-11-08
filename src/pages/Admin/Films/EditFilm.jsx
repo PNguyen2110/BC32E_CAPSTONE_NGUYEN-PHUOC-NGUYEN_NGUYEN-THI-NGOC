@@ -28,9 +28,11 @@ const EditFilms = () => {
     if (localStorage.getItem("filmUpdate")) {
       localStorage.removeItem("filmUpdate");
       navigate("/admin");
-      setState(!state);
     }
   }, [state]);
+  useEffect(() => {
+    dispatch(getInfoMovies(maPhim));
+  }, []);
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
@@ -54,7 +56,6 @@ const EditFilms = () => {
   };
 
   const { infoMovie } = useSelector((state) => state.quanLiPhimReducer);
-  console.log("infoMovie", infoMovie);
   // submit form bằng formik
   const formik = useFormik({
     enableReinitialize: true,
@@ -83,7 +84,7 @@ const EditFilms = () => {
 
       ngayKhoiChieu: yup.string().required("* vui lòng chọn ngày chiếu"),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       let formData = new FormData();
 
       for (let key in values) {
@@ -96,7 +97,8 @@ const EditFilms = () => {
         }
       }
 
-      dispatch(postFilmUpdate(formData));
+      await dispatch(postFilmUpdate(formData));
+      await setState(true);
     },
   });
   const handleChangeDatePicker = (value) => {

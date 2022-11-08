@@ -117,7 +117,7 @@ export const postFilm = createAsyncThunk(
     try {
       const result = await quanLiPhimService.postFilm(film);
       localStorage.setItem("addFilm", JSON.stringify(result.data.content));
-
+      console.log(3);
       alert("thêm phim thành công");
     } catch (error) {
       alert(error.response.data.content);
@@ -145,7 +145,6 @@ export const postFilmUpdate = createAsyncThunk(
     try {
       const result = await quanLiPhimService.postFilmUpdate(formData);
       localStorage.setItem("filmUpdate", JSON.stringify(result.data.content));
-      console.log("filmUpdate", JSON.stringify(result.data.content));
       alert("Cập nhật phim thành công");
     } catch (err) {
       alert(err.response.data.content);

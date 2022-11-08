@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -35,6 +35,7 @@ const Register = () => {
   };
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   return (
     <div className=" pt-32 pb-12 bg-pink-200 bg-opacity-60">
       <div className=" p-6 rounded-md sm:p-10 dark:bg-gray-900 dark:text-gray-100 container">
@@ -45,7 +46,6 @@ const Register = () => {
           noValidate={true}
           className="space-y-12 ng-untouched ng-pristine ng-valid "
           onSubmit={handleSubmit((data) => {
-            console.log({ ...data, maNhom: "GP13" });
             dispatch(dangKy({ ...data, maNhom: "GP13" }));
           })}
         >
@@ -184,8 +184,6 @@ const Register = () => {
                 <p className="px-6 text-sm text-center dark:text-gray-400">
                   Don't have an account yet?
                   <a
-                    rel="noopener noreferrer"
-                    href="#"
                     className="hover:underline dark:text-violet-400 pl-2"
                     onClick={() => navigate("/login")}
                   >

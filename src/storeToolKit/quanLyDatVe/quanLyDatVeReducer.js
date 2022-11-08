@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Alert } from "antd";
 import { quanLyDatVeService } from "../../services/quanLyDatVeService";
 
 
@@ -13,6 +12,8 @@ const initialState = {
   datVe: {
   },
   isFetchingBookingTicket: false,
+  // danhSachGheKhachDangDat:[{maGhe:51881},{maGhe:51882}],
+  // isFetchingDanhSachGheKhachDangDat:false
 };
 
 export const { reducer: quanLyDatVeReducer, actions: quanLyDatVeActions } =

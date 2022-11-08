@@ -12,10 +12,10 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem("Quản lí người dùng", "sub1", <UserOutlined />),
+  getItem("User Management", "sub1", <UserOutlined />),
   getItem("Films", "9", <FileOutlined />, [
-    getItem("Quản lí phim", "3"),
-    getItem("Thêm phim", "4"),
+    getItem("Movie Manager", "3"),
+    getItem("Add Film", "4"),
   ]),
 ];
 const AdminTemplate = () => {

@@ -6,12 +6,14 @@ import {
   layThongTinCumRapTheoHeThong,
   layThongTinHeThongRap,
 } from "../../../storeToolKit/quanLyRap";
+import { useTranslation } from 'react-i18next';
 import { useFormik } from "formik";
 import moment from "moment";
 import { useParams } from "react-router-dom";
 import { taoLichChieu } from "../../../storeToolKit/quanLyDatVe/quanLyDatVeReducer";
 
 export const ShowTime = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const [rap, setRap] = useState();
@@ -84,7 +86,7 @@ export const ShowTime = () => {
         wrapperCol={{ span: 16 }}
         initialValues={{ remember: true }}
       >
-        <h2 className="text-2xl mb-10">Tạo lịch chiếu - {tenPhim}</h2>
+        <h2 className="text-2xl mb-10">{t('createshowtimes')} - {tenPhim}</h2>
         <Form.Item label="Hệ thống rạp">
           <Select
             onChange={handleChangeHeThongRap}
@@ -112,7 +114,7 @@ export const ShowTime = () => {
         </Form.Item>
         <Form.Item>
           <Button className="ml-[25%]" type="primary" htmlType="submit">
-            Tạo lịch chiếu
+          {t('createshowtimes')}
           </Button>
         </Form.Item>
       </Form>

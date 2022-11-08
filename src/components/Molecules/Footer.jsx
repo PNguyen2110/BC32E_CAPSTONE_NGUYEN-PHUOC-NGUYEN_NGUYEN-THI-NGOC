@@ -2,8 +2,11 @@ import React,{useEffect} from 'react'
 import _ from 'lodash'
 import { useDispatch } from 'react-redux';
 import { getRapMovieList, useQuanLyRap } from '../../storeToolKit/quanLyRap';
+import { useTranslation } from 'react-i18next';
 
 export const Footer = () => {
+
+  const { t,i18n } = useTranslation();
   const dispatch = useDispatch()
   const { rapList } = useQuanLyRap()
 
@@ -21,7 +24,7 @@ export const Footer = () => {
             </a>
           </div>
           <div className="col-span-6 text-center md:text-left md:col-span-4">
-            <p className="pb-1 text-lg font-medium text-center pr-16">PARTNER</p>
+            <p className="pb-1 text-lg font-medium text-center pr-16">{t('partner')}</p>
             <div className='grid grid-cols-3'>
              {arrHeThongRap.map((item,index)=>{
               return <div key={index} className="mb-2">
@@ -31,19 +34,19 @@ export const Footer = () => {
             </div>
           </div>
           <div className="col-span-6 text-center md:text-left md:col-span-4 ">
-            <p className="pb-1 text-lg font-medium">ABOUT</p>
+            <p className="pb-1 text-lg font-medium">{t('about')}</p>
             <ul>
               <li>
-                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black ">About Us</a>
+                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black ">{t('aboutus')}</a>
               </li>
               <li>
-                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black ">Events</a>
+                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black ">{t('events')}</a>
               </li>
               <li>
-                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black ">Get Quote</a>
+                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black ">{t('getquote')}</a>
               </li>
               <li>
-                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black ">Contact</a>
+                <a rel="noopener noreferrer" href="#" className="hover:dark:text-red-500  text-black ">{t('contact')}</a>
               </li>
              
             </ul>
@@ -51,12 +54,12 @@ export const Footer = () => {
         </div>
         <div className="grid justify-center pt-6 lg:justify-between">
           <div className="flex flex-col self-center text-sm text-center md:block lg:col-start-1 md:space-x-6">
-            <span>©2022 All rights reserved</span>
+            <span>©2022 {t('allrightsreserved')}</span>
             <a rel="noopener noreferrer" href="#">
-              <span>Privacy policy</span>
+              <span>{t('privacypolicy')}</span>
             </a>
             <a rel="noopener noreferrer" href="#">
-              <span>Terms of service</span>
+              <span>{t('termsofservice')}</span>
             </a>
           </div>
           <div className="flex justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">

@@ -7,16 +7,17 @@ import {
   Radio,
   Switch,
 } from "antd";
-
+import { useTranslation } from "react-i18next";
 import moment from "moment";
 import React, { useState } from "react";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import { getMovieList, postFilm } from "../../../storeToolKit/quanLiPhim";
+import { postFilm } from "../../../storeToolKit/quanLiPhim";
 import { useFormik } from "formik";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 const AddFilms = () => {
+  const { t } = useTranslation();
   const [componentSize, setComponentSize] = useState("default");
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
@@ -25,23 +26,20 @@ const AddFilms = () => {
   const [film, setFilm] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // xử lý load ảnh khi chọn file
+
   const [img, setImg] = useState();
   console.log("film", film);
   useEffect(() => {
-    console.log("run");
+    console.log("4");
     console.log("film", JSON.parse(localStorage.getItem("addFilm")));
-    setFilm(false);
-    if (!localStorage.getItem("addFilm")) {
-      console.log("run2");
+
+    if (localStorage.getItem("addFilm")) {
+      console.log("5");
+      localStorage.removeItem("addFilm");
       navigate("/admin");
     }
-    // else {
-    //   localStorage.removeItem("addFilm");
-    //   setFilm(!film);
-    // }
   }, [film]);
-  console.log("film222", JSON.parse(localStorage.getItem("addFilm")));
+  console.log("film6", JSON.parse(localStorage.getItem("addFilm")));
   const handleImg = (e) => {
     const file = e.target.files[0];
 
@@ -106,7 +104,7 @@ const AddFilms = () => {
       hinhAnh: yup.mixed("vui lòng").required("vui lòng chọn ảnh"),
     }),
 
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       let formData = new FormData();
 
       for (let key in values) {
@@ -117,8 +115,10 @@ const AddFilms = () => {
         }
       }
 
-      dispatch(postFilm(formData));
-      setFilm(true);
+      await dispatch(postFilm(formData));
+      console.log(1);
+      await setFilm(true);
+      console.log(2);
     },
   });
 
@@ -243,7 +243,7 @@ const AddFilms = () => {
           type="primary"
           className="bg-blue-400 text-white px-4 py-2 ml-[28%] rounded-md"
         >
-          Thêm phim
+          {t("addmovie")}
         </Button>
       </Form.Item>
     </Form>

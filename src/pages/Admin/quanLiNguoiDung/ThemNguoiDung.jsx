@@ -1,26 +1,36 @@
 import { Button, Form, Select } from "antd";
 import { Option } from "antd/lib/mentions";
-import { ErrorMessage, useFormik } from "formik";
+import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 import {
   layDanhSachLoaiNguoiDung,
   themNguoiDung,
 } from "../../../storeToolKit/quanLyNguoiDung";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export const ThemNguoiDung = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [state, setState] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem("addUser")) {
+      localStorage.removeItem("addUser");
+      navigate("/admin/quanLiNguoiDung");
+    }
+  }, [state]);
   const formik = useFormik({
     initialValues: {
       taiKhoan: "",
       matKhau: "",
       email: "",
       soDT: "",
-      maNhom: "GP01",
+      maNhom: "GP13",
       maLoaiNguoiDung: "",
       hoTen: "",
     },
@@ -47,10 +57,9 @@ export const ThemNguoiDung = () => {
 
         .oneOf(["KhachHang", "QuanTri"], "chọn loại người dùng không hợp lệ"),
     }),
-    onSubmit: (values) => {
-      // console.log(values);
-      dispatch(themNguoiDung(values));
-
+    onSubmit: async (values) => {
+      await dispatch(themNguoiDung(values));
+      await setState(true);
       // navigate("/admin/quanLiNguoiDung");
     },
   });
@@ -65,7 +74,7 @@ export const ThemNguoiDung = () => {
   return (
     <div className="lg:container">
       <h3 className="text-2xl mb-10 text-center lg:text-left">
-        Thêm người dùng
+        {t("adduser")}
       </h3>
       <form onSubmit={formik.handleSubmit} className="container">
         <div className="grid grid-cols-1 gap-0 lg:gap-14 lg:grid lg:grid-cols-2 text-center">
@@ -81,7 +90,7 @@ export const ThemNguoiDung = () => {
                 onBlur={formik.handleBlur}
               />
               <label className="pb-4" htmlFor="">
-                Tài Khoản
+                {t("account")}
               </label>
               {formik.errors.taiKhoan && formik.touched.taiKhoan && (
                 <p className="text-red-400 mt-0">{formik.errors.taiKhoan}</p>
@@ -99,7 +108,7 @@ export const ThemNguoiDung = () => {
                 onBlur={formik.handleBlur}
               />
               <label className="pb-4" htmlFor="">
-                Mật khẩu
+                {t("password")}
               </label>
               {formik.errors.matKhau && formik.touched.matKhau && (
                 <p className="text-red-400 mt-0">{formik.errors.matKhau}</p>
@@ -117,7 +126,7 @@ export const ThemNguoiDung = () => {
                 onBlur={formik.handleBlur}
               />
               <label className="pb-4" htmlFor="">
-                Họ tên
+                {t("fullname")}
               </label>
               {formik.errors.hoTen && formik.touched.hoTen && (
                 <p className="text-red-400 mt-0">{formik.errors.hoTen}</p>
@@ -136,7 +145,7 @@ export const ThemNguoiDung = () => {
                 onBlur={formik.handleBlur}
               />
               <label className="pb-4" htmlFor="">
-                Email
+                {t("email")}
               </label>
               {formik.errors.email && formik.touched.email && (
                 <p className="text-red-400 mt-0">{formik.errors.email}</p>
@@ -154,7 +163,7 @@ export const ThemNguoiDung = () => {
                 onBlur={formik.handleBlur}
               />
               <label className="pb-4" htmlFor="">
-                Số điện thoại
+                {t("phone")}
               </label>
               {formik.errors.soDT && formik.touched.soDT && (
                 <p className="text-red-400 mt-0">{formik.errors.soDT}</p>
@@ -167,7 +176,7 @@ export const ThemNguoiDung = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               >
-                <option value="none">Vui lòng chọn loại người dùng</option>
+                <option value="none">{t("pleaseselectusertype")}</option>
                 {danhSachLoaiNguoiDung.map((item, index) => (
                   <option value={item.maLoaiNguoiDung} key={index}>
                     {item.tenLoai}
@@ -191,7 +200,7 @@ export const ThemNguoiDung = () => {
             // htmlType="submit"
             className="block ml-auto bg-blue-400 text-white px-5 py-3"
           >
-            Thêm
+            {t("addusser")}
           </button>
         </div>
       </form>
@@ -208,6 +217,7 @@ const Component = styled.div`
     font-size: 15px;
     height: 30px;
     padding: 0 20px;
+    border-radius: 5px;
 
     &:focus {
       border-bottom: 1px solid #60a5fa;

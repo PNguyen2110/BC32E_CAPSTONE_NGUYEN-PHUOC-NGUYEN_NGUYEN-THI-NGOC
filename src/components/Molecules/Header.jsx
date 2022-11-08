@@ -6,9 +6,15 @@ import {
 } from "../../storeToolKit/quanLyNguoiDung";
 import { HeartOutlined, DownOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
-import LogOut from "../../pages/login/LogOut";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
+import { Select } from "antd";
 export const Header = () => {
+  const { t, i18n } = useTranslation();
+  const handleChange = (value) => {
+    i18n.changeLanguage(value);
+  };
+
   const { userLogin } = useQuanLyNguoiDung();
   const [user, setUser] = useState(false);
   console.log(user);
@@ -18,8 +24,7 @@ export const Header = () => {
     <header className="p-4 bg-black bg-opacity-40  text-white fixed w-full z-10 header">
       <div className="container flex justify-between h-16 mx-auto">
         <NavLink
-          to="noopener noreferrer"
-          href="#"
+          to="/"
           aria-label="Back to homepage"
           className="flex items-center p-2"
         >
@@ -34,7 +39,7 @@ export const Header = () => {
               className="flex items-center px-4 -mb-1 text-white font-medium "
               to="/home"
             >
-              Home
+              {t("home")}
             </NavLink>
           </li>
           <li className="flex">
@@ -42,7 +47,7 @@ export const Header = () => {
               className="flex items-center px-4 -mb-1   text-white  font-medium "
               to="/news"
             >
-              News
+              {t("news")}
             </NavLink>
           </li>
           <li className="flex">
@@ -50,7 +55,7 @@ export const Header = () => {
               className="flex items-center px-4 -mb-1   text-white  font-medium"
               to="/contact"
             >
-              Contact
+              {t("contact")}
             </NavLink>
           </li>
         </ul>
@@ -94,15 +99,39 @@ export const Header = () => {
               </Component>
             ) : (
               <NavLink to="login" className="text-white">
-                Sign in
+                {t("signin")}
               </NavLink>
             )}
           </button>
           <button className="self-center px-8 py-3  ">
             <NavLink to="register" className="text-white">
-              Sign up
+              {t("signup")}
             </NavLink>
           </button>
+
+          <Select
+            defaultValue="en"
+            style={{
+              width: 100,
+              color: "red",
+              borderRadius: "5px",
+            }}
+            onChange={handleChange}
+            options={[
+              {
+                value: "en",
+                label: "English",
+              },
+              {
+                value: "vi",
+                label: "Việt Nam",
+              },
+              {
+                value: "chi",
+                label: "Trung Quốc",
+              },
+            ]}
+          />
         </div>
         <button className="p-4 lg:hidden">
           <svg
@@ -139,7 +168,7 @@ const Component = styled.div`
     padding: 8px 16px;
     z-index: 1;
     left: -80px;
-    margin-top: 0px;
+    margin-top: -2px;
   }
 
   .dropdown:hover .dropdown-content {
