@@ -63,7 +63,7 @@ const Login = () => {
         >
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="block mb-2 text-sm">
+              <label className="block mb-2 text-sm">
               {t('username')}
               </label>
               <input
@@ -119,14 +119,14 @@ const Login = () => {
             </div>
             <p className="px-6 text-sm text-center dark:text-gray-400">
               Don't have an account yet?
-              <Link
+              <a
                 rel="noopener noreferrer"
                 to="#"
                 className="hover:underline dark:text-violet-400 pl-2"
-                onClick={() => navigate(`/register`)}
+                onClick={() => navigate('/register')}
               >
                {t('signup')}
-              </Link>
+              </a>
               .
             </p>
           </div>
