@@ -160,7 +160,7 @@ const Component = styled.div`
     margin-bottom: 0;
   }
   .scroll .ant-tabs-nav {
-    width: 600px;
+    width: 560px;
   }
   .ant-tabs-nav-list {
     height: 600px;
