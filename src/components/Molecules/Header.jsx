@@ -30,7 +30,8 @@ export const Header = () => {
             alt="cyberlearn.vn"
           />
         </NavLink>
-        <ul className="items-stretch hidden space-x-3 lg:flex" style={{fontSize:'14px'}}>
+        <ul className="items-stretch hidden space-x-3 lg:flex" style={{fontSize:'15px'}}>
+
           <li className="flex">
             <NavLink
               className="flex items-center px-4 -mb-1 text-white font-medium "
@@ -148,8 +149,6 @@ export const Header = () => {
         </button>
       </div>
     </header>
-    
-
   );
 };
 const Component = styled.div`
