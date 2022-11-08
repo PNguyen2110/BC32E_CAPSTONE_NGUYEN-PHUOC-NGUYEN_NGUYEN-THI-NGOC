@@ -83,10 +83,8 @@ export const postUser = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const result = await quanLyNguoiDungService.postUser(data);
-      console.log(result.data.content);
       localStorage.setItem("USER_LOGIN", JSON.stringify(result.data.content));
       localStorage.setItem("TOKEN", result.data.content.accessToken);
-      console.log(result.data.content);
       return result.data.content;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -111,7 +109,6 @@ export const layDanhSachNguoiDung = createAsyncThunk(
   async (data = "", {}) => {
     try {
       const result = await quanLyNguoiDungService.layDanhSachNguoiDung(data);
-      console.log("layDanhSachNguoiDung", result.data.content);
       return result.data.content;
     } catch (err) {
       alert(err.response.data.message);

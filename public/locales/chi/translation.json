@@ -58,5 +58,8 @@
     "fullname": "全名",
     "save": "节省",
     "pleaseselectusertype":"请选择用户类型",
-    "createshowtimes":"创建放映时间"
+    "createshowtimes":"创建放映时间",
+    "updateuser": "更新用户",
+    "username":"用户名",
+    "profile":"轮廓"
 }

@@ -1,10 +1,10 @@
 import _ from "lodash";
 import moment from "moment";
 import React from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
-
+import { useTranslation } from 'react-i18next';
 export const LichSuDatVe = () => {
+  const { t } = useTranslation();
   const handleThongTinDatVe = () => {
     if (localStorage.getItem("infoUser")) {
       return JSON.parse(localStorage.getItem("infoUser"));
@@ -16,9 +16,9 @@ export const LichSuDatVe = () => {
     <Component>
       <div className="h-[480px]">
         <div className="text-center">
-          <h2 className="text-3xl text-pink-500">Booking history</h2>
+          <h2 className="text-3xl text-pink-500">{t('bookinghistory')}</h2>
           <p className="text-xl text-pink-400 ">
-            Thank you for using our service. Have a nice day!!!
+          {t('Thank you for using our service. Have a nice day')}
           </p>
         </div>
         <div className=" wrapper container  grid-cols-1 md:grid-cols-2 grid xl:grid-cols-3 h-[440px] overflow-auto">
@@ -38,28 +38,28 @@ export const LichSuDatVe = () => {
                 <div className="content pt-3">
                   <div className="flex justify-between">
                     <p>
-                      <span>Time: </span>
+                      <span>{t('time')}: </span>
                       <span>{moment(item.ngayDat).format("hh:mm")}</span>
                     </p>
                     <p>
-                      <span>Date:</span>
+                      <span>{t('date')}:</span>
                       <span>{moment(item.ngayDat).format("DD-MM-YYYY")}</span>
                     </p>
                   </div>
                   <p>
-                    <span>Address:</span>
+                    <span>{t('address')}:</span>
                     <span>{_.first(item.danhSachGhe).tenHeThongRap}</span>
                   </p>
                   <p>
-                    <span>Theater:</span>
+                    <span>{t('Theater Name')}:</span>
                     <span>{_.first(item.danhSachGhe).tenRap}</span>
                   </p>
                   <p>
-                    <span>Price:</span>
+                    <span>{t('price')}:</span>
                     <span>{item.giaVe} VND</span>
                   </p>
                   <p className="wrapper-seat h-[70px] overflow-auto">
-                    <span>Seat:</span>
+                    <span>{t('seats')}:</span>
                     {item.danhSachGhe.map((dsGhe, index) => (
                       <span key={index} className="seat">
                         [{dsGhe.tenGhe}],

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 export const Footer = () => {
 
-  const { t,i18n } = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch()
   const { rapList } = useQuanLyRap()
 

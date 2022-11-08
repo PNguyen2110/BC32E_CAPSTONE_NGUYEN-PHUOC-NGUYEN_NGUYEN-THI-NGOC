@@ -31,10 +31,8 @@ const BookTicket = () => {
   const {
     detailTicketRoom,
     danhSachGheDangDat,
-    isFetchingBookingTicket,
-    danhSachGheKhachDangDat,
+    isFetchingBookingTicket
   } = useQuanLyDatVe();
-  console.log("detailTicketRoom: ", detailTicketRoom);
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -142,7 +140,7 @@ const BookTicket = () => {
             <div className={`${style["bookTicket-screen"]}`}></div>
           </div>
           <div>{renderSeats()}</div>
-          <div className=" pl-10  container">
+          <div className=" pl-14  container">
             <div className="pt-2 text-left font-semibold">
               <i style={{ fontSize: "16px" }}> {t("ticketstatus")}</i> :
             </div>

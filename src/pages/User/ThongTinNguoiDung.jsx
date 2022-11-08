@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { useTranslation } from 'react-i18next';
 import {
   capNhatThongTinNguoiDung,
   capNhatThongTinNguoiDungPut,
@@ -10,6 +11,7 @@ import {
 } from "../../storeToolKit/quanLyNguoiDung";
 
 export const ThongTinNguoiDung = () => {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -78,7 +80,7 @@ export const ThongTinNguoiDung = () => {
                 disabled
               />
               <label className="pb-4" htmlFor="">
-                Tài Khoản
+              {t('account')}
               </label>
 
               <p className="text-red-400 mt-0 errors">
@@ -105,7 +107,7 @@ export const ThongTinNguoiDung = () => {
                 type="text"
               />
               <label className="pb-4" htmlFor="">
-                Mật khẩu
+              {t('password')}
               </label>
               <p className="text-red-400 mt-0 errors">
                 {errors?.matKhau?.message}
@@ -127,7 +129,7 @@ export const ThongTinNguoiDung = () => {
                 type="text"
               />
               <label className="pb-4" htmlFor="">
-                Họ tên
+              {t('fullname')}
               </label>
               <p className="text-red-400 mt-0 errors">
                 {errors?.hoTen?.message}
@@ -150,7 +152,7 @@ export const ThongTinNguoiDung = () => {
                 type="text"
               />
               <label className="pb-4" htmlFor="">
-                Email
+              {t('email')}
               </label>
               <p className="text-red-400 mt-0 errors">
                 {errors?.email?.message}
@@ -176,7 +178,7 @@ export const ThongTinNguoiDung = () => {
                 type="number"
               />
               <label className="pb-4" htmlFor="">
-                Số điện thoại
+              {t('phone')}
               </label>
               <p className="text-red-400 mt-0 errors">
                 {errors?.soDT?.message}
@@ -187,7 +189,7 @@ export const ThongTinNguoiDung = () => {
                 disabled={disabled}
                 className={` ${cursor} disabled:opacity-2   hover:bg-blue-500 transition-all duration-500 block ml-auto bg-blue-400 text-white w-full py-3 rounded-xl`}
               >
-                Cập nhật
+               {t('update')}
               </button>
             </div>
           </div>

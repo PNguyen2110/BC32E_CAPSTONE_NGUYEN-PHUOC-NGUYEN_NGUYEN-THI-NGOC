@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import {
-  getBookResult,
-  useQuanLyNguoiDung,
-} from "../../storeToolKit/quanLyNguoiDung";
+import { useQuanLyNguoiDung} from "../../storeToolKit/quanLyNguoiDung";
 import { HeartOutlined, DownOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
@@ -33,7 +30,7 @@ export const Header = () => {
             alt="cyberlearn.vn"
           />
         </NavLink>
-        <ul className="items-stretch hidden space-x-3 lg:flex">
+        <ul className="items-stretch hidden space-x-3 lg:flex" style={{fontSize:'16px'}}>
           <li className="flex">
             <NavLink
               className="flex items-center px-4 -mb-1 text-white font-medium "
@@ -59,7 +56,7 @@ export const Header = () => {
             </NavLink>
           </li>
         </ul>
-        <div className="items-center flex-shrink-0 hidden lg:flex">
+        <div className="items-center flex-shrink-0 hidden lg:flex" style={{fontSize:'16px'}}>
           <button
             className="self-center px-8 py-3
            "
@@ -75,7 +72,7 @@ export const Header = () => {
                   <span className="text-red-600 ">
                     <HeartOutlined style={{ top: "-28px" }} />
                   </span>{" "}
-                  Hi {userLogin.hoTen}
+                  {t("hi")} {userLogin.hoTen}
                   <span className="text-red-600 ">
                     <HeartOutlined style={{ top: "-28px" }} />
                   </span>{" "}
@@ -85,14 +82,14 @@ export const Header = () => {
                     <DownOutlined />
 
                     <div
-                      className="dropdown-content"
+                      className="dropdown-content border border-pink-400 rounded-lg"
                       onClick={() => {
                         localStorage.removeItem("USER_LOGIN");
 
                         setUser(!user);
                       }}
                     >
-                      <p className="text-blue-500 mb-0 ">Log Out</p>
+                      <p className="text-violet-700 mb-0 font-semibold">Log Out</p>
                     </div>
                   </span>
                 </span>
