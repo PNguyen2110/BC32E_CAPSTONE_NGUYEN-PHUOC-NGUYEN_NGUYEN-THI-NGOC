@@ -30,7 +30,7 @@ export const Header = () => {
             alt="cyberlearn.vn"
           />
         </NavLink>
-        <ul className="items-stretch hidden space-x-3 lg:flex" style={{fontSize:'16px'}}>
+        <ul className="items-stretch hidden space-x-3 lg:flex" style={{fontSize:'14px'}}>
           <li className="flex">
             <NavLink
               className="flex items-center px-4 -mb-1 text-white font-medium "
@@ -56,7 +56,7 @@ export const Header = () => {
             </NavLink>
           </li>
         </ul>
-        <div className="items-center flex-shrink-0 hidden lg:flex" style={{fontSize:'16px'}}>
+        <div className="items-center flex-shrink-0 hidden lg:flex" style={{fontSize:'15px'}}>
           <button
             className="self-center px-8 py-3
            "
