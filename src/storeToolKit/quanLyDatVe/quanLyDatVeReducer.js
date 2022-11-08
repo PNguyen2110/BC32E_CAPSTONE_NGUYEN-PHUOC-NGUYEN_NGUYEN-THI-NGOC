@@ -92,7 +92,7 @@ export const postTicket = createAsyncThunk(
 
       const result = await quanLyDatVeService.postTicket(data);
 
-      // alert(result.data.content)
+      alert(result.data.content)
       await dispatch(getMovieTicket(data.maLichChieu))
       return result.data.content;
 

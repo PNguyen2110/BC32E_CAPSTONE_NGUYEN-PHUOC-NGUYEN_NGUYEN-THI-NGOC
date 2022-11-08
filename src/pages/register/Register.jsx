@@ -1,17 +1,12 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {  useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import {
-  capNhatThongTinNguoiDung,
-  capNhatThongTinNguoiDungPut,
-  dangKy,
-  getBookResult,
-} from "../../storeToolKit/quanLyNguoiDung";
-
+import { dangKy} from "../../storeToolKit/quanLyNguoiDung";
+import { useTranslation } from 'react-i18next';
 const Register = () => {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -40,7 +35,7 @@ const Register = () => {
     <div className=" pt-32 pb-12 bg-pink-200 bg-opacity-60">
       <div className=" p-6 rounded-md sm:p-10 dark:bg-gray-900 dark:text-gray-100 container">
         <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-bold text-white">Sign Up</h1>
+          <h1 className="my-3 text-4xl font-bold text-white">{t('signup')}</h1>
         </div>
         <form
           noValidate={true}
@@ -53,7 +48,7 @@ const Register = () => {
             <div className=" w-[80%] flex flex-col px-[4rem]">
               <div>
                 <label htmlFor="email" className="block mb-2 text-sm">
-                  UserName
+                {t('username')}
                 </label>
                 <input
                   type="text"
@@ -72,7 +67,7 @@ const Register = () => {
               <div>
                 <div className="flex justify-between mb-2">
                   <label htmlFor="password" className="text-sm">
-                    Password
+                  {t('password')}
                   </label>
                 </div>
                 <input
@@ -100,7 +95,7 @@ const Register = () => {
               <div>
                 <div className="flex justify-between mb-2">
                   <label htmlFor="password" className="text-sm">
-                    Full Name
+                  {t('fullname')}
                   </label>
                 </div>
                 <input
@@ -126,7 +121,7 @@ const Register = () => {
             <div className="w-[80%] flex flex-col px-[4rem]">
               <div>
                 <label htmlFor="email" className="block mb-2 text-sm">
-                  Email
+                {t('email')}
                 </label>
                 <input
                   type="text"
@@ -148,7 +143,7 @@ const Register = () => {
               </div>
               <div>
                 <label htmlFor="email" className="block mb-2 text-sm">
-                  Phone Number
+                {t('phone')}
                 </label>
                 <input
                   type="text"
@@ -178,7 +173,7 @@ const Register = () => {
                     type="submit"
                     className="w-full px-8 mt-8 mb-4 py-2 bg-pink-300 font-semibold rounded-md dark:bg-violet-700 dark:text-gray-900 transition hover:bg-pink-500 hover:text-black"
                   >
-                    Sign Up
+                   {t('signup')}
                   </button>
                 </div>
                 <p className="px-6 text-sm text-center dark:text-gray-400">
@@ -187,7 +182,7 @@ const Register = () => {
                     className="hover:underline dark:text-violet-400 pl-2"
                     onClick={() => navigate("/login")}
                   >
-                    Sign ip
+                    {t('signin')}
                   </a>
                   .
                 </p>

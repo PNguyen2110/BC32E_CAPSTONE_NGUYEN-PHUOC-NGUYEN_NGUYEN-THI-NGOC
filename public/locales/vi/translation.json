@@ -58,5 +58,8 @@
     "fullname": "Họ tên",
     "save": "Lưu",
     "pleaseselectusertype":"Vui lòng chọn loại người dùng",
-    "createshowtimes":"Tạo lịch chiếu"
+    "createshowtimes":"Tạo lịch chiếu",
+    "updateuser": "Cật nhật người dùng",
+    "username":"Tên tài khoản",
+    "profile":"Thông tin tài khoản"
 }

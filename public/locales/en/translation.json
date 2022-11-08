@@ -59,5 +59,7 @@
   "save": "Save",
   "pleaseselectusertype": "Please select user type",
   "createshowtimes": "Create showtimes",
-  "updateuser": "Update User"
+  "updateuser": "Update User",
+  "username":"User name",
+  "profile":"Profile"
 }
