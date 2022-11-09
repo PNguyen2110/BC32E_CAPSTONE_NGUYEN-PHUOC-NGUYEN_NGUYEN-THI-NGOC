@@ -34,7 +34,10 @@ export default function MultipleRowSlick(props) {
       .filter((item) => item.sapChieu.toString() === query)
       .map((item) => {
         return (
-          <div className="p-3" key={item.maPhim}>
+          <div
+            className="p-3 grid md:grid-cols-2 lg:grid-cols-3 "
+            key={item.maPhim}
+          >
             <div
               className=" bg-gray-200 bg-opacity-90 px-6 pt-6 pb-14 rounded-lg overflow-hidden text-center relative"
               style={{ height: "500px" }}
@@ -92,6 +95,35 @@ export default function MultipleRowSlick(props) {
     autoplay: true,
     autoplaySpeed: 4000,
     pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 1280,
+        settings: {
+          centerMode: true,
+          slidesToShow: 3,
+          slidesPerRow: 1,
+          row: 1,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          centerMode: true,
+          slidesToShow: 2,
+          slidesPerRow: 1,
+          row: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          centerMode: true,
+          slidesToShow: 1,
+          slidesPerRow: 1,
+          row: 1,
+        },
+      },
+    ],
   };
   return (
     <div className="container ">
