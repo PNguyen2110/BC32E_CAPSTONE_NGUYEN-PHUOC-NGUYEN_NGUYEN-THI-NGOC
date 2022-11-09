@@ -14,8 +14,6 @@ export const Header = () => {
   const { userLogin } = useQuanLyNguoiDung();
   const [user, setUser] = useState(false);
   const [nav, setNav] = useState(1);
-  console.log("nav: ", nav);
-  console.log(user);
   const navigate = useNavigate();
   return (
     <header className="p-4 bg-black bg-opacity-40  text-white fixed w-full z-10 header ">
