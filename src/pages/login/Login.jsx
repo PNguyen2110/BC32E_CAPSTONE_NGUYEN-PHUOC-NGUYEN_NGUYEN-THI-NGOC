@@ -63,7 +63,7 @@ const Login = () => {
         >
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="block mb-2 text-sm">
+              <label className="block mb-2 text-sm">
               {t('username')}
               </label>
               <input

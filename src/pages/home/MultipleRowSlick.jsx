@@ -27,7 +27,7 @@ function SamplePrevArrow(props) {
 
 export default function MultipleRowSlick(props) {
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { movieList, query } = props;
   const renderFilm = () => {
     return movieList
@@ -94,7 +94,7 @@ export default function MultipleRowSlick(props) {
     pauseOnHover: true,
   };
   return (
-    <div className="container ">
+    <div>
       <Slider {...settings}>
         {renderFilm()}
         {renderFilm()}

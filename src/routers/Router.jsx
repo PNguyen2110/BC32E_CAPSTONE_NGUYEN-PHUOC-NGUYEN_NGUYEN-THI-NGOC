@@ -1,9 +1,7 @@
 import React from "react";
 import { Navigate, useRoutes } from "react-router-dom";
 import MainLayout from "../components/layouts/MainLayout";
-import Contact from "../pages/contact/Contact";
 import Home from "../pages/home/Home";
-import News from "../pages/news/News";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import MovieDetail from "../pages/movieDetail/MovieDetail";
@@ -56,11 +54,11 @@ const Router = () => {
         },
         {
           path: "contact",
-          element: <Contact />,
+          element: <Home />,
         },
         {
           path: "news",
-          element: <News />,
+          element: <Home />,
         },
         {
           path: "login",
