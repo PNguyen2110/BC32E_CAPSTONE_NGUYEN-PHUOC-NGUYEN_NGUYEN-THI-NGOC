@@ -52,7 +52,7 @@ const HomeMenu = () => {
                             alt=""
                             onError={(e) => {
                               e.target.onerror = null;
-                              // e.target.src = "https:picsum.photos/75/75";
+                              e.target.src = "https:picsum.photos/75/75";
                             }}
                           />
                           <div className="text-left pl-0  md:pl-2">
@@ -73,7 +73,7 @@ const HomeMenu = () => {
                             return {
                               label: (
                                 <Fragment>
-                                  <div className=" scroll-lichChieu  pb-2 pr-0 w-[180px] md:pr-2 md:w-[250px] lg:w-[400px] xl:w-[600px]  ">
+                                  <div className=" scroll-lichChieu  pb-2 pr-0 w-[150px] md:pr-2 md:w-[250px] lg:w-[400px] xl:w-[600px]  ">
                                     <div className="flex  flex-wrap: wrap flex-col md:flex-row">
                                       <img
                                         src={film.hinhAnh}

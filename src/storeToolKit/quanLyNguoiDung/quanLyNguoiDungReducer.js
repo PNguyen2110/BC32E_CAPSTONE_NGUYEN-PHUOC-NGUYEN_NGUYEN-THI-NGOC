@@ -124,7 +124,7 @@ export const xoaNguoiDung = createAsyncThunk(
       dispatch(layDanhSachNguoiDung());
       alert("Xoá thành công");
     } catch (err) {
-      alert(err.response.data.message);
+      alert(err.response.data.content);
     }
   }
 );
