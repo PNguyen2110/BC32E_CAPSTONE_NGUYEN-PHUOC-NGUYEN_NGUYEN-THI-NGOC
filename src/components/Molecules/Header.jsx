@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useQuanLyNguoiDung} from "../../storeToolKit/quanLyNguoiDung";
+import { useQuanLyNguoiDung } from "../../storeToolKit/quanLyNguoiDung";
 import { HeartOutlined, DownOutlined } from "@ant-design/icons";
-import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { Select } from "antd";
@@ -14,11 +13,12 @@ export const Header = () => {
 
   const { userLogin } = useQuanLyNguoiDung();
   const [user, setUser] = useState(false);
+  const [nav, setNav] = useState(1);
+  console.log("nav: ", nav);
   console.log(user);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   return (
-    <header className="p-4 bg-black bg-opacity-40  text-white fixed w-full z-10 header">
+    <header className="p-4 bg-black bg-opacity-40  text-white fixed w-full z-10 header ">
       <div className="container flex justify-between h-16 mx-auto">
         <NavLink
           to="/"
@@ -30,7 +30,7 @@ export const Header = () => {
             alt="cyberlearn.vn"
           />
         </NavLink>
-        <ul className="items-stretch hidden space-x-3 lg:flex" style={{fontSize:'15px'}}>
+        <ul className="items-stretch hidden space-x-3 lg:flex" style={{ fontSize: '15px' }}>
 
           <li className="flex">
             <NavLink
@@ -57,7 +57,7 @@ export const Header = () => {
             </NavLink>
           </li>
         </ul>
-        <div className="items-center flex-shrink-0 hidden lg:flex" style={{fontSize:'15px'}}>
+        <div className="items-center flex-shrink-0 hidden lg:flex" style={{ fontSize: '15px' }}>
           <button
             className="self-center px-8 py-3
            "
@@ -131,7 +131,9 @@ export const Header = () => {
             ]}
           />
         </div>
-        <button className="p-4 lg:hidden">
+        <button className="p-4 lg:hidden" onClick={() => {
+          setNav(nav + 1)
+        }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -147,7 +149,138 @@ export const Header = () => {
             />
           </svg>
         </button>
+      </div >
+
+      <div style={{ display: `${nav % 2 === 0 ? 'block' : 'none'}` }} >
+       <div className="lg:hidden">
+       <div className="flex justify-center">
+          <div className="pt-4 text-center">
+
+            <ul style={{ fontSize: '15px', marginBottom: '0' }}>
+
+              <li className="mb-1">
+                <NavLink
+                  className=" items-center px-4 -mb-1 text-white font-medium "
+                  to="/home"
+                  onClick={() => {
+                    setNav(nav + 1)
+                  }}
+                >
+                  {t("home")}
+                </NavLink>
+              </li>
+              <li className="mb-1">
+                <NavLink
+                  className=" items-center px-4 -mb-1   text-white  font-medium "
+                  to="/news"
+                  onClick={() => {
+                    setNav(nav + 1)
+                  }}
+                >
+                  {t("news")}
+                </NavLink>
+              </li>
+              <li className="mb-1">
+                <NavLink
+                  className=" items-center px-4 -mb-1   text-white  font-medium"
+                  to="/contact"
+                  onClick={() => {
+                    setNav(nav + 1)
+                  }}
+                >
+                  {t("contact")}
+                </NavLink>
+              </li>
+            </ul>
+            <div className=" items-center px-4 mb-1" style={{ fontSize: '15px' }}>
+              <button
+
+              >
+                {localStorage.getItem("USER_LOGIN") ? (
+                  <Component>
+                    <div className="acount">
+                    <span
+                      title="Click để xem thông tin"
+                      onClick={() => {
+                        navigate("/user");
+                        setNav(nav + 1)
+                      }}
+                    >
+                      <span className="text-red-600 ">
+                        <HeartOutlined style={{ top: "-28px" }} />
+                      </span>{" "}
+                      {t("hi")} {userLogin.hoTen}
+                      <span className="text-red-600 ">
+                        <HeartOutlined style={{ top: "-28px" }} />
+                      </span>{" "}
+                    </span>
+                    <span>
+                      <span className="dropdown ">
+                        <DownOutlined />
+
+                        <div
+                          className="dropdown-content border border-pink-400 rounded-lg "
+                          onClick={() => {
+                            localStorage.removeItem("USER_LOGIN");
+
+                            setUser(!user);
+                            setNav(nav + 1)
+                          }}
+                        >
+                          <p className="text-violet-700 mb-0 font-semibold ">Log Out</p>
+                        </div>
+                      </span>
+                    </span>
+                    </div>
+                  </Component>
+                ) : (
+                  <NavLink to="login" className="text-white" onClick={() => {
+                    setNav(nav + 1)
+                  }}>
+                    {t("signin")}
+                  </NavLink>
+                )}
+              </button>
+              <br />
+              <button className="my-1">
+                <NavLink to="register" className="text-white " onClick={() => {
+          setNav(nav + 1)
+        }}>
+                  {t("signup")}
+                </NavLink>
+              </button>
+              <br />
+              <Select
+                defaultValue="en"
+                style={{
+                  width: 100,
+                  color: "red",
+                  borderRadius: "5px",
+                  marginTop: '10px'
+                }}
+                onChange={handleChange}
+                options={[
+                  {
+                    value: "en",
+                    label: "English",
+                  },
+                  {
+                    value: "vi",
+                    label: "Việt Nam",
+                  },
+                  {
+                    value: "chi",
+                    label: "Trung Quốc",
+                  },
+                ]}
+              />
+            </div>
+
+          </div>
+        </div>
+       </div>
       </div>
+
     </header>
   );
 };
