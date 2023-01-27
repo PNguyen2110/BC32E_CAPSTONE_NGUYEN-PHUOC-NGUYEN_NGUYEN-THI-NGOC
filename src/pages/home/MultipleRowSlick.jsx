@@ -50,7 +50,7 @@ export default function MultipleRowSlick(props) {
                   className="rounded mb-1  w-full"
                 />
               </div>
-              <h1 className="title-font sm:text-1xl text-xl font-medium text-gray-900 h-16 pt-2 ">
+              <h1 className="title-font sm:text-1xl text-base font-medium text-gray-900 h-16 pt-2 ">
                 {item.tenPhim}
               </h1>
               <p className="leading-relaxed ">

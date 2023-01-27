@@ -10,7 +10,7 @@ import {
   useQuanLyRap,
 } from "../../storeToolKit/quanLyRap";
 import moment from "moment";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const MovieDetail = () => {
   const [tabPosition, setTabPosition] = useState("left");
@@ -29,14 +29,14 @@ const MovieDetail = () => {
   return (
     <div>
       <div
-        className="detailMovie"
+        className="detailMovie "
         style={{
           backgroundImage: `url(${movieDetail.hinhAnh})`,
           display: "flex",
           flexDirection: "column",
         }}
       >
-        <div className="box1 grid grid-cols-4 container  ">
+        <div className="box1 md:grid md:grid-cols-4 container  flex flex-col ">
           <div className="col-span-1">
             <img
               src={movieDetail.hinhAnh}
@@ -51,7 +51,7 @@ const MovieDetail = () => {
           <div className="col-span-3 ">
             <div className="container p-2 mx-auto sm:p-4 dark:text-gray-100">
               <h2 className="mb-2 text-3xl font-semibold leading-tight text-white">
-              {t('moviedetail')}
+                {t("moviedetail")}
               </h2>
               <div className="overflow-x-auto">
                 <table className="min-w-full  text-left">
@@ -59,7 +59,7 @@ const MovieDetail = () => {
                   <tbody>
                     <tr className="border-b border-opacity-20 dark:border-gray-700">
                       <td style={{ fontSize: "12px" }}>
-                        <p>{t('moviename')} :</p>
+                        <p>{t("moviename")} :</p>
                       </td>
                       <td>
                         <p style={{ fontSize: "17px", color: "#83c641" }}>
@@ -69,7 +69,7 @@ const MovieDetail = () => {
                     </tr>
                     <tr className="border-b border-opacity-20 dark:border-gray-700">
                       <td>
-                        <p style={{ fontSize: "12px" }}>{t('describe')} :</p>
+                        <p style={{ fontSize: "12px" }}>{t("describe")} :</p>
                       </td>
                       <td>
                         <p>{movieDetail.moTa}</p>
@@ -77,7 +77,9 @@ const MovieDetail = () => {
                     </tr>
                     <tr className="border-b border-opacity-20 dark:border-gray-700">
                       <td>
-                        <p style={{ fontSize: "12px" }}>{t('premieredate')} :</p>
+                        <p style={{ fontSize: "12px" }}>
+                          {t("premieredate")} :
+                        </p>
                       </td>
                       <td>
                         <p>
@@ -89,7 +91,7 @@ const MovieDetail = () => {
                     </tr>
                     <tr className="border-b border-opacity-20 dark:border-gray-700">
                       <td>
-                        <p style={{ fontSize: "12px" }}>{t('rate')} :</p>
+                        <p style={{ fontSize: "12px" }}>{t("rate")} :</p>
                       </td>
                       <td>
                         <p>{movieDetail.danhGia} / 10</p>
@@ -103,7 +105,7 @@ const MovieDetail = () => {
                     className="px-10 py-2 font-semibold rounded-full dark:bg-pink-400 dark:text-gray-800 mr-2 transition hover:bg-white "
                   >
                     <a
-                    target={"_blank"}
+                      target={"_blank"}
                       href={movieDetail.trailer}
                       className="text-black hover:text-black"
                     >
@@ -128,10 +130,10 @@ const MovieDetail = () => {
                         <img
                           src={item.logo}
                           alt={item.logo}
-                          className="rounded-full w-14 h-14"
+                          className="rounded-full w-10 h-10 sm:w-14 sm:h-14"
                         />
                         <div>
-                          <p className="text-center text-white mt-2 text-xl">
+                          <p className="text-center text-white mt-2 test-base md:text-xl">
                             {item.tenHeThongRap}
                           </p>
                         </div>
@@ -143,7 +145,7 @@ const MovieDetail = () => {
                         {item.cumRapChieu?.map((cumRap, index) => {
                           return (
                             <div className="mb-4" key={index}>
-                              <div className="flex flex-row text-left">
+                              <div className="flex flex-col md:flex-row text-left ">
                                 <img
                                   src={cumRap.hinhAnh}
                                   alt=""
@@ -152,8 +154,8 @@ const MovieDetail = () => {
                                 />
                                 <div className="ml-2">
                                   <p
+                                    class="text-sm md:text-lg mt-2"
                                     style={{
-                                      fontSize: "20px",
                                       fontWeight: "bold",
                                       lineHeight: 1,
                                       color: "white",
@@ -176,10 +178,11 @@ const MovieDetail = () => {
                                                   `/ticketroom/${lichChieu.maLichChieu}`
                                                 )
                                               }
-                                              className="text-red-600"
+                                              className="text-red-600 flex "
                                               style={{
                                                 fontWeight: "bold",
                                                 fontSize: "16px",
+                                                width: "120px",
                                               }}
                                             >
                                               {moment(
@@ -202,7 +205,7 @@ const MovieDetail = () => {
               )}
             />
           ) : (
-            <p className="text-white text-3xl p-20">{t('unavailable')}</p>
+            <p className="text-white text-3xl p-20">{t("unavailable")}</p>
           )}
         </div>
 

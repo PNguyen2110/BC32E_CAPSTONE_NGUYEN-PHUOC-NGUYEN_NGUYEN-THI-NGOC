@@ -28,11 +28,8 @@ class ThongTinDatVe {
 }
 const BookTicket = () => {
   const { userLogin } = useQuanLyNguoiDung();
-  const {
-    detailTicketRoom,
-    danhSachGheDangDat,
-    isFetchingBookingTicket
-  } = useQuanLyDatVe();
+  const { detailTicketRoom, danhSachGheDangDat, isFetchingBookingTicket } =
+    useQuanLyDatVe();
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -122,7 +119,7 @@ const BookTicket = () => {
   return (
     <div className="bg-green-100 bg-opacity-50">
       <div className="container grid grid-cols-12 pt-24 pb-12">
-        <div className="col-span-8 text-center">
+        <div className="col-span-12 lg:col-span-8 text-center">
           <div className="text-2xl display-4 font-bold">
             {t("BOOKINGMOVIETICKET")}
           </div>
@@ -144,39 +141,55 @@ const BookTicket = () => {
             <div className="pt-2 text-left font-semibold">
               <i style={{ fontSize: "16px" }}> {t("ticketstatus")}</i> :
             </div>
-            <div className=" flex pt-4">
-              <button className="gheDaDat ">
-                {" "}
-                <span
-                  className="flex justify-center text-black"
-                  style={{ fontSize: "12px" }}
-                >
-                  <CloseOutlined />
-                </span>
-              </button>
-              <span className="pr-4 pl-1 text-left">: {t("seatsbooked")}</span>
-              <button className="gheDangDat  "> </button>
-              <span className="pr-4 pl-1 text-left">
-                : {t("seatsarebooked")}
-              </span>
-              <button className="gheButton "> </button>
-              <span className="pr-4 pl-1 text-left">: {t("regularchair")}</span>
-              <button className="gheVip "> </button>
-              <span className="pr-4 pl-1 text-left">: {t("vipchair")}</span>
-              <button className="gheDaDuocDat  ">
-                <span className="flex justify-center">
+            <div className="flex flex-row pt-4 flex-wrap gap-2">
+              <div className="flex w-[200px]">
+                <button className="gheDaDat ">
                   {" "}
-                  <UserOutlined />
+                  <span
+                    className="flex  justify-center text-black"
+                    style={{ fontSize: "12px" }}
+                  >
+                    <CloseOutlined />
+                  </span>
+                </button>
+
+                <span className="pr-4 pl-1 text-left">
+                  : {t("seatsbooked")}
                 </span>
-              </button>
-              <span className="pr-4 pl-1 text-left">
-                : {t("thechairyoubought")}
-              </span>
+              </div>
+
+              <div className="flex w-[200px]">
+                <button className="gheDangDat  "> </button>
+                <span className="pr-4 pl-1 text-left">
+                  : {t("seatsarebooked")}
+                </span>
+              </div>
+              <div className="flex w-[200px]">
+                <button className="gheButton "> </button>
+                <span className="pr-4 pl-1 text-left">
+                  : {t("regularchair")}
+                </span>
+              </div>
+              <div className="flex w-[200px]">
+                <button className="gheVip "> </button>
+                <span className="pr-4 pl-1 text-left">: {t("vipchair")}</span>
+              </div>
+              <div className="flex w-[200px]">
+                <button className="gheDaDuocDat  ">
+                  <span className="flex justify-center">
+                    {" "}
+                    <UserOutlined />
+                  </span>
+                </button>
+                <span className="pr-4 pl-1 text-left">
+                  : {t("thechairyoubought")}
+                </span>
+              </div>
             </div>
           </div>
         </div>
         <div
-          className="col-span-4 pt-16 totalTicket"
+          className="col-span-12 lg:col-span-4 pt-16 totalTicket"
           style={{ fontSize: "16px" }}
         >
           <h3 className="text-center pb-6">

@@ -1,6 +1,6 @@
 import { Input, Table } from "antd";
 import React, { useEffect, useState } from "react";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import {
   SearchOutlined,
   EditOutlined,
@@ -25,7 +25,7 @@ const QuanLiNguoiDung = () => {
   const { danhSachNguoiDung } = useSelector(
     (state) => state.quanLyNguoiDungReducer
   );
-
+  console.log("danhSachNguoiDung", danhSachNguoiDung);
   const handleChange = (pagination, filters, sorter) => {
     console.log("Various parameters", pagination, filters, sorter);
   };
@@ -88,6 +88,7 @@ const QuanLiNguoiDung = () => {
     },
   ];
   const data = danhSachNguoiDung;
+  console.log(data);
 
   const onSearch = (value) => {
     dispatch(layDanhSachNguoiDung(value));
@@ -98,7 +99,7 @@ const QuanLiNguoiDung = () => {
         onClick={() => navigate("/admin/themNguoiDung")}
         className="text-1xl mb-5 bg-blue-400 text-white p-3 rounded-md"
       >
-          {t('adduser')}
+        {t("adduser")}
       </button>
       <br />
       <Search

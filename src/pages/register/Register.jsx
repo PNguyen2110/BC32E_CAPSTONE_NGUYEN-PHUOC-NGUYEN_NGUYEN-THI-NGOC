@@ -44,7 +44,7 @@ const Register = () => {
             dispatch(dangKy({ ...data, maNhom: "GP13" }));
           })}
         >
-          <div className="flex-col flex md:flex-row justify-center gap-5 items-center py-2">
+          <div className="flex-col flex md:flex-row justify-center gap-5 items-center ">
             <div className=" w-[80%] flex flex-col px-[4rem]">
               <div>
                 <label htmlFor="email" className="block mb-2 text-sm">
@@ -118,7 +118,7 @@ const Register = () => {
               </div>
             </div>
 
-            <div className="w-[80%] flex flex-col px-[4rem]">
+            <div className="w-[80%] flex flex-col px-[4rem] mt-[44px]">
               <div>
                 <label htmlFor="email" className="block mb-2 text-sm">
                   {t("email")}

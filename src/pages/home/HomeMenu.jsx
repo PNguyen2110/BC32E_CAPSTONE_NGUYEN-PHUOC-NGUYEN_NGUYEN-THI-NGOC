@@ -21,14 +21,14 @@ const HomeMenu = () => {
 
   return (
     <>
-      <Component className="lg:container px-0  pt-16 lg:px-12 xl:px-14 sm:pl-[80px] ">
+      <Component className="lg:container tabContent  lg:px-12 xl:px-14 px-2 ">
         <Tabs
           tabPosition={tabPosition}
           items={rapList.map((item) => {
             return {
               label: (
                 <img
-                  className="rounded-full  w-8 h-8   lg:w-14 h-14"
+                  className="rounded-full logo  w-8 h-8   lg:w-14 h-14 "
                   src={item.logo}
                   onError={(e) => {
                     e.target.onerror = null;
@@ -60,7 +60,9 @@ const HomeMenu = () => {
                             <p className="text-black-500 diaChiCumRap h-[65px] xl:h-[45px] mb-2">
                               ({cumrap.diaChi})
                             </p>
-                            <p className="text-red-400">{t("detail")}</p>
+                            <p className="text-red-400 flex self-end">
+                              {t("detail")}
+                            </p>
                           </div>
                         </div>
                       ),
@@ -74,11 +76,11 @@ const HomeMenu = () => {
                               label: (
                                 <Fragment>
                                   <div className=" scroll-lichChieu  pb-2 pr-0 w-[150px] md:pr-2 md:w-[250px] lg:w-[400px] xl:w-[600px]  ">
-                                    <div className="flex  flex-wrap: wrap flex-col md:flex-row">
+                                    <div className="flex custom  flex-wrap: wrap flex-col md:flex-row">
                                       <img
                                         src={film.hinhAnh}
                                         alt={film.tenPhim}
-                                        className="rounded-md w-[70px] h-[70px]  md:h-[80px] ld:w-[100px] lg:h-[110px] xl:w-[120px] xl:h-[130px]"
+                                        className="rounded-md mb-2 customImg w-[70px] h-[70px]  md:h-[80px] ld:w-[100px] lg:h-[110px] xl:w-[120px] xl:h-[130px]"
                                         onError={(e) => {
                                           e.target.onerror = null;
                                           e.target.src =
@@ -141,41 +143,143 @@ const HomeMenu = () => {
 };
 
 const Component = styled.div`
+  @media screen and (max-width: 992px) {
+    .tabContent {
+      margin-top: -50px !important;
+    }
+    .logo {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      flex-shrink: 1;
+    }
+
+    .ant-tabs {
+      display: flex;
+      flex-direction: column;
+      flex: 50px;
+      .ant-tabs-nav:first-of-type {
+        .ant-tabs-nav-wrap {
+          .ant-tabs-nav-list {
+            display: flex;
+            flex-direction: row !important;
+            margin-top: 0;
+            height: 250px;
+            /* justify-content: center; */
+            /* flex-wrap: nowrap; */
+            overflow: auto;
+            /* width: 100%; */
+            grid-auto-flow: column;
+            /* grid-auto-columns: 70%; */
+          }
+        }
+        .ant-tabs-tab {
+          margin-top: 0;
+          padding: 0 24px;
+        }
+      }
+    }
+    .ant-tabs-tab {
+      width: 100%;
+    }
+    .ant-tabs-nav-list,
+    .scroll {
+      /* height: 200px !important; */
+      padding: 10px;
+    }
+    /* .custom {
+      width: 800px;
+    } */
+    /* .ant-tabs-nav-list {
+      overflow: auto; 
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 70%;
+       max-width: 700px; 
+      margin: 0 auto;
+      .ant-tabs-tab {
+        width: 70%;
+      }
+    } */
+    .lichChieu::-webkit-scrollbar {
+      box-shadow: none !important;
+    }
+    .lichChieu::-webkit-scrollbar,
+    .ant-tabs-nav-list::-webkit-scrollbar-track {
+      max-height: 50%;
+      height: 50%;
+    }
+    .scroll .lichChieu::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      border-radius: 50%;
+      border-top: none !important;
+    }
+    .tenPhim {
+      font-size: 16px;
+      height: 20px !important;
+    }
+    .customImg {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  @media screen and (max-width: 640px) {
+    .logo {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      flex-shrink: 1;
+      padding: 0;
+      margin: 0;
+    }
+    .ant-tabs-tab {
+      padding: 10px !important;
+    }
+  }
+
   .tenCumRap,
   .diaChiCumRap {
+    display: -webkit-box;
     white-space: normal;
     word-break: break-word;
-    -webkit-line-clamp: 3;
-    height: 45px;
+    -webkit-line-clamp: 2;
+    height: 40px;
     margin-bottom: 0;
     word-wrap: wrap;
   }
+  .diaChiCumRap {
+    height: 50px;
+    margin-bottom: 15px;
+  }
+
   .tenPhim {
     /* max-width: 15.625rem; */
     white-space: normal;
     word-break: break-word;
     -webkit-line-clamp: 3;
-    height: 25px;
+    height: 40px;
     /* margin-bottom: 0; */
     word-wrap: wrap;
     line-height: 1;
+
     /* margin-bottom: 20px; */
   }
   .tenCumRap {
     width: 200px;
   }
   .scroll .ant-tabs-nav {
-    max-width: 650px;
+    /* max-width: 650px; */
   }
   .ant-tabs-nav-list {
     height: 600px;
     overflow-y: auto;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     display: inline-block;
   }
   .lichChieu::-webkit-scrollbar,
   .ant-tabs-nav-list::-webkit-scrollbar {
     width: 8px;
+    height: 8px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -196,8 +300,8 @@ const Component = styled.div`
   }
   .lichChieu {
     height: 50px;
-    overflow-x: hidden;
-    overflow-y: auto;
+
+    overflow: auto;
   }
   .scroll .lichChieu::-webkit-scrollbar-thumb {
     background-color: transparent;
