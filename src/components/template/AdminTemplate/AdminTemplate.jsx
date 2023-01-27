@@ -20,6 +20,7 @@ const items = [
     getItem("Add Film", "4"),
   ]),
 ];
+
 const AdminTemplate = () => {
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
@@ -32,6 +33,13 @@ const AdminTemplate = () => {
       navigate("/home");
     }
   }, []);
+
+  const navList = document.querySelector(".ul");
+  useEffect(() => {
+    if (navList) {
+      navList.style.display = "none";
+    }
+  }, [navList]);
 
   const [windowWidth, setWindowWidth] = useState(0);
   let resizeWindow = () => {
@@ -85,9 +93,9 @@ const AdminTemplate = () => {
           <Menu
             onClick={(item) => {
               console.log(item.key);
-              if (item.key == 3) {
+              if (item.key === 3) {
                 navigate("/admin");
-              } else if (item.key == 4) {
+              } else if (item.key === 4) {
                 navigate("/admin/addFilms");
               } else if (item.key === "sub1") {
                 navigate("/admin/quanLiNguoiDung");
