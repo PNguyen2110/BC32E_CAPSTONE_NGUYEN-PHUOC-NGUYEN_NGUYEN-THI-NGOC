@@ -264,9 +264,7 @@ const Component = styled.div`
 
     /* margin-bottom: 20px; */
   }
-  .tenCumRap {
-    width: 200px;
-  }
+
   .scroll .ant-tabs-nav {
     /* max-width: 650px; */
   }
