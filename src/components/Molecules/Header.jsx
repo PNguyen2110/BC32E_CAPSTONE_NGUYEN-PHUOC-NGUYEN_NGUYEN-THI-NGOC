@@ -426,6 +426,144 @@ export const Header = () => {
           </div>
         </div>
       </div>
+
+      <div style={{ display: `${nav % 2 === 0 ? "block" : "none"}` }}>
+        <div className="lg:hidden">
+          <div className="flex justify-center">
+            <div className="pt-4 text-center">
+              <ul id="navList" style={{ fontSize: "15px", marginBottom: "0" }}>
+                <li className="mb-1">
+                  <NavLink
+                    className="home items-center px-4 -mb-1 text-white font-medium "
+                    to="/home"
+                    onClick={() => {
+                      setNav(nav + 1);
+                    }}
+                  >
+                    {t("home")}
+                  </NavLink>
+                </li>
+                <li className="mb-1">
+                  <NavLink
+                    className=" items-center px-4 -mb-1   text-white  font-medium "
+                    to="/news"
+                    onClick={() => {
+                      setNav(nav + 1);
+                    }}
+                  >
+                    {t("news")}
+                  </NavLink>
+                </li>
+                <li className="mb-1">
+                  <NavLink
+                    className=" items-center px-4 -mb-1   text-white  font-medium"
+                    to="/contact"
+                    onClick={() => {
+                      setNav(nav + 1);
+                    }}
+                  >
+                    {t("contact")}
+                  </NavLink>
+                </li>
+              </ul>
+              <div
+                className=" items-center px-4 mb-1"
+                style={{ fontSize: "15px" }}
+              >
+                <button>
+                  {localStorage.getItem("USER_LOGIN") ? (
+                    <Component>
+                      <div className="acount">
+                        <span
+                          title="Click để xem thông tin"
+                          onClick={() => {
+                            navigate("/user");
+                            setNav(nav + 1);
+                          }}
+                        >
+                          <span className="text-red-600 ">
+                            <HeartOutlined style={{ top: "-28px" }} />
+                          </span>{" "}
+                          {t("hi")} {userLogin.hoTen}
+                          <span className="text-red-600 ">
+                            <HeartOutlined style={{ top: "-28px" }} />
+                          </span>{" "}
+                        </span>
+                        <span>
+                          <span className="dropdown ">
+                            <DownOutlined />
+
+                            <div
+                              className="dropdown-content border border-pink-400 rounded-lg "
+                              onClick={() => {
+                                localStorage.removeItem("USER_LOGIN");
+
+                                setUser(!user);
+                                setNav(nav + 1);
+                              }}
+                            >
+                              <p className="text-violet-700 mb-0 font-semibold ">
+                                Log Out
+                              </p>
+                            </div>
+                          </span>
+                        </span>
+                      </div>
+                    </Component>
+                  ) : (
+                    <NavLink
+                      to="login"
+                      className="text-white"
+                      onClick={() => {
+                        setNav(nav + 1);
+                      }}
+                    >
+                      {t("signin")}
+                    </NavLink>
+                  )}
+                </button>
+                <br />
+                <button className="my-1">
+                  <NavLink
+                    to="register"
+                    className="text-white "
+                    onClick={() => {
+                      setNav(nav + 1);
+                    }}
+                  >
+                    {t("signup")}
+                  </NavLink>
+                </button>
+                <br />
+                <Select
+                  defaultValue="en"
+                  style={{
+                    width: 100,
+                    color: "red",
+                    borderRadius: "5px",
+                    marginTop: "10px",
+                  }}
+                  onChange={handleChange}
+                  options={[
+                    {
+                      value: "en",
+                      label: "English",
+                    },
+                    {
+                      value: "vi",
+                      label: "Việt Nam",
+                    },
+                    {
+                      value: "chi",
+                      label: "Trung Quốc",
+                    },
+                  ]}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
   );
 };
