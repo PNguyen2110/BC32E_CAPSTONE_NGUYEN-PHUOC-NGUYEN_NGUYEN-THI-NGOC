@@ -105,6 +105,7 @@ const AddFilms = () => {
     }),
 
     onSubmit: async (values) => {
+      console.log(values.hinhAnh);
       let formData = new FormData();
 
       for (let key in values) {

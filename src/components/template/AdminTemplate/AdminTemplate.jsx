@@ -1,8 +1,10 @@
 import { FileOutlined, UserOutlined } from "@ant-design/icons";
-import { Breadcrumb, Layout, Menu } from "antd";
+import { Breadcrumb, Empty, Layout, Menu } from "antd";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-const { Header, Content, Footer, Sider } = Layout;
+import Header from "../../Molecules/Header";
+const { Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
     key,
@@ -18,18 +20,61 @@ const items = [
     getItem("Add Film", "4"),
   ]),
 ];
+
 const AdminTemplate = () => {
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("USER_LOGIN"));
+    console.log(user);
+    if (user && user.maLoaiNguoiDung === "QuanTri") {
+      navigate("/admin");
+    } else {
+      navigate("/home");
+    }
+  }, []);
+
+  const navList = document.querySelector(".ul");
+  useEffect(() => {
+    if (navList) {
+      navList.style.display = "none";
+    }
+  }, [navList]);
+
+  const [windowWidth, setWindowWidth] = useState(0);
+  let resizeWindow = () => {
+    setWindowWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    resizeWindow();
+    window.addEventListener("resize", resizeWindow);
+    return () => window.removeEventListener("resize", resizeWindow);
+  }, []);
+  const render = () => {
+    if (windowWidth < 1280) {
+      return (
+        <Empty
+          description={
+            <p className="text-blue-400">
+              This function is not supported on small screen size yet !!!
+            </p>
+          }
+        />
+      );
+    }
+    return <Outlet />;
+  };
+
   return (
     <>
+      <Header />
       <Layout style={{ minHeight: "100vh" }}>
         <Sider
           collapsible
           collapsed={collapsed}
           onCollapse={(value) => setCollapsed(value)}
         >
-          <div
+          {/* <div
             className="logo"
             style={{
               height: "32px",
@@ -44,13 +89,13 @@ const AdminTemplate = () => {
             >
               Cyber Movie
             </h1>
-          </div>
+          </div> */}
           <Menu
             onClick={(item) => {
               console.log(item.key);
-              if (item.key == 3) {
+              if (item.key === 3) {
                 navigate("/admin");
-              } else if (item.key == 4) {
+              } else if (item.key === 4) {
                 navigate("/admin/addFilms");
               } else if (item.key === "sub1") {
                 navigate("/admin/quanLiNguoiDung");
@@ -63,17 +108,17 @@ const AdminTemplate = () => {
           />
         </Sider>
         <Layout className="site-layout">
-          <Header
+          {/* <Header
             className="site-layout-background"
             style={{ padding: 0, background: "#fff" }}
-          />
+          /> */}
           <Content style={{ margin: "0 16px" }}>
             <Breadcrumb style={{ margin: "16px 0" }}></Breadcrumb>
             <div
               className="site-layout-background"
               style={{ padding: 24, minHeight: 360, background: "#fff" }}
             >
-              <Outlet />
+              {render()}
             </div>
           </Content>
           <Footer style={{ textAlign: "center" }}>

@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import {
   postUser,
   useQuanLyNguoiDung,
@@ -49,7 +49,7 @@ const Login = () => {
     <div className=" pt-32 pb-12 bg-pink-200 bg-opacity-60">
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 dark:bg-gray-900 dark:text-gray-100 container">
         <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-bold text-white">{t('signin')}</h1>
+          <h1 className="my-3 text-4xl font-bold text-white">{t("signin")}</h1>
           <p className="text-sm dark:text-gray-400">
             Sign in to access your account
           </p>
@@ -63,8 +63,8 @@ const Login = () => {
         >
           <div className="space-y-4">
             <div>
-              <label className="block mb-2 text-sm">
-              {t('username')}
+              <label htmlFor="email" className="block mb-2 text-sm">
+                {t("username")}
               </label>
               <input
                 type="text"
@@ -83,7 +83,7 @@ const Login = () => {
             <div>
               <div className="flex justify-between mb-2">
                 <label htmlFor="password" className="text-sm">
-                {t('password')}
+                  {t("password")}
                 </label>
                 <Link
                   rel="noopener noreferrer"
@@ -114,7 +114,7 @@ const Login = () => {
                 type="submit"
                 className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900 transition hover:bg-pink-500 hover:text-black"
               >
-               {t('signin')}
+                {t("signin")}
               </button>
             </div>
             <p className="px-6 text-sm text-center dark:text-gray-400">
@@ -123,9 +123,9 @@ const Login = () => {
                 rel="noopener noreferrer"
                 to="#"
                 className="hover:underline dark:text-violet-400 pl-2"
-                onClick={() => navigate('/register')}
+                onClick={() => navigate("/register")}
               >
-               {t('signup')}
+                {t("signup")}
               </a>
               .
             </p>
