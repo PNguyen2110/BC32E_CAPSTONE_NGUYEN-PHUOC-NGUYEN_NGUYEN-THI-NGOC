@@ -30,9 +30,9 @@ const AdminTemplate = () => {
     if (user && user.maLoaiNguoiDung === "QuanTri") {
       navigate("/admin");
     }  
-    // else {
-    //   navigate("/home");
-    // }
+    else {
+      navigate("/home");
+    }
   }, []);
 
   const navList = document.querySelector(".ul");
