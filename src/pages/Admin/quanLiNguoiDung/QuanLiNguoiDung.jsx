@@ -25,7 +25,7 @@ const QuanLiNguoiDung = () => {
   const { danhSachNguoiDung } = useSelector(
     (state) => state.quanLyNguoiDungReducer
   );
-  console.log("danhSachNguoiDung", danhSachNguoiDung);
+
   const handleChange = (pagination, filters, sorter) => {
     console.log("Various parameters", pagination, filters, sorter);
   };
@@ -88,7 +88,6 @@ const QuanLiNguoiDung = () => {
     },
   ];
   const data = danhSachNguoiDung;
-  console.log(data);
 
   const onSearch = (value) => {
     dispatch(layDanhSachNguoiDung(value));

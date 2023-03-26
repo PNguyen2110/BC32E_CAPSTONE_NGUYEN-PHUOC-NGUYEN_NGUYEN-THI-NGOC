@@ -47,6 +47,7 @@ const EditFilms = () => {
       file.type === "image/gif"
     ) {
       let reader = new FileReader();
+      
       reader.readAsDataURL(file);
       reader.onload = (e) => {
         setImg(e.target.result);

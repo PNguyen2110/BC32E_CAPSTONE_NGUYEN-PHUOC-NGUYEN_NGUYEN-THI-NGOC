@@ -153,7 +153,6 @@ export const capNhatThongTinNguoiDung = createAsyncThunk(
       localStorage.setItem("userUpdate", JSON.stringify(result.data.content));
       alert("cập nhật người dùng thành công");
     } catch (err) {
-      console.log(err.response.data);
       alert(err.response.data.message);
     }
   }
@@ -165,7 +164,6 @@ export const capNhatThongTinNguoiDungPut = createAsyncThunk(
       await quanLyNguoiDungService.capNhatThongTinNguoiDungPut(data);
       alert("cập nhật người dùng thành công");
     } catch (err) {
-      console.log(err.response.data);
       alert(err.response.data.content);
     }
   }

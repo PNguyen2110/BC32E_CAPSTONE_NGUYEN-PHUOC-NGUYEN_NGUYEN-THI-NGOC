@@ -14,9 +14,10 @@ const HomeMenu = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { rapList } = useQuanLyRap();
+  console.log("rapList", rapList);
   const { t } = useTranslation();
   useEffect(() => {
-    dispatch(getRapMovieList());
+    // dispatch(getRapMovieList());
   }, []);
 
   return (
@@ -24,7 +25,7 @@ const HomeMenu = () => {
       <Component className="lg:container tabContent  lg:px-12 xl:px-14 px-2 ">
         <Tabs
           tabPosition={tabPosition}
-          items={rapList.map((item) => {
+          items={rapList?.map((item) => {
             return {
               label: (
                 <img
@@ -56,7 +57,7 @@ const HomeMenu = () => {
                             }}
                           />
                           <div className="text-left pl-0  md:pl-2">
-                            <h2 class="tenCumRap">{cumrap.tenCumRap}</h2>
+                            <h2 className="tenCumRap">{cumrap.tenCumRap}</h2>
                             <p className="text-black-500 diaChiCumRap h-[65px] xl:h-[45px] mb-2">
                               ({cumrap.diaChi})
                             </p>

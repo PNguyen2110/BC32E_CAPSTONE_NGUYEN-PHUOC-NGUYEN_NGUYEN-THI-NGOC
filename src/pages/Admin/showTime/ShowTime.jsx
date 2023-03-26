@@ -6,7 +6,7 @@ import {
   layThongTinCumRapTheoHeThong,
   layThongTinHeThongRap,
 } from "../../../storeToolKit/quanLyRap";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import moment from "moment";
 import { useParams } from "react-router-dom";
@@ -42,7 +42,6 @@ export const ShowTime = () => {
   };
   const handleChangeHeThongRap = (value) => {
     setRap(value);
-    console.log(value);
   };
   const handleCumRap = () => {
     if (thongTinCumRap) {
@@ -61,7 +60,6 @@ export const ShowTime = () => {
       giaVe: "",
     },
     onSubmit: (values) => {
-      // console.log(values);
       dispatch(taoLichChieu(values));
     },
   });
@@ -86,7 +84,9 @@ export const ShowTime = () => {
         wrapperCol={{ span: 16 }}
         initialValues={{ remember: true }}
       >
-        <h2 className="text-2xl mb-10">{t('createshowtimes')} - {tenPhim}</h2>
+        <h2 className="text-2xl mb-10">
+          {t("createshowtimes")} - {tenPhim}
+        </h2>
         <Form.Item label="Hệ thống rạp">
           <Select
             onChange={handleChangeHeThongRap}
@@ -114,7 +114,7 @@ export const ShowTime = () => {
         </Form.Item>
         <Form.Item>
           <Button className="ml-[25%]" type="primary" htmlType="submit">
-          {t('createshowtimes')}
+            {t("createshowtimes")}
           </Button>
         </Form.Item>
       </Form>

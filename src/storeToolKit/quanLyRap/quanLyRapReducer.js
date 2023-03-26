@@ -75,10 +75,8 @@ export const { reducer: quanLyRapReducer, actions: quanLyRapActions } =
 
 export const getRapMovieList = createAsyncThunk(
   "quanLyRap/getRapMovieList",
-  async (data, { dispatch, getState, rejectWithValue }) => {
+  async (data, { rejectWithValue }) => {
     try {
-      const value = getState();
-      console.log(value);
       const result = await quanLyRapService.getRapMovieList();
 
       return result.data.content;
@@ -105,7 +103,7 @@ export const layThongTinHeThongRap = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const result = await quanLyRapService.layThongTinHeThongRap();
-      console.log("layThongTinHeThongRap", result.data.content);
+
       return result.data.content;
     } catch (err) {
       return rejectWithValue(err.response, data);

@@ -26,7 +26,7 @@ const AdminTemplate = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("USER_LOGIN"));
-    console.log(user);
+
     if (user && user.maLoaiNguoiDung === "QuanTri") {
       navigate("/admin");
     } else {
@@ -67,14 +67,15 @@ const AdminTemplate = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
+      {/* <Header/> */}
       <Layout style={{ minHeight: "100vh" }}>
         <Sider
           collapsible
           collapsed={collapsed}
           onCollapse={(value) => setCollapsed(value)}
         >
-          {/* <div
+          <div
             className="logo"
             style={{
               height: "32px",
@@ -87,15 +88,14 @@ const AdminTemplate = () => {
               className="text-blue-400 text-[100%] lg:text-[150%] text-center"
               onClick={() => navigate("/admin")}
             >
-              Cyber Movie
+              Movie
             </h1>
-          </div> */}
+          </div>
           <Menu
             onClick={(item) => {
-              console.log(item.key);
-              if (item.key === 3) {
+              if (item.key === "3") {
                 navigate("/admin");
-              } else if (item.key === 4) {
+              } else if (item.key === "4") {
                 navigate("/admin/addFilms");
               } else if (item.key === "sub1") {
                 navigate("/admin/quanLiNguoiDung");

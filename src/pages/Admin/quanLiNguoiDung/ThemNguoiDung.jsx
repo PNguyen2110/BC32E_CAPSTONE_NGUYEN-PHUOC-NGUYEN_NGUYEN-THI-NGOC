@@ -18,12 +18,12 @@ export const ThemNguoiDung = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [state, setState] = useState(false);
-  useEffect(() => {
-    if (localStorage.getItem("addUser")) {
-      localStorage.removeItem("addUser");
-      navigate("/admin/quanLiNguoiDung");
-    }
-  }, [state]);
+  // useEffect(() => {
+  //   if (localStorage.getItem("addUser")) {
+  //     localStorage.removeItem("addUser");
+  //     navigate("/admin/quanLiNguoiDung");
+  //   }
+  // }, [state]);
   const formik = useFormik({
     initialValues: {
       taiKhoan: "",

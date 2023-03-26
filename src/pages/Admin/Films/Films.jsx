@@ -41,7 +41,7 @@ export const Films = () => {
       dataIndex: "hinhAnh",
       width: "15%",
       render: (img) => {
-        console.log(img);
+        
         return (
           <>
             <img style={{ width: 60 }} src={img} alt={img.hinhAnh} />

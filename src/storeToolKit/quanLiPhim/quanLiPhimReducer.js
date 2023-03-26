@@ -78,7 +78,7 @@ export const getMovieList = createAsyncThunk(
   async (value = "", { rejectWithValue }) => {
     try {
       const result = await quanLiPhimService.getMovieList(value);
-      console.log(result.data.content);
+
       return result.data.content;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -117,7 +117,7 @@ export const postFilm = createAsyncThunk(
     try {
       const result = await quanLiPhimService.postFilm(film);
       localStorage.setItem("addFilm", JSON.stringify(result.data.content));
-      console.log(3);
+
       alert("thêm phim thành công");
     } catch (error) {
       alert(error.response.data.content);
@@ -147,7 +147,8 @@ export const postFilmUpdate = createAsyncThunk(
       localStorage.setItem("filmUpdate", JSON.stringify(result.data.content));
       alert("Cập nhật phim thành công");
     } catch (err) {
-      alert(err.response.data.content);
+      console.log(err.response.data.content);
+      // alert(err.response.data);
     }
   }
 );
