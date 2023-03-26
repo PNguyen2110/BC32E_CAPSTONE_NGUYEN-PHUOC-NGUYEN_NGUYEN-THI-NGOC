@@ -56,3 +56,6 @@ code {
   border: 2px solid #e91e63;
   border-radius: 10px;
 }
+.ant-tabs-left>.ant-tabs-content-holder>.ant-tabs-content>.ant-tabs-tabpane, .ant-tabs-left>div>.ant-tabs-content-holder>.ant-tabs-content>.ant-tabs-tabpane {
+  padding-left: 77px !important;
+}

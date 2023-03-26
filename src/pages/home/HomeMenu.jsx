@@ -21,14 +21,14 @@ const HomeMenu = () => {
 
   return (
     <>
-      <Component className="lg:container tabContent  lg:px-12 xl:px-14 px-2 ">
+      <Component className="lg:container tabContent  lg:px-12 xl:px-14 " style={{paddingLeft:"75px"}}>
         <Tabs
           tabPosition={tabPosition}
           items={rapList.map((item) => {
             return {
               label: (
                 <img
-                  className="rounded-full logo  w-8 h-8   lg:w-14 h-14 "
+                  className="rounded-full logo  w-8 h-8 lg:w-14 "
                   src={item.logo}
                   onError={(e) => {
                     e.target.onerror = null;
