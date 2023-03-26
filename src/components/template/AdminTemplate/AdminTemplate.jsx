@@ -95,7 +95,7 @@ const AdminTemplate = () => {
             onClick={(item) => {
               if (item.key === "3") {
                 navigate("/admin");
-              } else if (item.key === "4") {
+              } else if (item.key === 4) {
                 navigate("/admin/addFilms");
               } else if (item.key === "sub1") {
                 navigate("/admin/quanLiNguoiDung");
