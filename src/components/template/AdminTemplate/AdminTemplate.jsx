@@ -29,7 +29,7 @@ const AdminTemplate = () => {
     console.log(user);
     if (user && user.maLoaiNguoiDung === "QuanTri") {
       navigate("/admin");
-    } else {
+    }  else {
       navigate("/home");
     }
   }, []);
@@ -68,7 +68,7 @@ const AdminTemplate = () => {
   return (
     <>
       <Header />
-      <Layout style={{ minHeight: "100vh" }}>
+      <Layout style={{ minHeight: "100vh" , paddingTop:"96px"}}>
         <Sider
           collapsible
           collapsed={collapsed}
