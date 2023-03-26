@@ -29,7 +29,8 @@ const AdminTemplate = () => {
     console.log(user);
     if (user && user.maLoaiNguoiDung === "QuanTri") {
       navigate("/admin");
-    }  else {
+    }  
+    else {
       navigate("/home");
     }
   }, []);
@@ -93,9 +94,9 @@ const AdminTemplate = () => {
           <Menu
             onClick={(item) => {
               console.log(item.key);
-              if (item.key === 3) {
+              if (item.key === '3') {
                 navigate("/admin");
-              } else if (item.key === 4) {
+              } else if (item.key === '4') {
                 navigate("/admin/addFilms");
               } else if (item.key === "sub1") {
                 navigate("/admin/quanLiNguoiDung");
